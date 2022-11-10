@@ -1,0 +1,17 @@
+package myclass.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+public class RequestMappingController {
+	
+	@Controller
+	public class RequestMappingControllr{
+		
+		@RequestMapping("re/a.do")
+		public void test() {
+			System.out.println("a.do요청");
+		}
+	}
+
+}
