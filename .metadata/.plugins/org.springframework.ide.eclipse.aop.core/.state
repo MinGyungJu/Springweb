@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aop-reference-model>
+<aop-project name="sj"/>
 <aop-project name="fSpringMVC"/>
 <aop-project name="gWebBoard"/>
+<aop-project name="Samjo"/>
+<aop-project name="gWebBoard1"/>
 <aop-project name="hSample"/>
 </aop-reference-model>
