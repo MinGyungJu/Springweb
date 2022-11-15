@@ -8,26 +8,27 @@
 
 	<!-- title -->
 	<title>Single Product</title>
+	<%String pjName="/sj/";%>
 
 	<!-- favicon -->
-	<link rel="shortcut icon" type="image/png" href="resources/assets/img/favicon.png">
+	<link rel="shortcut icon" type="image/png" href="<%=pjName%>resources/assets/img/favicon.png">
 	<!-- google font -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
 	<!-- fontawesome -->
-	<link rel="stylesheet" href="resources/assets/css/all.min.css">
+	<link rel="stylesheet" href="<%=pjName%>resources/assets/css/all.min.css">
 	<!-- bootstrap -->
-	<link rel="stylesheet" href="resources/assets/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="<%=pjName%>resources/assets/bootstrap/css/bootstrap.min.css">
 	<!-- owl carousel -->
-	<link rel="stylesheet" href="resources/assets/css/owl.carousel.css">
+	<link rel="stylesheet" href="<%=pjName%>resources/assets/css/owl.carousel.css">
 	<!-- magnific popup -->
-	<link rel="stylesheet" href="resources/assets/css/magnific-popup.css">
+	<link rel="stylesheet" href="<%=pjName%>resources/assets/css/magnific-popup.css">
 	<!-- animate css -->
-	<link rel="stylesheet" href="resources/assets/css/animate.css">
+	<link rel="stylesheet" href="<%=pjName%>resources/assets/css/animate.css">
 	<!-- mean menu css -->
-	<link rel="stylesheet" href="resources/assets/css/meanmenu.min.css">
+	<link rel="stylesheet" href="<%=pjName%>resources/assets/css/meanmenu.min.css">
 	<!-- main style -->
-	<link rel="stylesheet" href="resources/assets/css/main.css">
+	<link rel="stylesheet" href="<%=pjName%>resources/assets/css/main.css">
 	<!-- responsive -->
 	
 
