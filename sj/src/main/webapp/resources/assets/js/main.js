@@ -1,7 +1,7 @@
 (function ($) {
     "use strict";
 
-    $(document).ready(function($){
+	$(document).ready(function($){
         
         // testimonial sliders
         $(".testimonial-sliders").owlCarousel({

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="UserDAO">
+	
+	
+	<select id="checkMId" parameterType="ManagerVO" resultType="ManagerVO">
+		SELECT * FROM MANAGER
+		 WHERE id=#{id}
+	</select>	
+	<select id="loginManager" parameterType="ManagerVO" resultType="ManagerVO">
+		SELECT * FROM MANAGER
+		 WHERE id=#{id} AND pw=#{pw}
+	</select>
+
+	<select id="checkId" parameterType="CustomerVO" resultType="CustomerVO">
+		SELECT * FROM CUSTOMER
+		 WHERE id=#{id}
+	</select>	
+	<select id="loginCustomer" parameterType="CustomerVO" resultType="CustomerVO">
+		SELECT * FROM CUSTOMER
+		 WHERE id=#{id} AND pw=#{pw}
+	</select>
+	
+	<insert id="insertProduct" parameterType="ProductVO">
+		
+		<if test="img != null">
+		INSERT INTO PRODUCT(pno, img, pname, price, description, stock) 
+		 VALUES(product_seq.nextval,#{img},#{pname},#{price},#{description},#{stock})
+		</if>
+		<if test="img == null"> <!-- DELETE THIS LATER WHEN IMG WORKS -->
+		INSERT INTO PRODUCT(pno, pname, price, description, stock) 
+		 VALUES(product_seq.nextval,#{pname},#{price},#{description},#{stock})
+		</if>
+	</insert>
+	<insert id="insertManager" parameterType="ManagerVO">
+		INSERT INTO MANAGER(mno, name, gender, id, pw, tel, email, addr)
+		 VALUES(manager_seq.nextval,#{name},#{gender},#{id},#{pw},#{tel},#{email},#{addr})
+	</insert>
+	
+	<insert id="insertCustomer" parameterType="CustomerVO">
+		INSERT INTO CUSTOMER(cno, name, gender, id, pw, tel, email, addr)
+		 VALUES(customer_seq.nextval,#{name},#{gender},#{id},#{pw},#{tel},#{email},#{addr})
+	</insert>
+
+	
+	
+	
+</mapper>

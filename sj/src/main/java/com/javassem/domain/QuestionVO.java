@@ -12,5 +12,4 @@ public class QuestionVO {
 	private String regdate;
 	private int cnt;
 
-	
 }
