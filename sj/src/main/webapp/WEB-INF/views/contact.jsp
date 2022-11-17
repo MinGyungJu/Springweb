@@ -142,7 +142,7 @@
 					</div>
 				 	<div id="form_status"></div>
 					<div class="contact-form">
-						<form type="POST" id="fruitkha-contact" onSubmit="return valid_datas( this );">
+						<form method="POST" id="" onSubmit="return valid_datas( this );">
 							<p>
 								<input type="text" placeholder="Name" name="name" id="name">
 								<input type="email" placeholder="Email" name="email" id="email">
@@ -192,7 +192,7 @@
 
 	<!-- google map section -->
 	<div class="embed-responsive embed-responsive-21by9">
-		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3166.236098599395!2d126.87645845121561!3d37.478754536808516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b61e3354204f9%3A0x12b02f6401815f80!2sKorea%20Software%20HRD%20Center!5e0!3m2!1sen!2skr!4v1667899553580!5m2!1sen!2skr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>	</div>
+		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3166.236098599395!2d126.87645845121561!3d37.478754536808516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b61e3354204f9%3A0x12b02f6401815f80!2sKorea%20Software%20HRD%20Center!5e0!3m2!1sen!2skr!4v1667899553580!5m2!1sen!2skr" width="600" height="450" style="border:0;"></iframe>	</div>
 	<!-- end google map section -->
 
 

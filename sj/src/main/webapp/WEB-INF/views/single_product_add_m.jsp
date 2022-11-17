@@ -1,7 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%  //웹브라우저가 게시글 목록을 캐싱할 경우 새로운 글이 추가되더라도 새글이 목록에 안 보일 수 있기 때문에 설정
+   response.setHeader("Pragma","No-cache");      // HTTP 1.0 version
+   response.setHeader("Cache-Control","no-cache");   // HTTP 1.1 version
+   response.setHeader("Cache-Control","no-store"); // 일부 파이어폭스 버스 관련
+   response.setDateHeader("Expires", 1L);         // 현재 시간 이전으로 만료일을 지정함으로써 응답결과가 캐쉬되지 않도록 설정
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -131,24 +136,26 @@
 	<!-- single product -->
 	<div class="single-product mt-150 mb-150">
 		<div class="container">
-			<form action="addProduct.do">
+			 <form action="addProduct.do" method="post" enctype="multipart/form-data">
 				<div class="row">
 					<div class="col-md-5">
 						<div class="single-product-img">
-							<img src="<%=pjName%>resources/assets/img/products/plus.jpg" alt="" id="img" name="img">
-							<!-- code for adding image here -->
-						</div>
+                  			<label for="file-input">
+                     			<img src="<%=pjName%>resources/assets/img/products/plus.jpg" alt="" onclick="src='<%=pjName%>resources/assets/img/products/minus.jpg'" >
+                  			</label>
+                     		<input id="file-input" type="file" id="img" name="file"/>
+                  		</div>
 					</div>
 					<div class="col-md-7">
 						<div class="single-product-content">
 							<textarea id="pno" class="col-lg-6 col-md-12" placeholder="Product ID (Not Writable)" readonly></textarea>
 							<textarea name="pname" id="pname" class="col-lg-6 col-md-12" placeholder="Product Name"></textarea>
 							<p class="single-product-pricing"><span>Per Kg</span></p>
-							<textarea name="price" id="price" class="col-lg-6 col-md-12" placeholder="Price"></textarea>
+							<textarea name="price" id="price" class="col-lg-6 col-md-12" placeholder="($)Price"></textarea>
 							<textarea name="description" id="description" class="col-lg-6 col-md-12" placeholder="Description" rows="2"></textarea>
 							
 							<div class="single-product-form">
-								<input name="stock" id="stock" type="number" placeholder="0"><br/>
+								<input name="stock" id="stock" value="0" type="number" placeholder="0"><br/>
 								<input type="submit" value="Add New">	
 							</div>
 						</div>
@@ -214,7 +221,7 @@
 							<li><a href="index_m.do">ORDERS</a></li>
 							<li><a href="shop_m.do">COFFEE BEANS</a></li>
 							<li><a href="shop2_m.do">GOODS</a></li>
-							<li><a href="contact_m.do">SUPPORT</a></li></ul>
+							<li><a href="contact_m.do">SUPPORT</a></li>
 						</ul>
 					</div>
 				</div>

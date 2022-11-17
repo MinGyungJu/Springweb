@@ -3,6 +3,10 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="UserDAO">
 	
+	<delete id="delete" parameterType="ProductVO">
+		delete from product
+		where pno=#{pno}
+	</delete>
 	
 	<select id="checkMId" parameterType="ManagerVO" resultType="ManagerVO">
 		SELECT * FROM MANAGER
@@ -22,8 +26,21 @@
 		 WHERE id=#{id} AND pw=#{pw}
 	</select>
 	
+	<select id="getProductList" resultType="ProductVO">
+		<![CDATA[
+		SELECT * FROM PRODUCT
+		 WHERE PNO < 100000
+		 ORDER BY pno desc
+		 ]]>
+	</select>
+	
+	<update id="modifyProduct" parameterType="ProductVO">
+		UPDATE PRODUCT 
+		SET img=#{img}, pname=#{pname},price=#{price},description=#{description},stock=#{stock}
+		WHERE pno=#{pno}
+	</update>
+	
 	<insert id="insertProduct" parameterType="ProductVO">
-		
 		<if test="img != null">
 		INSERT INTO PRODUCT(pno, img, pname, price, description, stock) 
 		 VALUES(product_seq.nextval,#{img},#{pname},#{price},#{description},#{stock})
@@ -31,6 +48,16 @@
 		<if test="img == null"> <!-- DELETE THIS LATER WHEN IMG WORKS -->
 		INSERT INTO PRODUCT(pno, pname, price, description, stock) 
 		 VALUES(product_seq.nextval,#{pname},#{price},#{description},#{stock})
+		</if>
+	</insert>
+	<insert id="insertProduct2" parameterType="ProductVO">
+		<if test="img != null">
+		INSERT INTO PRODUCT(pno, img, pname, price, description, stock) 
+		 VALUES(product2_seq.nextval,#{img},#{pname},#{price},#{description},#{stock})
+		</if>
+		<if test="img == null"> <!-- DELETE THIS LATER WHEN IMG WORKS -->
+		INSERT INTO PRODUCT(pno, pname, price, description, stock) 
+		 VALUES(product2_seq.nextval,#{pname},#{price},#{description},#{stock})
 		</if>
 	</insert>
 	<insert id="insertManager" parameterType="ManagerVO">

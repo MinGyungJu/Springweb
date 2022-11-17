@@ -150,19 +150,19 @@
 								<tr class="table-body-row">
 									<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
 									<td class="product-remove">1</td>
-									<td><text-field>customerID</text-field></td>
+									<td><input type="text" value ="customerID" readonly></td>
 									<td class="product-price"><textarea name="" id="" class="col-lg-12 col-md-12" placeholder="list of orders"></textarea></td>
 								</tr>
 								<tr class="table-body-row">
 									<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
 									<td class="product-remove">2</td>
-									<td><text-field>customerID</text-field></td>
+									<td><input type="text" value ="customerID" readonly></td>
 									<td class="product-price"><textarea name="" id="" class="col-lg-12 col-md-12" placeholder="list of orders"></textarea></td>
 								</tr>
 								<tr class="table-body-row">
 									<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
 									<td class="product-remove">3</td>
-									<td><text-field>customerID</text-field></td>
+									<td><input type="text" value ="customerID" readonly></td>
 									<td class="product-price"><textarea name="" id="" class="col-lg-12 col-md-12" placeholder="list of orders"></textarea></td>
 								</tr>
 							</tbody>

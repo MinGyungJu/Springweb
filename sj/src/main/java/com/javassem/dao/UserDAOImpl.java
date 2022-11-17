@@ -1,4 +1,6 @@
 package com.javassem.dao;
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,6 +19,21 @@ public class UserDAOImpl implements UserDAO{
 		System.out.println("=>UserDAOImpl.java::UserMapper::insertProduct");
 		return mybatis.insert("UserDAO.insertProduct", vo);
 	}
+
+	public int insertProduct2(ProductVO vo) {
+		System.out.println("=>UserDAOImpl.java::UserMapper::insertProduct2");
+		return mybatis.insert("UserDAO.insertProduct2", vo);
+	}
+
+	public int modifyProduct(ProductVO vo) {
+		System.out.println("=>UserDAOImpl.java::UserMapper::modifyProduct");
+		return mybatis.update("UserDAO.modifyProduct",vo);
+	}
+	@Override
+	public int delete(ProductVO vo) {
+		
+		return mybatis.delete("UserDAO.delete",vo);
+	}
 	// ---manager product end
 	
 	// ---manager login
@@ -33,6 +50,9 @@ public class UserDAOImpl implements UserDAO{
 	}
 	// ---manager login end
 
+	public List<ProductVO> getProductList(){
+		return mybatis.selectList("UserDAO.getProductList");
+	}
 	// ----------------------------------manager end
 	// ----------------------------------user
 	// ---user login
@@ -48,6 +68,11 @@ public class UserDAOImpl implements UserDAO{
 		return mybatis.selectOne("UserDAO.loginCustomer", vo);
 	}
 	// ---user login end
+
+	
+
+	
+
 	
 
 	// ----------------------------------user

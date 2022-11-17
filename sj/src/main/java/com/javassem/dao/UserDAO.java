@@ -12,6 +12,9 @@ public interface UserDAO {
 	// ----------------------------------manager
 	// ---manager product
 	public int insertProduct(ProductVO vo);
+	public int insertProduct2(ProductVO vo);
+	public int modifyProduct(ProductVO vo);
+	public int delete(ProductVO vo);
 	// ---manager product end
 	
 	// ---manager login
@@ -19,7 +22,7 @@ public interface UserDAO {
 	public int insertManager(ManagerVO vo);
 	public ManagerVO loginManager(ManagerVO vo);
 	// ---manager login end
-
+	public List<ProductVO> getProductList();
 	// ----------------------------------manager end
 	
 	// ----------------------------------user
@@ -30,6 +33,8 @@ public interface UserDAO {
 	public CustomerVO loginCustomer(CustomerVO vo);
 	// ---user login end
 	// ----------------------------------user
+	
+
 
 
 }

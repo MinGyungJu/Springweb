@@ -2,7 +2,7 @@
     "use strict";
 
 	$(document).ready(function($){
-        
+
         // testimonial sliders
         $(".testimonial-sliders").owlCarousel({
             items: 1,

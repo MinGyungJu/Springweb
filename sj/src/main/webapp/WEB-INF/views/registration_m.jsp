@@ -11,7 +11,7 @@
    <meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
 
    <!-- title -->
-   <title>Registration</title>
+   <title>Manager Registration</title>
 	<%String pjName="/sj/";%>
 
    <!-- favicon -->
@@ -134,8 +134,8 @@
          <div class="row">
             <div class="col-lg-8 mb-5 mb-lg-0">
                <div class="form-title">
-                  <h2>Have you any question?</h2>
-                  <p>Our team of baristas would gladly hop in to assist you with any questions you have regarding our coffee related products!</p>
+                  <h2>Manager Registration</h2>
+                  <p>Welcome to the world of managing our customers.</p>
                </div>
                 <div id="form_status"></div>
                <div class="contact-form">

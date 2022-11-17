@@ -147,66 +147,59 @@
 			<div class="row product-lists">
 				<div class="col-lg-4 col-md-6 text-center strawberry">
 					<div class="single-product-item">
-						<a href="single_product_add_m.do">
-							<div class="product-image"><img src="<%=pjName%>resources/assets/img/products/plus.jpg" alt=""></div>
-							<h3>Add Product</h3>
-							<p class="product-price"><span>Per Kg</span> - </p> 
-						</a>
+
+						<div class="product-image clickable-div" onclick="location.href='single_product_add2_m.do';">
+							<img src="<%=pjName%>resources/assets/img/products/plus.jpg" alt="">
+						</div>
+						<h3>Add Product</h3>
+						<p class="product-price"><span>Per Kg</span> - </p> 
+						
 					</div>
 				</div> 
 				<div class="col-lg-4 col-md-6 text-center strawberry">
 					<div class="single-product-item">
-						<a href="single_product_modify_m.do">
-							<div class="product-image">
-								<img src="<%=pjName%>resources/assets/img/products/product-img-1.jpg" alt=""></a>
-							</div>
-							<h3>Strawberry</h3>
-							<p class="product-price"><span>Per Kg</span> 85$ </p> 
-						</a>
+						<div class="product-image clickable-div" onclick="location.href='single_product_modify_m.do';">
+							<img src="<%=pjName%>resources/assets/img/products/product-img-1.jpg" alt="">
+						</div>
+						<h3>Strawberry</h3>
+						<p class="product-price"><span>Per Kg</span> 85$ </p> 
+						
 					</div>
 				</div>
 				<div class="col-lg-4 col-md-6 text-center berry">
 					<div class="single-product-item">
-						<a href="single_product_modify_m.do">
-							<div class="product-image">
-								<img src="<%=pjName%>resources/assets/img/products/product-img-2.jpg" alt=""></a>
-							</div>
-							<h3>Berry</h3>
-							<p class="product-price"><span>Per Kg</span> 70$ </p> 
-						</a>
+						<div class="product-image clickable-div" onclick="location.href='single_product_modify_m.do';">
+							<img src="<%=pjName%>resources/assets/img/products/product-img-2.jpg" alt="">
+						</div>
+						<h3>Berry</h3>
+						<p class="product-price"><span>Per Kg</span> 70$ </p>
 					</div>
 				</div>
 				<div class="col-lg-4 col-md-6 text-center berry">
 					<div class="single-product-item">
-						<a href="single_product_modify_m.do">
-							<div class="product-image">
-								<img src="<%=pjName%>resources/assets/img/products/product-img-2.jpg" alt=""></a>
-							</div>
-							<h3>Berry</h3>
-							<p class="product-price"><span>Per Kg</span> 70$ </p> 
-						</a>
+						<div class="product-image clickable-div" onclick="location.href='single_product_modify_m.do';">
+							<img src="<%=pjName%>resources/assets/img/products/product-img-2.jpg" alt="">
+						</div>
+						<h3>Berry</h3>
+						<p class="product-price"><span>Per Kg</span> 70$ </p>
 					</div>
 				</div>
 				<div class="col-lg-4 col-md-6 text-center berry">
 					<div class="single-product-item">
-						<a href="single_product_modify_m.do">
-							<div class="product-image">
-								<img src="<%=pjName%>resources/assets/img/products/product-img-2.jpg" alt=""></a>
-							</div>
-							<h3>Berry</h3>
-							<p class="product-price"><span>Per Kg</span> 70$ </p> 
-						</a>
+						<div class="product-image clickable-div" onclick="location.href='single_product_modify_m.do';">
+							<img src="<%=pjName%>resources/assets/img/products/product-img-2.jpg" alt="">
+						</div>
+						<h3>Berry</h3>
+						<p class="product-price"><span>Per Kg</span> 70$ </p>
 					</div>
 				</div>
 				<div class="col-lg-4 col-md-6 text-center berry">
 					<div class="single-product-item">
-						<a href="single_product_modify_m.do">
-							<div class="product-image">
-								<img src="<%=pjName%>resources/assets/img/products/product-img-2.jpg" alt=""></a>
-							</div>
-							<h3>Berry</h3>
-							<p class="product-price"><span>Per Kg</span> 70$ </p> 
-						</a>
+						<div class="product-image clickable-div" onclick="location.href='single_product_modify_m.do';">
+							<img src="<%=pjName%>resources/assets/img/products/product-img-2.jpg" alt="">
+						</div>
+						<h3>Berry</h3>
+						<p class="product-price"><span>Per Kg</span> 70$ </p>
 					</div>
 				</div>
 			</div>
@@ -336,6 +329,8 @@
 	<script src="<%=pjName%>resources/assets/js/sticker.js"></script>
 	<!-- main js -->
 	<script src="<%=pjName%>resources/assets/js/main.js"></script>
+	<!-- main js2 -->
+	<script src="<%=pjName%>resources/assets/js/mainAdded.js"></script>
 
 </body>
 </html>

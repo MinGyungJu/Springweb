@@ -29,29 +29,31 @@ public class UserController {
 
 	// ----------------------------------manager
 	// ---manager product
+	
+	
 	@RequestMapping(value = "addProduct.do")
 	public String addProduct(ProductVO vo) {
 		System.out.println("=>UserController.java::addProduct.do");
 		userService.insertProduct(vo);
 		return "redirect:shop_m.do";
 	}
-	
+
+	@RequestMapping(value = "addProduct2.do")
+	public String addProduct2(ProductVO vo) {
+		System.out.println("=>UserController.java::addProduct2.do");
+		userService.insertProduct2(vo);
+		return "redirect:shop2_m.do";
+	}
+
 	@RequestMapping(value = "modifyProduct.do")
-	public String modifyProduct() {
+	public String modifyProduct(ProductVO vo) {
 		System.out.println("=>UserController.java::modifyProduct.do");
+		userService.modifyProduct(vo); 
 		return "redirect:shop_m.do";
 	}
 	// ---manager product end
-	
-	
+
 	// ---manager login
-	@RequestMapping(value = "logout_m.do")
-	public String logout_m(HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		session.invalidate();
-		return "redirect:index_m.do";
-	}
-	
 	@RequestMapping(value = "insertManager.do", method = RequestMethod.POST)
 	public String insertManager(ManagerVO vo) {
 		System.out.println("=>UserController.java::insertManager.do");
@@ -75,6 +77,14 @@ public class UserController {
 		}
 		return "redirect:login_m.do";
 	}
+
+	@RequestMapping(value = "logout_m.do")
+	public String logout_m(HttpServletRequest request) {
+		HttpSession session = request.getSession(true);
+		session.invalidate();
+		return "redirect:index_m.do";
+	}
+
 	// ---manager login end
 	@RequestMapping("contact_m.do")
 	public void contact_m() {
@@ -97,8 +107,9 @@ public class UserController {
 	}
 
 	@RequestMapping("shop_m.do")
-	public void shop_m() {
-
+	public void shop_m(Model m) {
+		List<ProductVO> list = userService.getProductList();
+		m.addAttribute("productList", list);
 	}
 
 	@RequestMapping("shop2_m.do")
@@ -110,29 +121,34 @@ public class UserController {
 	public void singleProduct_m() {
 
 	}
-	
+
 	@RequestMapping("single_product_add_m.do")
-	public void single_product_add_m(){
-		
+	public void single_product_add_m() {
+
 	}
-	
+
+	@RequestMapping("single_product_add2_m.do")
+	public void single_product_add2_m() {
+
+	}
+
 	@RequestMapping("single_product_modify_m.do")
 	public void single_product_modify_m() {
-		
+
 	}
 	
+	@RequestMapping("delete.do")
+	public String delete(ProductVO vo, Model m) {
+		userService.delete(vo);
+		return "redirect:index_m.do";
+		
+	}
+
 	// ----------------------------------manager end
 
 	// ----------------------------------user
-	
+
 	// ---user login
-	@RequestMapping(value = "logout.do")
-	public String logout(HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		session.invalidate();
-		return "redirect:index.do";
-	}
-	
 	@RequestMapping(value = "insertCustomer.do", method = RequestMethod.POST)
 	public String insertCustomer(CustomerVO vo) {
 		System.out.println("=>UserController.java::insertCustomer.do");
@@ -155,6 +171,13 @@ public class UserController {
 			return "redirect:index.do";
 		}
 		return "redirect:login.do";
+	}
+
+	@RequestMapping(value = "logout.do")
+	public String logout(HttpServletRequest request) {
+		HttpSession session = request.getSession(true);
+		session.invalidate();
+		return "redirect:index.do";
 	}
 	// ---user login end
 

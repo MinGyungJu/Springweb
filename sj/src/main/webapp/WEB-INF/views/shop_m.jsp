@@ -55,7 +55,7 @@
 					<div class="main-menu-wrap">
 						<!-- logo -->
 						<div class="site-logo">
-							<a href="index.do">
+							<a href="index_m.do">
 								<img src="<%=pjName%>resources/assets/img/logo.png" alt="">
 							</a>
 						</div>
@@ -65,7 +65,7 @@
 						<nav class="main-menu">
 							<ul>
 								<li><a href="index_m.do">ORDERS</a></li>
-								<li class="current-list-item"><a href="#">COFFEE BEANS</a></li>
+								<li class="current-list-item"><a href="shop_m.do">COFFEE BEANS</a></li>
 								<li><a href="shop2_m.do">GOODS</a></li>
 								<li><a href="contact_m.do">SUPPORT</a>
 								<li>
@@ -111,7 +111,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- end search arewa -->
+	<!-- end search area -->
 	
 	<!-- breadcrumb-section -->
 	<div class="breadcrumb-section breadcrumb-bg">
@@ -120,7 +120,7 @@
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="breadcrumb-text">
 						<p>Fresh and Organic</p>
-						<h1>Edit Beans</h1>
+						<h1>Edit Goods</h1>
 					</div>
 				</div>
 			</div>
@@ -147,68 +147,28 @@
 			<div class="row product-lists">
 				<div class="col-lg-4 col-md-6 text-center strawberry">
 					<div class="single-product-item">
-						<a href="single-product_m.do">
-							<div class="product-image"><img src="<%=pjName%>resources/assets/img/products/plus.jpg" alt=""></div>
-							<h3>Add Product</h3>
-							<p class="product-price"><span>Per Kg</span> - </p> 
-						</a>
-					</div>
-				</div> 
-				<div class="col-lg-4 col-md-6 text-center strawberry">
-					<div class="single-product-item">
-						<a href="single-product_m.do">
-							<div class="product-image">
-								<img src="<%=pjName%>resources/assets/img/products/product-img-1.jpg" alt=""></a>
-							</div>
-							<h3>Strawberry</h3>
-							<p class="product-price"><span>Per Kg</span> 85$ </p> 
-						</a>
+						<div class="product-image clickable-div" onclick="location.href='single_product_add_m.do';">
+							<img src="<%=pjName%>resources/assets/img/products/plus.jpg" alt="">
+						</div>
+						<h3>Add Product</h3>
+						<p class="product-price"><span>Per Kg</span> - </p> 
 					</div>
 				</div>
-				<div class="col-lg-4 col-md-6 text-center berry">
-					<div class="single-product-item">
-						<a href="single-product_m.do">
-							<div class="product-image">
-								<img src="<%=pjName%>resources/assets/img/products/product-img-2.jpg" alt=""></a>
+				
+				
+				<c:forEach items="${productList}" var="product"> 
+					<div class="col-lg-4 col-md-6 text-center strawberry">
+						<div class="single-product-item">
+							<div class="product-image clickable-div" onclick="location.href='single_product_modify_m.do?pno=${product.pno}&img=${product.img}&pname=${product.pname}&price=${product.price}&description=${product.description}&stock=${product.stock}';">
+								<img src="<%=pjName%>resources/assets/img/products/${product.img}" alt="">
 							</div>
-							<h3>Berry</h3>
-							<p class="product-price"><span>Per Kg</span> 70$ </p> 
-						</a>
+							<h3>${product.pname}</h3>
+							<p class="product-price"><span>Per Kg</span> ${product.price}$ </p> 
+							<input type="hidden" name="pno" value="${product.pno}">
+						</div>
 					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 text-center berry">
-					<div class="single-product-item">
-						<a href="single-product_m.do">
-							<div class="product-image">
-								<img src="<%=pjName%>resources/assets/img/products/product-img-2.jpg" alt=""></a>
-							</div>
-							<h3>Berry</h3>
-							<p class="product-price"><span>Per Kg</span> 70$ </p> 
-						</a>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 text-center berry">
-					<div class="single-product-item">
-						<a href="single-product_m.do">
-							<div class="product-image">
-								<img src="<%=pjName%>resources/assets/img/products/product-img-2.jpg" alt=""></a>
-							</div>
-							<h3>Berry</h3>
-							<p class="product-price"><span>Per Kg</span> 70$ </p> 
-						</a>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 text-center berry">
-					<div class="single-product-item">
-						<a href="single-product_m.do">
-							<div class="product-image">
-								<img src="<%=pjName%>resources/assets/img/products/product-img-2.jpg" alt=""></a>
-							</div>
-							<h3>Berry</h3>
-							<p class="product-price"><span>Per Kg</span> 70$ </p> 
-						</a>
-					</div>
-				</div>
+				</c:forEach>
+				
 			</div>
 
 			<div class="row">
@@ -336,6 +296,8 @@
 	<script src="<%=pjName%>resources/assets/js/sticker.js"></script>
 	<!-- main js -->
 	<script src="<%=pjName%>resources/assets/js/main.js"></script>
+	<!-- main js2 -->
+	<script src="<%=pjName%>resources/assets/js/mainAdded.js"></script>
 
 </body>
 </html>

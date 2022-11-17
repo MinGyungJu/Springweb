@@ -180,11 +180,9 @@
 				</div>
 			</div>
 			<div>
-				<tr>
-					<br/>
-					<h3>Q & A</h3>
-					<p><textarea class="col-lg-12" style="text-align:center" cols="150" rows="20">message</textarea></p>
-				</tr>
+				<br/>
+				<h3>Q &amp; A</h3>
+				<p><textarea class="col-lg-12" style="text-align:center" cols="150" rows="20">message</textarea></p>
 			</div>
 		</div>
 	</div>

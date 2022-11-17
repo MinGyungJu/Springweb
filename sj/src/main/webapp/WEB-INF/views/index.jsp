@@ -126,8 +126,8 @@
 					<div class="col-md-12 col-lg-7 offset-lg-1 offset-xl-0">
 						<div class="hero-text">
 							<div class="hero-text-tablecell">
-								<p class="subtitle">Fresh & Organic</p>
-								<h1>Delicious Seasonal Fruits</h1>
+								<p class="subtitle">Fresh &amp; Organic</p>
+								<h1>Gourmet Coffee Roasted To Perfection</h1>
 								<div class="hero-btns">
 									<a href="shop.do" class="boxed-btn">Visit Shop</a>
 									<a href="index.do#team" class="bordered-btn">Barista</a>
@@ -164,8 +164,8 @@
 					<div class="col-lg-10 offset-lg-1 text-right">
 						<div class="hero-text">
 							<div class="hero-text-tablecell">
-								<p class="subtitle">Mega Sale Going On!</p>
-								<h1>Get December Discount</h1>
+								<p class="subtitle">Make coffee with special tools</p>
+								<h1>Become a Expert</h1>
 								<div class="hero-btns">
 									<a href="shop.do" class="boxed-btn">Visit Shop</a>
 									<a href="login.do" class="bordered-btn">Login</a>
@@ -185,8 +185,8 @@
 			<div class="row">
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="section-title">	
-						<h3><span class="orange-text">Our</span> Products</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet beatae optio.</p>
+						<h3><span class="orange-text">Signature</span> Products</h3>
+						<p>Featuring the freshest signature coffees sourced throughout the year.</p> 
 					</div>
 				</div>
 			</div>
@@ -197,7 +197,7 @@
 						<div class="product-image">
 							<a href="single_product.do"><img src="<%=pjName%>resources/assets/img/products/product-img-1.jpg" alt=""></a>
 						</div>
-						<h3>Strawberry</h3>
+						<h3>Light Coffee</h3>
 						<p class="product-price"><span>Per Kg</span> 85$ </p>
 						<a href="cart.do" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
 					</div>
@@ -207,7 +207,7 @@
 						<div class="product-image">
 							<a href="single_product.do"><img src="<%=pjName%>resources/assets/img/products/product-img-2.jpg" alt=""></a>
 						</div>
-						<h3>Berry</h3>
+						<h3>Medium Coffee</h3>
 						<p class="product-price"><span>Per Kg</span> 70$ </p>
 						<a href="cart.do" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
 					</div>
@@ -217,7 +217,7 @@
 						<div class="product-image">
 							<a href="single_product.do"><img src="<%=pjName%>resources/assets/img/products/product-img-3.jpg" alt=""></a>
 						</div>
-						<h3>Lemon</h3>
+						<h3>Dark Coffee</h3>
 						<p class="product-price"><span>Per Kg</span> 35$ </p>
 						<a href="cart.do" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
 					</div>
@@ -238,9 +238,9 @@
 								<img src="<%=pjName%>resources/assets/img/avaters/avatar1.png" alt="">
 							</div>
 							<div class="client-meta">
-								<h3>Saira Hakim <span>Local shop owner</span></h3>
+								<h3>Saira Hakim <span>Slow's Barista</span></h3>
 								<p class="testimonial-body">
-									" Sed ut perspiciatis unde omnis iste natus error veritatis et  quasi architecto beatae vitae dict eaque ipsa quae ab illo inventore Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium "
+									" We worked hard to build a holiday blend that captures the beauty and flavor of balanced in-season coffees. "
 								</p>
 								<div class="last-icon">
 									<i class="fas fa-quote-right"></i>
@@ -252,9 +252,9 @@
 								<img src="<%=pjName%>resources/assets/img/avaters/avatar2.png" alt="">
 							</div>
 							<div class="client-meta">
-								<h3>David Niph <span>Local shop owner</span></h3>
+								<h3>David Niph <span>Offline Slow shop owner</span></h3>
 								<p class="testimonial-body">
-									" Sed ut perspiciatis unde omnis iste natus error veritatis et  quasi architecto beatae vitae dict eaque ipsa quae ab illo inventore Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium "
+									" A refreshing blend of coffee and sea salt are legendary for their therapeutic and clarifying properties. "
 								</p>
 								<div class="last-icon">
 									<i class="fas fa-quote-right"></i>
@@ -266,9 +266,9 @@
 								<img src="<%=pjName%>resources/assets/img/avaters/avatar3.png" alt="">
 							</div>
 							<div class="client-meta">
-								<h3>Jacob Sikim <span>Local shop owner</span></h3>
+								<h3>Jacob Sikim <span>CEO</span></h3>
 								<p class="testimonial-body">
-									" Sed ut perspiciatis unde omnis iste natus error veritatis et  quasi architecto beatae vitae dict eaque ipsa quae ab illo inventore Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium "
+									" Roasted to perfection by our very own Roast Master in small batches for a more gourmet roast. Every coffee is prepared for you. "
 								</p>
 								<div class="last-icon">
 									<i class="fas fa-quote-right"></i>
@@ -294,10 +294,10 @@
 				<div class="col-lg-6 col-md-12">
 					<div class="abt-text">
 						<p class="top-sub">Since Year 1999</p>
-						<h2>We are <span class="orange-text">Slow</span></h2>
-						<p>Etiam vulputate ut augue vel sodales. In sollicitudin neque et massa porttitor vestibulum ac vel nisi. Vestibulum placerat eget dolor sit amet posuere. In ut dolor aliquet, aliquet sapien sed, interdum velit. Nam eu molestie lorem.</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente facilis illo repellat veritatis minus, et labore minima mollitia qui ducimus.</p>
-						<a href="about.do" class="boxed-btn mt-4">know more</a>
+						<h2>We use <span class="orange-text">Organic</span></h2>
+						<p>We use 100% Arabica beans roasted in small batches to bring the beans to their full flavor. All our flavored coffees are available in Regular or Decaf and many of our blends and specialty coffees are also available in Decaf.</p>
+						<p>We make sure that quality is at the core of everything we do. It’s that simple, by selecting only the finest green beans, we can assure you a better cup of coffee.</p>
+						<a href="registration.do" class="boxed-btn mt-4">Please be our member</a>
 					</div>
 				</div>
 			</div>
@@ -311,7 +311,7 @@
 			<div class="row">
 				<div class="col-lg-7">
 					<div class="featured-text">
-						<h2 class="pb-3">Why <span class="orange-text">Fruitkha</span></h2>
+						<h2 class="pb-3">Why <span class="orange-text">Slow Coffee?</span></h2>
 						<div class="row">
 							<div class="col-lg-6 col-md-6 mb-4 mb-md-5">
 								<div class="list-box d-flex">
@@ -320,7 +320,7 @@
 									</div>
 									<div class="content">
 										<h3>Home Delivery</h3>
-										<p>sit voluptatem accusantium dolore mque laudantium, totam rem aperiam, eaque ipsa quae ab illo.</p>
+										<p>Fast delivery within a week. While you are waiting, look for various recipes on the home page.</p>
 									</div>
 								</div>
 							</div>
@@ -331,7 +331,7 @@
 									</div>
 									<div class="content">
 										<h3>Best Price</h3>
-										<p>sit voluptatem accusantium dolore mque laudantium, totam rem aperiam, eaque ipsa quae ab illo.</p>
+										<p>Get good quality coffee beans at a reasonable price. We love to feature the freshest organic coffee.</p>
 									</div>
 								</div>
 							</div>
@@ -341,8 +341,8 @@
 										<i class="fas fa-briefcase"></i>
 									</div>
 									<div class="content">
-										<h3>Custom Box</h3>
-										<p>sit voluptatem accusantium dolore mque laudantium, totam rem aperiam, eaque ipsa quae ab illo.</p>
+										<h3>Variety of Coffee Beans</h3>
+										<p>Sweet brew invokes all the feelings of comfort and joy. Complete your day with the taste you want.</p>
 									</div>
 								</div>
 							</div>
@@ -353,7 +353,7 @@
 									</div>
 									<div class="content">
 										<h3>Quick Refund</h3>
-										<p>sit voluptatem accusantium dolore mque laudantium, totam rem aperiam, eaque ipsa quae ab illo.</p>
+										<p>If you don't like it, you can get a quick refund or exchange. Don't hesitate to contact the support bulletin board.</p>
 									</div>
 								</div>
 							</div>
@@ -372,7 +372,8 @@
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="section-title">
 						<h3>Our <span class="orange-text">Team</span></h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet beatae optio.</p>
+						<p>Your festive morning companion.</p>
+						<p>We always strive to provide the best coffee beans.</p>
 					</div>
 				</div>
 			</div>
@@ -380,7 +381,7 @@
 				<div class="col-lg-4 col-md-6">
 					<div class="single-team-item">
 						<div class="team-bg team-bg-1"></div>
-						<h4>Jimmy Doe <span>Farmer</span></h4>
+						<h4>Jimmy Dona <span>Barista</span></h4>
 						<ul class="social-link-team">
 							<li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
 							<li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
@@ -391,7 +392,7 @@
 				<div class="col-lg-4 col-md-6">
 					<div class="single-team-item">
 						<div class="team-bg team-bg-2"></div>
-						<h4>Marry Doe <span>Farmer</span></h4>
+						<h4>Marry Jane <span>Barista</span></h4>
 						<ul class="social-link-team">
 							<li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
 							<li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
@@ -402,7 +403,7 @@
 				<div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0">
 					<div class="single-team-item">
 						<div class="team-bg team-bg-3"></div>
-						<h4>Simon Joe <span>Farmer</span></h4>
+						<h4>Simon Joe <span>Barista</span></h4>
 						<ul class="social-link-team">
 							<li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
 							<li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
