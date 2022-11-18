@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%  //웹브라우저가 게시글 목록을 캐싱할 경우 새로운 글이 추가되더라도 새글이 목록에 안 보일 수 있기 때문에 설정
+<%  //web browser can cache the list so new list may not show immediately
    response.setHeader("Pragma","No-cache");      // HTTP 1.0 version
    response.setHeader("Cache-Control","no-cache");   // HTTP 1.1 version
-   response.setHeader("Cache-Control","no-store"); // 일부 파이어폭스 버스 관련
-   response.setDateHeader("Expires", 1L);         // 현재 시간 이전으로 만료일을 지정함으로써 응답결과가 캐쉬되지 않도록 설정
+   response.setHeader("Cache-Control","no-store"); // related to some firefox settings
+   response.setDateHeader("Expires", 1L);         // set finished date before present to avoid being response cache.
 %>
 
 <!DOCTYPE html>

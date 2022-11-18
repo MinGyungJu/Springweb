@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%  //웹브라우저가 게시글 목록을 캐싱할 경우 새로운 글이 추가되더라도 새글이 목록에 안 보일 수 있기 때문에 설정
+<%  //web browser can cache the list so new list may not show immediately
    response.setHeader("Pragma","No-cache");      // HTTP 1.0 version
    response.setHeader("Cache-Control","no-cache");   // HTTP 1.1 version
-   response.setHeader("Cache-Control","no-store"); // 일부 파이어폭스 버스 관련
-   response.setDateHeader("Expires", 1L);         // 현재 시간 이전으로 만료일을 지정함으로써 응답결과가 캐쉬되지 않도록 설정
+   response.setHeader("Cache-Control","no-store"); // related to some firefox settings
+   response.setDateHeader("Expires", 1L);         // set finished date before present to avoid being response cache.
 %>
 
 <!DOCTYPE html>
@@ -137,19 +137,24 @@
 	<!-- single product -->
 	<div class="single-product mt-150 mb-150">
 		<div class="container">
-			<form action="modifyProduct.do" method="post"enctype="multipart/form-data">
+			<form action="modifyProduct.do" method="post" enctype="multipart/form-data">
 				<div class="row">
 					<div class="col-md-5">
 						<div class="single-product-img">
 							<label for="file-input">
-                     			<img src="<%=pjName%>resources/assets/img/products/plus.jpg" alt="" onclick="src='<%=pjName%>resources/assets/img/products/minus.jpg'" >
+								<c:if test="${product.img != null}">
+                     				<img src="<%=pjName%>resources/assets/img/products/${param.img}" alt="" onclick="src='<%=pjName%>resources/assets/img/products/minus.jpg'" >
+                  				</c:if>
+                  				<c:if test="${product.img == null}">
+                     				<img src="<%=pjName%>resources/assets/img/products/noImage.jpg" alt="" onclick="src='<%=pjName%>resources/assets/img/products/minus.jpg'" >
+                  				</c:if>
                   			</label>
                      		<input id="file-input" type="file" id="img" name="file" style="display:none;" />
 						</div>
 					</div>
 					<div class="col-md-7">
 						<div class="single-product-content">
-							<textarea name="pno" id="pno" class="col-lg-6 col-md-12" placeholder="Product ID">${param.pno}</textarea>
+							<textarea name="pno" id="pno" class="col-lg-6 col-md-12" placeholder="Product ID" readonly>Product No: ${param.pno}</textarea>
 							<textarea name="pname" id="pname" class="col-lg-6 col-md-12" placeholder="Product Name">${param.pname}</textarea>
 							<p class="single-product-pricing"><span>Per Kg</span></p>
 							<textarea name="price" id="price" class="col-lg-6 col-md-12" placeholder="Price">${param.price}</textarea>
@@ -163,9 +168,11 @@
 					</div>
 				</div>
 			</form>
-		 	<form action="delete.do">
-            <input type="submit" value="Delete Product">
-         	</form>
+			<form action="deleteProduct.do">
+				<input type="hidden" name="pno" id="pno" value="${param.pno}">
+				<input type="hidden" name="img" id="img" value="${param.img}">
+		 		<input type="submit" value="Delete Whole Product">
+			</form>
 		</div>
 	</div>
 	<!-- end single product -->
@@ -277,7 +284,6 @@
 	<script src="<%=pjName%>resources/assets/js/sticker.js"></script>
 	<!-- main js -->
 	<script src="<%=pjName%>resources/assets/js/main.js"></script>
-	
-	<script src="<%=pjName%>resources/assets/js/mainAdded.js"></script>
+
 </body>
 </html>

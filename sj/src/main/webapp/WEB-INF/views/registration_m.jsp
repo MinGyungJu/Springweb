@@ -151,7 +151,7 @@
                         </select>
                      </p>
                      <p>
-                        <input type="text" placeholder="ID" name="id" id="id">
+                        <input type="text" placeholder="Manager: ID" name="id" id="id">
                         <input type="text" placeholder="Password" name="pw" id="pw">
                      </p>
                      <p>

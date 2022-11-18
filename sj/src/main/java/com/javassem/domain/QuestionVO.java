@@ -6,7 +6,7 @@ import lombok.Data;
 public class QuestionVO {
 
 	private int qno;
-	private int number;
+	private int cno;
 	private String qname;
 	private String qmessage;
 	private String regdate;

@@ -77,9 +77,9 @@
 											<c:if test="${sessionScope.loginId==null}">	
 												<li><a href="login.do">Login Page</a></li>
 											</c:if>
-											<li><a href="mypage.do">My Page</a></li>
-											<li><a href="cart.do">Cart</a></li>
 											<c:if test="${sessionScope.loginId!=null}">	
+												<li><a href="mypage.do">My Page</a></li>
+												<li><a href="cart.do">Cart</a></li>
 												<li><a href="logout.do">Logout</a></li>
 											</c:if>
 										</ul>

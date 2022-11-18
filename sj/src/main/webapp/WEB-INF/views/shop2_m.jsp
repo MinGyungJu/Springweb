@@ -156,52 +156,18 @@
 						
 					</div>
 				</div> 
-				<div class="col-lg-4 col-md-6 text-center strawberry">
-					<div class="single-product-item">
-						<div class="product-image clickable-div" onclick="location.href='single_product_modify_m.do';">
-							<img src="<%=pjName%>resources/assets/img/products/product-img-1.jpg" alt="">
+				<c:forEach items="${productList2}" var="product"> 
+					<div class="col-lg-4 col-md-6 text-center strawberry">
+						<div class="single-product-item">
+							<div class="product-image clickable-div" onclick="location.href='single_product_modify_m.do?pno=${product.pno}&img=${product.img}&pname=${product.pname}&price=${product.price}&description=${product.description}&stock=${product.stock}';">
+								<img src="<%=pjName%>resources/assets/img/products/${product.img}" alt="">
+							</div>
+							<h3>${product.pname}</h3>
+							<p class="product-price"><span>Per Kg</span> ${product.price}$ </p> 
+							<input type="hidden" name="pno" value="${product.pno}">
 						</div>
-						<h3>Strawberry</h3>
-						<p class="product-price"><span>Per Kg</span> 85$ </p> 
-						
 					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 text-center berry">
-					<div class="single-product-item">
-						<div class="product-image clickable-div" onclick="location.href='single_product_modify_m.do';">
-							<img src="<%=pjName%>resources/assets/img/products/product-img-2.jpg" alt="">
-						</div>
-						<h3>Berry</h3>
-						<p class="product-price"><span>Per Kg</span> 70$ </p>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 text-center berry">
-					<div class="single-product-item">
-						<div class="product-image clickable-div" onclick="location.href='single_product_modify_m.do';">
-							<img src="<%=pjName%>resources/assets/img/products/product-img-2.jpg" alt="">
-						</div>
-						<h3>Berry</h3>
-						<p class="product-price"><span>Per Kg</span> 70$ </p>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 text-center berry">
-					<div class="single-product-item">
-						<div class="product-image clickable-div" onclick="location.href='single_product_modify_m.do';">
-							<img src="<%=pjName%>resources/assets/img/products/product-img-2.jpg" alt="">
-						</div>
-						<h3>Berry</h3>
-						<p class="product-price"><span>Per Kg</span> 70$ </p>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 text-center berry">
-					<div class="single-product-item">
-						<div class="product-image clickable-div" onclick="location.href='single_product_modify_m.do';">
-							<img src="<%=pjName%>resources/assets/img/products/product-img-2.jpg" alt="">
-						</div>
-						<h3>Berry</h3>
-						<p class="product-price"><span>Per Kg</span> 70$ </p>
-					</div>
-				</div>
+				</c:forEach>
 			</div>
 
 			<div class="row">

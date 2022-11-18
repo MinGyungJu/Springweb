@@ -77,9 +77,9 @@
 											<c:if test="${sessionScope.loginId==null}">	
 												<li><a href="login.do">Login Page</a></li>
 											</c:if>
-											<li><a href="mypage.do">My Page</a></li>
-											<li><a href="cart.do">Cart</a></li>
 											<c:if test="${sessionScope.loginId!=null}">	
+												<li><a href="mypage.do">My Page</a></li>
+												<li><a href="cart.do">Cart</a></li>
 												<li><a href="logout.do">Logout</a></li>
 											</c:if>
 										</ul>
@@ -134,7 +134,6 @@
 	<!-- products -->
 	<div class="product-section mt-150 mb-150">
 		<div class="container">
-
 			<div class="row">
                 <div class="col-md-12">
                     <div class="product-filters">
@@ -146,70 +145,28 @@
                     </div>
                 </div>
             </div>
-
 			<div class="row product-lists">
-				<div class="col-lg-4 col-md-6 text-center strawberry">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single_product.do"><img src="<%=pjName%>resources/assets/img/products/product-img-1.jpg" alt=""></a>
+				<c:forEach items="${productList}" var="product"> 
+					<div class="col-lg-4 col-md-6 text-center">
+						<div class="single-product-item">
+							<c:if test="${product.img != null}">
+								<div class="product-image"><img src="<%=pjName%>resources/assets/img/products/${product.img}" alt=""></div>
+							</c:if>
+							<c:if test="${product.img == null}">
+								<div class="product-image"><img src="<%=pjName%>resources/assets/img/products/noImage.jpg" alt=""></div>
+							</c:if>
+							<h3>${product.pname}</h3>
+							<p class="product-price"><span>Per Kg</span> ${product.price}$ </p> 
+							<c:if test="${sessionScope.loginId == null}">
+								<a href="login.do" class="cart-btn">Login to Add</a>
+							</c:if>
+							<c:if test="${sessionScope.loginId != null}">
+								<a href="addCart.do?pno=${product.pno}&cno=${sessionScope.loginCno}&ocnt=1" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+							</c:if>
 						</div>
-						<h3>Strawberry</h3>
-						<p class="product-price"><span>Per Kg</span> 85$ </p>
-						<a href="cart.do" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
 					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 text-center berry">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single_product.do"><img src="<%=pjName%>resources/assets/img/products/product-img-2.jpg" alt=""></a>
-						</div>
-						<h3>Berry</h3>
-						<p class="product-price"><span>Per Kg</span> 70$ </p>
-						<a href="cart.do" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 text-center lemon">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single_product.do"><img src="<%=pjName%>resources/assets/img/products/product-img-3.jpg" alt=""></a>
-						</div>
-						<h3>Lemon</h3>
-						<p class="product-price"><span>Per Kg</span> 35$ </p>
-						<a href="cart.do" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 text-center">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single_product.do"><img src="<%=pjName%>resources/assets/img/products/product-img-4.jpg" alt=""></a>
-						</div>
-						<h3>Avocado</h3>
-						<p class="product-price"><span>Per Kg</span> 50$ </p>
-						<a href="cart.do" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 text-center">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single_product.do"><img src="<%=pjName%>resources/assets/img/products/product-img-5.jpg" alt=""></a>
-						</div>
-						<h3>Green Apple</h3>
-						<p class="product-price"><span>Per Kg</span> 45$ </p>
-						<a href="cart.do" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 text-center strawberry">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single_product.do"><img src="<%=pjName%>resources/assets/img/products/product-img-6.jpg" alt=""></a>
-						</div>
-						<h3>Strawberry</h3>
-						<p class="product-price"><span>Per Kg</span> 80$ </p>
-						<a href="cart.do" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
+				</c:forEach>
 			</div>
-
 			<div class="row">
 				<div class="col-lg-12 text-center">
 					<div class="pagination-wrap">
@@ -335,6 +292,8 @@
 	<script src="<%=pjName%>resources/assets/js/sticker.js"></script>
 	<!-- main js -->
 	<script src="<%=pjName%>resources/assets/js/main.js"></script>
+	<!-- main js2 -->
+	<script src="<%=pjName%>resources/assets/js/mainAdded.js"></script>
 
 </body>
 </html>

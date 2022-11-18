@@ -77,9 +77,9 @@
 											<c:if test="${sessionScope.loginId==null}">	
 												<li><a href="login.do">Login Page</a></li>
 											</c:if>
-											<li><a href="mypage.do">My Page</a></li>
-											<li><a href="cart.do">Cart</a></li>
 											<c:if test="${sessionScope.loginId!=null}">	
+												<li><a href="mypage.do">My Page</a></li>
+												<li><a href="cart.do">Cart</a></li>
 												<li><a href="logout.do">Logout</a></li>
 											</c:if>
 										</ul>
@@ -141,7 +141,6 @@
 						<table class="cart-table" >
 							<thead class="cart-table-head">
 								<tr class="table-head-row">
-									<th class="product-remove"></th>
 									<th class="product-image">Product Image</th>
 									<th class="product-name">Name</th>
 									<th class="product-price">Price</th>
@@ -151,7 +150,6 @@
 							</thead>
 							<tbody>
 								<tr class="table-body-row">
-									<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
 									<td class="product-image"><img src="<%=pjName%>resources/assets/img/products/product-img-1.jpg" alt=""></td>
 									<td class="product-name">Strawberry</td>
 									<td class="product-price">$85</td>
@@ -159,7 +157,6 @@
 									<td class="product-total">1</td>
 								</tr>
 								<tr class="table-body-row">
-									<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
 									<td class="product-image"><img src="<%=pjName%>resources/assets/img/products/product-img-2.jpg" alt=""></td>
 									<td class="product-name">Berry</td>
 									<td class="product-price">$70</td>
@@ -167,7 +164,6 @@
 									<td class="product-total">1</td>
 								</tr>
 								<tr class="table-body-row">
-									<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
 									<td class="product-image"><img src="<%=pjName%>resources/assets/img/products/product-img-3.jpg" alt=""></td>
 									<td class="product-name">Lemon</td>
 									<td class="product-price">$35</td>
@@ -182,7 +178,23 @@
 			<div>
 				<br/>
 				<h3>Q &amp; A</h3>
-				<p><textarea class="col-lg-12" style="text-align:center" cols="150" rows="20">message</textarea></p>
+				<c:forEach items="${answerList}" var="answer"> 
+				<form action ="getAnswerList.do">
+				<table>
+				<tr>
+					<td>
+						<h3>2</h3>
+						${answer.cno}
+						${answer.amessage }
+						${answer.qno}
+						${answer.mno}
+					</td>
+				</tr>
+				</table>
+				
+				
+				</form>
+				</c:forEach>
 			</div>
 		</div>
 	</div>

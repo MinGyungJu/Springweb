@@ -1,9 +1,7 @@
 package com.javassem.controller;
 
-import java.io.IOException;
-import java.util.HashMap;
+import java.io.File;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -11,15 +9,15 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.javassem.domain.BoardVO;
+import com.javassem.domain.AnswerVO;
 import com.javassem.domain.CustomerVO;
+import com.javassem.domain.ListOrderVO;
 import com.javassem.domain.ManagerVO;
 import com.javassem.domain.ProductVO;
+import com.javassem.domain.QuestionVO;
 import com.javassem.service.UserService;
 
 @Controller
@@ -29,8 +27,8 @@ public class UserController {
 
 	// ----------------------------------manager
 	// ---manager product
-	
-	
+
+	// func: manager inserting beans
 	@RequestMapping(value = "addProduct.do")
 	public String addProduct(ProductVO vo) {
 		System.out.println("=>UserController.java::addProduct.do");
@@ -38,6 +36,7 @@ public class UserController {
 		return "redirect:shop_m.do";
 	}
 
+	// func: manager inserting goods
 	@RequestMapping(value = "addProduct2.do")
 	public String addProduct2(ProductVO vo) {
 		System.out.println("=>UserController.java::addProduct2.do");
@@ -45,15 +44,38 @@ public class UserController {
 		return "redirect:shop2_m.do";
 	}
 
+	// func: manager modifying goods or beans
 	@RequestMapping(value = "modifyProduct.do")
 	public String modifyProduct(ProductVO vo) {
 		System.out.println("=>UserController.java::modifyProduct.do");
-		userService.modifyProduct(vo); 
+		userService.modifyProduct(vo);
+		return "redirect:shop_m.do";
+	}
+	//func: manager deleting goods or beans
+	@RequestMapping(value = "deleteProduct.do")
+	public String deleteProduct(ProductVO vo) {
+		System.out.println("=>UserController.java::deleteProduct.do");
+		userService.deleteProduct(vo);
+		File file = new File(
+				"D:\\springspace\\springweb\\sj\\src\\main\\webapp\\resources\\assets\\img\\products\\" + vo.getImg());
+		if (file.exists()) {
+			file.delete();
+		}
 		return "redirect:shop_m.do";
 	}
 	// ---manager product end
 
+	// ---manager contact
+	@RequestMapping(value = "insertAnswer.do")
+	public String insertAnswer(AnswerVO vo) {
+		System.out.println("=>UserController.java::insertAnswer.do");
+		userService.insertAnswer(vo);
+		return "redirect:contact_m.do";
+	}
+	// ---manager contact end
 	// ---manager login
+
+	// func: registering new manager to db
 	@RequestMapping(value = "insertManager.do", method = RequestMethod.POST)
 	public String insertManager(ManagerVO vo) {
 		System.out.println("=>UserController.java::insertManager.do");
@@ -66,18 +88,26 @@ public class UserController {
 		return "redirect:login_m.do";
 	}
 
+	// func: checking login for manager
 	@RequestMapping(value = "loginManager.do")
 	public String loginManager(ManagerVO vo, HttpSession session) {
 		System.out.println("=>UserController.java::loginManager.do");
 		ManagerVO loginResult = userService.loginManager(vo);
 		if (loginResult != null) { // login success!
+			session.setAttribute("loginMno", vo.getMno());
+			session.setAttribute("loginName", vo.getName());
+			session.setAttribute("loginGender", vo.getGender());
 			session.setAttribute("loginId", vo.getId());
+			session.setAttribute("loginPw", vo.getPw());
+			session.setAttribute("loginTel", vo.getTel());
+			session.setAttribute("loginEmail", vo.getEmail());
 			session.setAttribute("loginAddr", vo.getAddr());
 			return "redirect:index_m.do";
 		}
 		return "redirect:login_m.do";
 	}
 
+	// func: logging out for manager
 	@RequestMapping(value = "logout_m.do")
 	public String logout_m(HttpServletRequest request) {
 		HttpSession session = request.getSession(true);
@@ -87,8 +117,9 @@ public class UserController {
 
 	// ---manager login end
 	@RequestMapping("contact_m.do")
-	public void contact_m() {
-
+	public void contact_m(Model m) {
+		List<ListOrderVO> list = userService.getQuestionList();
+		m.addAttribute("questionList", list);
 	}
 
 	@RequestMapping("login_m")
@@ -113,8 +144,9 @@ public class UserController {
 	}
 
 	@RequestMapping("shop2_m.do")
-	public void shop2_m() {
-
+	public void shop2_m(Model m) {
+		List<ProductVO> list = userService.getProductList2();
+		m.addAttribute("productList2", list);
 	}
 
 	@RequestMapping("single_product_m.do")
@@ -136,19 +168,32 @@ public class UserController {
 	public void single_product_modify_m() {
 
 	}
-	
-	@RequestMapping("delete.do")
-	public String delete(ProductVO vo, Model m) {
-		userService.delete(vo);
-		return "redirect:index_m.do";
-		
-	}
 
 	// ----------------------------------manager end
 
 	// ----------------------------------user
+	// ---user product
+	@RequestMapping(value = "addCart.do")
+	public String addCart(ListOrderVO vo) {
+		System.out.println("=>UserController.java::addCart.do");
+		userService.insertCart(vo);
+		return "redirect:cart.do";
+	}
+	// ---user product end
+
+	// ---user contact
+	@RequestMapping(value = "insertQustion.do")
+	public String insertQustion(QuestionVO vo) {
+		System.out.println("=>UserController.java::insertQustion.do");
+		int result = userService.insertQustion(vo);
+		if (result == 1)
+			return "redirect:contact_complete.do";
+		return "redirect:contact.do";
+	}
+	// ---user contact end
 
 	// ---user login
+	// func: registration for new customer
 	@RequestMapping(value = "insertCustomer.do", method = RequestMethod.POST)
 	public String insertCustomer(CustomerVO vo) {
 		System.out.println("=>UserController.java::insertCustomer.do");
@@ -161,18 +206,26 @@ public class UserController {
 		return "redirect:login.do";
 	}
 
+	// func: checking login for customer
 	@RequestMapping(value = "loginCustomer.do")
 	public String loginCustomer(CustomerVO vo, HttpSession session) {
 		System.out.println("=>UserController.java::loginCustomer.do");
 		CustomerVO loginResult = userService.loginCustomer(vo);
 		if (loginResult != null) { // login success!
+			session.setAttribute("loginCno", vo.getCno());
+			session.setAttribute("loginName", vo.getName());
+			session.setAttribute("loginGender", vo.getGender());
 			session.setAttribute("loginId", vo.getId());
+			session.setAttribute("loginPw", vo.getPw());
+			session.setAttribute("loginTel", vo.getTel());
+			session.setAttribute("loginEmail", vo.getEmail());
 			session.setAttribute("loginAddr", vo.getAddr());
 			return "redirect:index.do";
 		}
 		return "redirect:login.do";
 	}
 
+	// func: logging out customer
 	@RequestMapping(value = "logout.do")
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession(true);
@@ -193,6 +246,11 @@ public class UserController {
 
 	@RequestMapping("checkout.do")
 	public void checkout() {
+
+	}
+
+	@RequestMapping("contact_complete.do")
+	public void contact_complete() {
 
 	}
 
@@ -222,18 +280,27 @@ public class UserController {
 	}
 
 	@RequestMapping("shop.do")
-	public void shop() {
-
+	public void shop(Model m) {
+		List<ProductVO> list = userService.getProductList();
+		m.addAttribute("productList", list);
 	}
 
 	@RequestMapping("shop2.do")
-	public void shop2() {
-
+	public void shop2(Model m) {
+		List<ProductVO> list = userService.getProductList2();
+		m.addAttribute("productList2", list);
 	}
 
 	@RequestMapping("single_product.do")
 	public void single_product() {
 
+	}
+	
+	@RequestMapping("getAnswerList.do")
+	public void getAnswerList(Model m) {
+		System.out.println("=>UserController.java::Answer.do");
+		List<AnswerVO>list = userService.getAnswerList();
+		m.addAttribute("answerList",list);
 	}
 	// ----------------------------------user end
 

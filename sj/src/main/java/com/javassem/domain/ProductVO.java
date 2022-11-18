@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import org.springframework.web.multipart.MultipartFile;
-
+//since function setFile and getFile is overwritten, @Data lombok couldn't be used
 public class ProductVO {
 
 	private int pno;
@@ -24,17 +24,10 @@ public class ProductVO {
 		this.img = file.getOriginalFilename();
 		
 		if(!file.isEmpty()) {
-			System.out.println("file upload start");
 			File f = new File("D:\\springweb\\sj\\src\\main\\webapp\\resources\\assets\\img\\products\\" + img);
-		
-			try {
-				file.transferTo(f);
-			} catch (IllegalStateException | IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			System.out.println("file upload end");
-		}
+			try { file.transferTo(f); }
+			catch (IllegalStateException | IOException e) {	e.printStackTrace(); }
+		}//if
 	
 	}//setFile
 	

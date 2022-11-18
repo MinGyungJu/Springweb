@@ -77,9 +77,9 @@
 									<c:if test="${sessionScope.loginId==null}">	
 										<li><a href="login.do">Login Page</a></li>
 									</c:if>
-									<li><a href="mypage.do">My Page</a></li>
-									<li><a href="cart.do">Cart</a></li>
 									<c:if test="${sessionScope.loginId!=null}">	
+										<li><a href="mypage.do">My Page</a></li>
+										<li><a href="cart.do">Cart</a></li>
 										<li><a href="logout.do">Logout</a></li>
 									</c:if>
 								</ul>
@@ -145,7 +145,7 @@
                <!--   onSubmit="return valid_datas( this );" -->
                   <form method="POST" id="insert-customer" action="insertCustomer.do">
                      <p>
-                        <input type="text" placeholder="Name" name="name" id="name">
+                        <input type="text" placeholder="Name" name="name" id="name" required>
                         <select name="gender" id="gender">
                            <option>Check Gender</option>
                            <option>Female</option>
@@ -154,15 +154,15 @@
                         </select>
                      </p>
                      <p>
-                        <input type="text" placeholder="ID" name="id" id="id">
-                        <input type="text" placeholder="Password" name="pw" id="pw">
+                        <input type="text" placeholder="ID" name="id" id="id" required>
+                        <input type="text" placeholder="Password" name="pw" id="pw" required pattern="^[a-zA-Z0-9]+$">
                      </p>
                      <p>
-                        <input type="tel" placeholder="Phone" name="tel" id="tel">
-                        <input type="email" placeholder="Email" name="email" id="email">
+                        <input type="tel" placeholder="Phone" name="tel" id="tel" required>
+                        <input type="email" placeholder="Email" name="email" id="email" required>
                      </p>
                      <p>
-                        <textarea placeholder="Address" name="addr" id="addr"></textarea>
+                        <textarea placeholder="Address" name="addr" id="addr" required></textarea>
                      </p>
                      <p><input type="submit" value="Submit"></p>
                   </form>

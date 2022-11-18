@@ -3,10 +3,6 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="UserDAO">
 	
-	<delete id="delete" parameterType="ProductVO">
-		delete from product
-		where pno=#{pno}
-	</delete>
 	
 	<select id="checkMId" parameterType="ManagerVO" resultType="ManagerVO">
 		SELECT * FROM MANAGER
@@ -29,9 +25,23 @@
 	<select id="getProductList" resultType="ProductVO">
 		<![CDATA[
 		SELECT * FROM PRODUCT
-		 WHERE PNO < 100000
-		 ORDER BY pno desc
+		WHERE PNO < 100000
+		ORDER BY pno desc
 		 ]]>
+	</select>
+	<select id="getProductList2" resultType="ProductVO">
+		<![CDATA[
+		SELECT * FROM PRODUCT
+		WHERE PNO >= 100000
+		ORDER BY pno desc
+		 ]]>
+	</select>
+	<select id="getQuestionList" resultType="QuestionVO">
+		SELECT * FROM QUESTION
+		WHERE qno NOT IN (SELECT qno FROM ANSWER)
+	</select>
+	<select id ="getAnswerList" resultType = "AnswerVO">
+		select * from Answer
 	</select>
 	
 	<update id="modifyProduct" parameterType="ProductVO">
@@ -40,6 +50,14 @@
 		WHERE pno=#{pno}
 	</update>
 	
+	<delete id="deleteProduct" parameterType="ProductVO">
+		DELETE FROM PRODUCT
+		WHERE pno=#{pno}
+	</delete>
+	<insert id="insertAnswer" parameterType="AnswerVO">
+		INSERT INTO ANSWER(qno,mno,cno,amessage)
+		 VALUES(#{qno},#{mno},#{cno},#{amessage})
+	</insert>
 	<insert id="insertProduct" parameterType="ProductVO">
 		<if test="img != null">
 		INSERT INTO PRODUCT(pno, img, pname, price, description, stock) 
@@ -65,6 +83,14 @@
 		 VALUES(manager_seq.nextval,#{name},#{gender},#{id},#{pw},#{tel},#{email},#{addr})
 	</insert>
 	
+	<insert id="insertCart" parameterType="ListOrderVO">
+		INSERT INTO LIST_ORDER(cno,pno,ocnt)
+		 VALUES(#{cno},#{pno},#{ocnt})
+	</insert>
+	<insert id="insertQustion" parameterType="QuestionVO">
+		INSERT INTO QUESTION(qno, cno, qname, qmessage, regdate, cnt)
+		 VALUES(question_seq.nextval,#{cno},#{qname},#{qmessage},sysdate,0)
+	</insert>
 	<insert id="insertCustomer" parameterType="CustomerVO">
 		INSERT INTO CUSTOMER(cno, name, gender, id, pw, tel, email, addr)
 		 VALUES(customer_seq.nextval,#{name},#{gender},#{id},#{pw},#{tel},#{email},#{addr})

@@ -1,7 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%  //web browser can cache the list so new list may not show immediately
+   response.setHeader("Pragma","No-cache");      // HTTP 1.0 version
+   response.setHeader("Cache-Control","no-cache");   // HTTP 1.1 version
+   response.setHeader("Cache-Control","no-store"); // related to some firefox settings
+   response.setDateHeader("Expires", 1L);         // set finished date before present to avoid being response cache.
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -120,7 +125,7 @@
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="breadcrumb-text">
 						<p>Fresh and Organic</p>
-						<h1>Edit Goods</h1>
+						<h1>Edit Beans</h1>
 					</div>
 				</div>
 			</div>
@@ -160,11 +165,15 @@
 					<div class="col-lg-4 col-md-6 text-center strawberry">
 						<div class="single-product-item">
 							<div class="product-image clickable-div" onclick="location.href='single_product_modify_m.do?pno=${product.pno}&img=${product.img}&pname=${product.pname}&price=${product.price}&description=${product.description}&stock=${product.stock}';">
-								<img src="<%=pjName%>resources/assets/img/products/${product.img}" alt="">
+								<c:if test="${product.img == null}">
+									<img src="<%=pjName%>resources/assets/img/products/noImage.jpg" alt="">
+								</c:if>
+								<c:if test="${product.img != null}">
+									<img src="<%=pjName%>resources/assets/img/products/${product.img}" alt="">
+								</c:if>
 							</div>
 							<h3>${product.pname}</h3>
-							<p class="product-price"><span>Per Kg</span> ${product.price}$ </p> 
-							<input type="hidden" name="pno" value="${product.pno}">
+							<p class="product-price"><span>Per Kg</span> ${product.price}$ </p>
 						</div>
 					</div>
 				</c:forEach>

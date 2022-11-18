@@ -77,9 +77,9 @@
 											<c:if test="${sessionScope.loginId==null}">	
 												<li><a href="login.do">Login Page</a></li>
 											</c:if>
-											<li><a href="mypage.do">My Page</a></li>
-											<li><a href="cart.do">Cart</a></li>
 											<c:if test="${sessionScope.loginId!=null}">	
+												<li><a href="mypage.do">My Page</a></li>
+												<li><a href="cart.do">Cart</a></li>
 												<li><a href="logout.do">Logout</a></li>
 											</c:if>
 										</ul>
@@ -137,23 +137,24 @@
 			<div class="row">
 				<div class="col-lg-8 mb-5 mb-lg-0">
 					<div class="form-title">
-						<h2>Have you any question?</h2>
-						<p>We would gladly respond to your request Pariatur, ratione! Laboriosam est, assumenda. Perferendis, quo alias quaerat aliquid. Corporis ipsum minus voluptate? Dolore, esse natus!</p>
+						<h2>Have any question?</h2>
+						<p>We’re looking forward to hearing from you.</p>
 					</div>
 				 	<div id="form_status"></div>
 					<div class="contact-form">
-						<form method="POST" id="" onSubmit="return valid_datas( this );">
+<!-- 													onSubmit="return valid_datas( this );" -->
+						<form method="POST" id="" action="insertQustion.do">
 							<p>
-								<input type="text" placeholder="Name" name="name" id="name">
-								<input type="email" placeholder="Email" name="email" id="email">
+								<input type="text" placeholder="Subject" name="qname" id="qname">
 							</p>
-							<p>
-								<input type="tel" placeholder="Phone" name="phone" id="phone">
-								<input type="text" placeholder="Subject" name="subject" id="subject">
-							</p>
-							<p><textarea name="message" id="message" cols="30" rows="10" placeholder="Message"></textarea></p>
-							<input type="hidden" name="token" value="FsWga4&@f6aw" />
-							<p><input type="submit" value="Submit"></p>
+							<p><textarea name="qmessage" id="qmessage" cols="30" rows="10" placeholder="Message"></textarea></p>
+							<input type="hidden" name="cno" value="${sessionScope.loginCno}" />
+							<c:if test="${sessionScope.loginId!=null}">	
+								<p><input type="submit" value="Submit"></p>
+							</c:if>
+							<c:if test="${sessionScope.loginId==null}">	
+								<p><a href="login.do" class="boxed-btn black">Login to Ask</a></p>
+							</c:if>
 						</form>
 					</div>
 				</div>

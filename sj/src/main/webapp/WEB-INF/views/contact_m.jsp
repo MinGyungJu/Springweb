@@ -131,55 +131,41 @@
 	<!-- contact form -->
 	<div class="contact-from-section mt-150 mb-150">
 		<div class="container">
-			<form>
 				<div class="row">
 					<div class="col-lg-12 col-md-12" >
 						<h3>Contact</h3>	
 						<div class="cart-table-wrap" >
-							<table class="cart-table" >
-								<thead class="cart-table-head">
-									<tr class="table-head-row">
-										<th class="product-remove"></th>
-										<th class="product-remove">No</th>
-										<th class="product-name">Message</th>
-										<th class="product-price">Response</th>
-										<th class="product-quantity"></th>
-									</tr>
-								</thead>
-								<tbody>
-									<form>
-										<tr class="table-body-row">
-											<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-											<td class="product-remove">1</td>
-											<td><text-field>message from database</text-field></td>
-											<td class="product-price"><textarea name="" id="" class="col-lg-12 col-md-12" placeholder="please type your response to question"></textarea></td>
-											<td class="product-quantity"><input type="submit" value="submit"></td>
+								<table class="cart-table" >
+									<thead class="cart-table-head">
+										<tr class="table-head-row">
+											<th class="product-remove">No</th>
+											<th class="product-name">Message</th>
+											<th class="product-price">Response</th>
+											<th class="product-quantity"></th>
 										</tr>
-									</form>
-									<form>
+									</thead>
+									<tbody>
+										
+										<c:forEach items="${questionList}" var="question"> 
 										<tr class="table-body-row">
-											<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-											<td class="product-remove">2</td>
-											<td><text-field>message from database</text-field></td>
-											<td class="product-price"><textarea name="" id="" class="col-lg-12 col-md-12" placeholder="please type your response to question"></textarea></td>
-											<td class="product-quantity"><input type="submit" value="submit"></td>
-										</tr>
-									</form>
-									<form>
-										<tr class="table-body-row">
-											<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-											<td class="product-remove">3</td>
-											<td><text-field>message from database</text-field></td>
-											<td class="product-price"><textarea name="" id="" class="col-lg-12 col-md-12" placeholder="please type your response to question"></textarea></td>
-											<td class="product-quantity"><input type="submit" value="submit"></td>
-										</tr>
-									</form>
-								</tbody>
-							</table>
+											<form action="insertAnswer.do">
+												<td class="product-remove">${question.qno}</td>
+												<td><text-field>${question.qname}<br/>${question.qmessage}</text-field></td>
+												<td class="product-price"><textarea name="amessage" id="amessage" class="col-lg-12 col-md-12" placeholder="please type your response to question"></textarea></td>
+													<input type="hidden" name="qno" id="qno" value="${question.qno}">
+													<input type="hidden" name="mno" id="mno" value="${sessionScope.loginMno}">
+													<input type="hidden" name="cno" id="cno" value="${question.cno}">
+												<td class="product-quantity"><input type="submit" value="submit"></td>
+										   </form>
+									    </tr> 
+								   		</c:forEach>
+								   		
+								   </tbody>
+								</table>
+							
 						</div>
 					</div> 
 				</div>
-			</form>
 		</div>
 	</div>
 	<!-- end contact form -->
