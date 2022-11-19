@@ -67,7 +67,7 @@
 							<ul>
 								<li><a href="index.do">ABOUT</a></li>
 								<li><a href="shop.do">COFFEE BEANS</a></li>
-								<li><a href="shop2.do">DRINKWARE</a></li>
+								<li><a href="shop2.do">GOODS</a></li>
 								<li><a href="contact.do">SUPPORT</a>
 								<li>
 									<div class="header-icons">
@@ -78,9 +78,9 @@
 											<c:if test="${sessionScope.loginId==null}">	
 												<li><a href="login.do">Login Page</a></li>
 											</c:if>
+											<li><a href="mypage.do">My Page</a></li>
+											<li><a href="cart.do">Cart</a></li>
 											<c:if test="${sessionScope.loginId!=null}">	
-												<li><a href="mypage.do">My Page</a></li>
-												<li><a href="cart.do">Cart</a></li>
 												<li><a href="logout.do">Logout</a></li>
 											</c:if>
 										</ul>
@@ -137,9 +137,9 @@
 					<div class="row">
 						<div class="col-lg-8 offset-lg-2 text-center">
 							<div class="complete-text">
-								<h1>Thank you!</h1><br/><br/>
-								<p>Your inquiry has been received.</p>
-								<p>Please wait for the answer.</p><br/><br/>
+								<h1 style = "color:#CA965C;">Thank you!</h1><br/><br/>
+								<h3>Your inquiry has been received.</h3>
+								<h3>Please wait for the answer :)</h3><br/><br/>
 								<a href="index.do" class="boxed-btn">Back to Home</a>
 							</div>
 						</div>

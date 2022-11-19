@@ -142,10 +142,10 @@
 					<div class="col-md-5">
 						<div class="single-product-img">
 							<label for="file-input">
-								<c:if test="${product.img != null}">
+								<c:if test="${param.img != null}">
                      				<img src="<%=pjName%>resources/assets/img/products/${param.img}" alt="" onclick="src='<%=pjName%>resources/assets/img/products/minus.jpg'" >
                   				</c:if>
-                  				<c:if test="${product.img == null}">
+                  				<c:if test="${param.img == null}">
                      				<img src="<%=pjName%>resources/assets/img/products/noImage.jpg" alt="" onclick="src='<%=pjName%>resources/assets/img/products/minus.jpg'" >
                   				</c:if>
                   			</label>

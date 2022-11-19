@@ -145,7 +145,7 @@
                <!--   onSubmit="return valid_datas( this );" -->
                   <form method="POST" id="insert-customer" action="insertCustomer.do">
                      <p>
-                        <input type="text" placeholder="Name" name="name" id="name" required>
+                        <input type="text" placeholder="Name" name="name" id="name">
                         <select name="gender" id="gender">
                            <option>Check Gender</option>
                            <option>Female</option>
@@ -154,15 +154,15 @@
                         </select>
                      </p>
                      <p>
-                        <input type="text" placeholder="ID" name="id" id="id" required>
-                        <input type="text" placeholder="Password" name="pw" id="pw" required pattern="^[a-zA-Z0-9]+$">
+                        <input type="text" placeholder="ID" name="id" id="id">
+                        <input type="text" placeholder="Password" name="pw" id="pw">
                      </p>
                      <p>
-                        <input type="tel" placeholder="Phone" name="tel" id="tel" required>
-                        <input type="email" placeholder="Email" name="email" id="email" required>
+                        <input type="tel" placeholder="Phone" name="tel" id="tel">
+                        <input type="email" placeholder="Email" name="email" id="email">
                      </p>
                      <p>
-                        <textarea placeholder="Address" name="addr" id="addr" required></textarea>
+                        <textarea placeholder="Address" name="addr" id="addr"></textarea>
                      </p>
                      <p><input type="submit" value="Submit"></p>
                   </form>

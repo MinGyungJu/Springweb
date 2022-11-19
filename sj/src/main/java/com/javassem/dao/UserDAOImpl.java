@@ -1,5 +1,6 @@
 package com.javassem.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -105,12 +106,10 @@ public class UserDAOImpl implements UserDAO {
 	public List<ListOrderVO> getQuestionList(){
 		return mybatis.selectList("UserDAO.getQuestionList");
 	}
-	// ----------------------------------user
 
-	@Override
-	public List<AnswerVO> getAnswerList() {
-		System.out.println("=>UserDAOImpl.java::UserMapper::answer");
-		return mybatis.selectList("UserDAO.getAnswerList");
+	public List<HashMap> getQuestionAnswer(Integer loginCno){
+		return mybatis.selectList("UserDAO.getQuestionAnswer", loginCno);
 	}
+	// ----------------------------------user
 
 }

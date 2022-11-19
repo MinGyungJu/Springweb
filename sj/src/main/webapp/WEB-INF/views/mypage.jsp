@@ -178,23 +178,33 @@
 			<div>
 				<br/>
 				<h3>Q &amp; A</h3>
-				<c:forEach items="${answerList}" var="answer"> 
-				<form action ="getAnswerList.do">
-				<table>
-				<tr>
-					<td>
-						<h3>2</h3>
-						${answer.cno}
-						${answer.amessage }
-						${answer.qno}
-						${answer.mno}
-					</td>
-				</tr>
-				</table>
-				
-				
-				</form>
-				</c:forEach>
+					<div class="checkout-accordion-wrap">
+						<c:forEach items="${questionAnswerList}" var="qa" varStatus="status">
+							<div class="accordion" id="accordionExample">	  
+								<div class="card single-accordion">
+									<div class="card-header" id="headingOne">
+										<h5 class="mb-0">
+										<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne${status.index}" >
+										 Question No ${qa.QNO} 
+										</button>
+										</h5>
+										<div id="collapseOne${status.index}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+											<div class="card-body">
+												<textarea class="col-lg-12" rows="8" style="border: none;">
+Question Title: ${qa.QNAME}
+Question Message: ${qa.QMESSAGE}
+
+Answer: ${qa.AMESSAGE}
+								<%-- <c:forEach var="i" begin="0" end="188"><c:out value="-" /></c:forEach> --%>
+												</textarea>
+											</div>
+										</div>
+										
+									</div>
+								</div>
+							</div>
+						</c:forEach>
+					</div>
 			</div>
 		</div>
 	</div>

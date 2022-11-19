@@ -18,8 +18,9 @@
 		 WHERE id=#{id}
 	</select>	
 	<select id="loginCustomer" parameterType="CustomerVO" resultType="CustomerVO">
-		SELECT * FROM CUSTOMER
-		 WHERE id=#{id} AND pw=#{pw}
+		SELECT cno, name, gender, id, pw, tel, email, addr
+		FROM CUSTOMER
+		WHERE id=#{id} AND pw=#{pw}
 	</select>
 	
 	<select id="getProductList" resultType="ProductVO">
@@ -40,10 +41,12 @@
 		SELECT * FROM QUESTION
 		WHERE qno NOT IN (SELECT qno FROM ANSWER)
 	</select>
-	<select id ="getAnswerList" resultType = "AnswerVO">
-		select * from Answer
+	<select id="getQuestionAnswer" parameterType="int" resultType="hashmap">
+		SELECT Q.qno qno, Q.qname qname, Q.qmessage qmessage, A.amessage amessage
+		FROM question Q LEFT OUTER JOIN answer A
+		ON Q.qno = A.qno
+        WHERE Q.cno = #{cno}
 	</select>
-	
 	<update id="modifyProduct" parameterType="ProductVO">
 		UPDATE PRODUCT 
 		SET img=#{img}, pname=#{pname},price=#{price},description=#{description},stock=#{stock}

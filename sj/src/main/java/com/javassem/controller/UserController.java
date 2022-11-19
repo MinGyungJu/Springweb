@@ -1,6 +1,7 @@
 package com.javassem.controller;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -51,7 +52,8 @@ public class UserController {
 		userService.modifyProduct(vo);
 		return "redirect:shop_m.do";
 	}
-	//func: manager deleting goods or beans
+
+	// func: manager deleting goods or beans
 	@RequestMapping(value = "deleteProduct.do")
 	public String deleteProduct(ProductVO vo) {
 		System.out.println("=>UserController.java::deleteProduct.do");
@@ -81,11 +83,11 @@ public class UserController {
 		System.out.println("=>UserController.java::insertManager.do");
 		if (userService.checkMId(vo) != null) {
 			// id exists in DB. Make customer input different id
-			return "redirect:registration_m.do";
+			return "redirect:registration_m_incomplete.do";
 		}
 		int insertResult = userService.insertManager(vo);
 		System.out.println("  MANAGER INSERTED::" + insertResult);
-		return "redirect:login_m.do";
+		return "redirect:registration_m_complete.do";
 	}
 
 	// func: checking login for manager
@@ -94,14 +96,14 @@ public class UserController {
 		System.out.println("=>UserController.java::loginManager.do");
 		ManagerVO loginResult = userService.loginManager(vo);
 		if (loginResult != null) { // login success!
-			session.setAttribute("loginMno", vo.getMno());
-			session.setAttribute("loginName", vo.getName());
-			session.setAttribute("loginGender", vo.getGender());
-			session.setAttribute("loginId", vo.getId());
-			session.setAttribute("loginPw", vo.getPw());
-			session.setAttribute("loginTel", vo.getTel());
-			session.setAttribute("loginEmail", vo.getEmail());
-			session.setAttribute("loginAddr", vo.getAddr());
+			session.setAttribute("loginMno", loginResult.getMno());
+			session.setAttribute("loginName", loginResult.getName());
+			session.setAttribute("loginGender", loginResult.getGender());
+			session.setAttribute("loginId", loginResult.getId());
+			session.setAttribute("loginPw", loginResult.getPw());
+			session.setAttribute("loginTel", loginResult.getTel());
+			session.setAttribute("loginEmail", loginResult.getEmail());
+			session.setAttribute("loginAddr", loginResult.getAddr());
 			return "redirect:index_m.do";
 		}
 		return "redirect:login_m.do";
@@ -132,6 +134,15 @@ public class UserController {
 
 	}
 
+	@RequestMapping("registration_m_complete.do")
+	public void registration_m_complete() {
+
+	}
+
+	@RequestMapping("registration_m_incomplete.do")
+	public void registration_m_incomplete() {
+
+	}
 	@RequestMapping("registration_m.do")
 	public void registration_m() {
 
@@ -174,10 +185,15 @@ public class UserController {
 	// ----------------------------------user
 	// ---user product
 	@RequestMapping(value = "addCart.do")
-	public String addCart(ListOrderVO vo) {
+	public String addCart(ListOrderVO vo , Model m) {
 		System.out.println("=>UserController.java::addCart.do");
-		userService.insertCart(vo);
+		int req = userService.insertCart(vo);
+		if (req == 1) {
+			
 		return "redirect:cart.do";
+		} else {
+			return "404.do";
+		}
 	}
 	// ---user product end
 
@@ -199,11 +215,11 @@ public class UserController {
 		System.out.println("=>UserController.java::insertCustomer.do");
 		if (userService.checkId(vo) != null) {
 			// id exists in DB. Make customer input different id
-			return "redirect:registration.do";
+			return "redirect:registration_incomplete.do";
 		}
 		int insertResult = userService.insertCustomer(vo);
 		System.out.println("  USER INSERTED::" + insertResult);
-		return "redirect:login.do";
+		return "redirect:registration_complete.do";
 	}
 
 	// func: checking login for customer
@@ -212,14 +228,14 @@ public class UserController {
 		System.out.println("=>UserController.java::loginCustomer.do");
 		CustomerVO loginResult = userService.loginCustomer(vo);
 		if (loginResult != null) { // login success!
-			session.setAttribute("loginCno", vo.getCno());
-			session.setAttribute("loginName", vo.getName());
-			session.setAttribute("loginGender", vo.getGender());
-			session.setAttribute("loginId", vo.getId());
-			session.setAttribute("loginPw", vo.getPw());
-			session.setAttribute("loginTel", vo.getTel());
-			session.setAttribute("loginEmail", vo.getEmail());
-			session.setAttribute("loginAddr", vo.getAddr());
+			session.setAttribute("loginCno", loginResult.getCno());
+			session.setAttribute("loginName", loginResult.getName());
+			session.setAttribute("loginGender", loginResult.getGender());
+			session.setAttribute("loginId", loginResult.getId());
+			session.setAttribute("loginPw", loginResult.getPw());
+			session.setAttribute("loginTel", loginResult.getTel());
+			session.setAttribute("loginEmail", loginResult.getEmail());
+			session.setAttribute("loginAddr", loginResult.getAddr());
 			return "redirect:index.do";
 		}
 		return "redirect:login.do";
@@ -270,7 +286,33 @@ public class UserController {
 	}
 
 	@RequestMapping("mypage.do")
-	public void mypage() {
+	public void mypage( Model m, HttpSession session) {
+		//CustomerVO cvo, QuestionVO qvo,
+		//System.out.println("cvo:"+cvo);
+		//System.out.println("qvo:"+qvo);
+		Integer cno = 0;
+		Object obj = session.getAttribute("loginCno");
+		if( obj != null ) cno = (Integer)obj;	
+		
+		List<HashMap> list = userService.getQuestionAnswer(cno);
+		m.addAttribute("questionAnswerList", list);
+		/*
+		 * for(HashMap map: list) { System.out.println(map); }
+		 */
+	}
+
+	@RequestMapping("registration_complete.do")
+	public void registration_complete() {
+
+	}
+
+	@RequestMapping("registration_incomplete.do")
+	public void registration_incomplete() {
+
+	}
+
+	@RequestMapping("pay_complete.do")
+	public void pay_complete() {
 
 	}
 
@@ -294,13 +336,6 @@ public class UserController {
 	@RequestMapping("single_product.do")
 	public void single_product() {
 
-	}
-	
-	@RequestMapping("getAnswerList.do")
-	public void getAnswerList(Model m) {
-		System.out.println("=>UserController.java::Answer.do");
-		List<AnswerVO>list = userService.getAnswerList();
-		m.addAttribute("answerList",list);
 	}
 	// ----------------------------------user end
 

@@ -1,5 +1,6 @@
 package com.javassem.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,12 +98,12 @@ public class UserServiceImpl implements UserService {
 	public List<ListOrderVO> getQuestionList(){
 		return userDAO.getQuestionList();
 	}
+
+	public List<HashMap> getQuestionAnswer(Integer loginCno) {
+		return userDAO.getQuestionAnswer(loginCno);
+	}
 	// ----------------------------------user end
 
-	@Override
-	public List<AnswerVO> getAnswerList() {
-		return userDAO.getAnswerList();
-	}
 
 
 }

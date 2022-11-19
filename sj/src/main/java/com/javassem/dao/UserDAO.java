@@ -1,5 +1,6 @@
 package com.javassem.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.javassem.domain.AnswerVO;
@@ -48,7 +49,7 @@ public interface UserDAO {
 	// ---user login end
 	public List<ListOrderVO> getQuestionList();
 	// ----------------------------------user end
-	public List<AnswerVO> getAnswerList();
+	public List<HashMap> getQuestionAnswer(Integer loginCno);
 
 
 

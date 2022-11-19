@@ -1,5 +1,6 @@
 package com.javassem.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.javassem.domain.AnswerVO;
@@ -51,10 +52,8 @@ public interface UserService {
 	// ---user login end
 
 	public List<ListOrderVO> getQuestionList();
-	
-	public List<AnswerVO> getAnswerList();
 
-
+	public List<HashMap> getQuestionAnswer(Integer loginCno);
 	// ----------------------------------user end
 
 }
