@@ -76,8 +76,19 @@ public class UserDAOImpl implements UserDAO {
 	// ----------------------------------manager end
 	// ----------------------------------user
 	// ---user product
+	public int removeCart(ListOrderVO vo) {
+		return mybatis.delete("UserDAO.removeCart", vo);
+	}
 	public int insertCart(ListOrderVO vo) {
 		return mybatis.insert("UserDAO.insertCart", vo);
+	}
+	public ListOrderVO selectCart(ListOrderVO vo) {
+
+		System.out.println(vo);
+		return mybatis.selectOne("UserDAO.selectCart", vo);
+	}
+	public int updateCart(ListOrderVO vo) {
+		return mybatis.update("UserDAO.updateCart", vo);
 	}
 	// ---user product end
 
@@ -111,5 +122,10 @@ public class UserDAOImpl implements UserDAO {
 		return mybatis.selectList("UserDAO.getQuestionAnswer", loginCno);
 	}
 	// ----------------------------------user
+
+	public List<HashMap> getCartList(ListOrderVO vo) {
+		return mybatis.selectList("getCartList",vo);
+	}
+
 
 }

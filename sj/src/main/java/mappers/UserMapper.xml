@@ -22,7 +22,11 @@
 		FROM CUSTOMER
 		WHERE id=#{id} AND pw=#{pw}
 	</select>
-	
+	<select id="selectCart" parameterType="ListOrderVO" resultType="ListOrderVO">
+		SELECT ocnt
+		FROM LIST_ORDER
+		WHERE pno=#{pno} AND cno=#{cno}
+	</select>
 	<select id="getProductList" resultType="ProductVO">
 		<![CDATA[
 		SELECT * FROM PRODUCT
@@ -47,15 +51,31 @@
 		ON Q.qno = A.qno
         WHERE Q.cno = #{cno}
 	</select>
+	<select id="getCartList" parameterType="ListOrderVO" resultType="HashMap" >
+		select P.img as img, P.pname as pname, P.price as price, O.ocnt as ocnt, O.pno as pno
+		from product P inner join list_order O
+		on P.pno = O.pno
+		where O.cno = #{cno}
+	</select>
+	
 	<update id="modifyProduct" parameterType="ProductVO">
 		UPDATE PRODUCT 
 		SET img=#{img}, pname=#{pname},price=#{price},description=#{description},stock=#{stock}
 		WHERE pno=#{pno}
 	</update>
+	<update id="updateCart" parameterType="ListOrderVO">
+		UPDATE LIST_ORDER
+		SET ocnt = #{ocnt}
+		WHERE pno=#{pno} AND cno=#{cno}
+	</update>
 	
 	<delete id="deleteProduct" parameterType="ProductVO">
 		DELETE FROM PRODUCT
 		WHERE pno=#{pno}
+	</delete>
+	<delete id="removeCart" parameterType="ListOrderVO">
+		DELETE FROM LIST_ORDER
+		WHERE pno=#{pno} AND cno=#{cno}
 	</delete>
 	<insert id="insertAnswer" parameterType="AnswerVO">
 		INSERT INTO ANSWER(qno,mno,cno,amessage)

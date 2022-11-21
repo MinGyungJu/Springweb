@@ -39,6 +39,9 @@ public interface UserService {
 	// ----------------------------------user
 	// ---user product
 	public int insertCart(ListOrderVO vo);
+	public ListOrderVO selectCart(ListOrderVO vo);
+	public int updateCart(ListOrderVO vo);
+	public int removeCart(ListOrderVO vo);
 	// ---user product end
 
 	// ---user contact
@@ -54,6 +57,7 @@ public interface UserService {
 	public List<ListOrderVO> getQuestionList();
 
 	public List<HashMap> getQuestionAnswer(Integer loginCno);
+	public List<HashMap> getCartList(ListOrderVO vo);
 	// ----------------------------------user end
 
 }

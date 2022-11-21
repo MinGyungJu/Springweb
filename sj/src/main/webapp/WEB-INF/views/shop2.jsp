@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%  //web browser can cache the list so new list may not show immediately
+   response.setHeader("Pragma","No-cache");      // HTTP 1.0 version
+   response.setHeader("Cache-Control","no-cache");   // HTTP 1.1 version
+   response.setHeader("Cache-Control","no-store"); // related to some firefox settings
+   response.setDateHeader("Expires", 1L);         // set finished date before present to avoid being response cache.
+%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -72,14 +78,19 @@
 									<div class="header-icons">
 										<span style="color:white">${sessionScope.loginId}</span>
 										<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
-										<a class="shopping-cart" href="cart.do"><i class="fas fa-shopping-cart"></i></a>
+											<c:if test="${sessionScope.loginId==null}">	
+												<a class="shopping-cart" href="login.do"><i class="fas fa-shopping-cart"></i></a>
+											</c:if>
+											<c:if test="${sessionScope.loginId!=null}">	
+												<a class="shopping-cart" href="cart.do?cno=${sessionScope.loginCno}"><i class="fas fa-shopping-cart"></i></a>
+											</c:if>	
 										<ul class="sub-menu">
 											<c:if test="${sessionScope.loginId==null}">	
 												<li><a href="login.do">Login Page</a></li>
 											</c:if>
 											<c:if test="${sessionScope.loginId!=null}">	
 												<li><a href="mypage.do">My Page</a></li>
-												<li><a href="cart.do">Cart</a></li>
+												<li><a href="cart.do?cno=${sessionScope.loginCno}">Cart</a></li>
 												<li><a href="logout.do">Logout</a></li>
 											</c:if>
 										</ul>
@@ -150,19 +161,19 @@
 					<div class="col-lg-4 col-md-6 text-center">
 						<div class="single-product-item">
 							<c:if test="${product.img != null}">
-								<div class="product-image"><img src="<%=pjName%>resources/assets/img/products/${product.img}" alt=""></div>
+								<div class="product-image"><img src="<%=pjName%>resources/assets/img/products/${product.img}" alt="" onclick ="location.href='single_product.do';" ></div>
 							</c:if>
 							<c:if test="${product.img == null}">
 								<div class="product-image"><img src="<%=pjName%>resources/assets/img/products/noImage.jpg" alt=""></div>
 							</c:if>
 							<h3>${product.pname}</h3>
 							<p class="product-price"><span>Per Kg</span> ${product.price}$ </p> 
-							<c:if test="${sessionScope.loginId == null}">
-								<a href="login.do" class="cart-btn">Login to Add</a>
-							</c:if>
-							<c:if test="${sessionScope.loginId != null}">
-								<a href="addCart.do?pno=${product.pno}&cno=${sessionScope.loginCno}&ocnt=1" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-							</c:if>
+							<c:if test="${sessionScope.loginId==null}">
+                           		<a href="login.do" class="cart-btn">Login to Buy </a>
+                        	</c:if>
+                        	<c:if test="${sessionScope.loginId!=null}">
+                           		<input type="submit" value="Buy">
+                        	</c:if>
 						</div>
 					</div>
 				</c:forEach>
@@ -292,6 +303,8 @@
 	<script src="<%=pjName%>resources/assets/js/sticker.js"></script>
 	<!-- main js -->
 	<script src="<%=pjName%>resources/assets/js/main.js"></script>
+	<!-- main js2 -->
+	<script src="<%=pjName%>resources/assets/js/mainAdded.js"></script>
 
 </body>
 </html>

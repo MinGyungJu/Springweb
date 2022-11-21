@@ -142,10 +142,10 @@
 					<div class="col-md-5">
 						<div class="single-product-img">
 							<label for="file-input">
-								<c:if test="${param.img != null}">
-                     				<img src="<%=pjName%>resources/assets/img/products/${param.img}" alt="" onclick="src='<%=pjName%>resources/assets/img/products/minus.jpg'" >
+                                <c:if test="${param.img == null or param.img == ''}">                     				
+                              		<img src="<%=pjName%>resources/assets/img/products/${param.img}" alt="" onclick="src='<%=pjName%>resources/assets/img/products/minus.jpg'" >
                   				</c:if>
-                  				<c:if test="${param.img == null}">
+                  				<c:if test ="${param.img != null}">
                      				<img src="<%=pjName%>resources/assets/img/products/noImage.jpg" alt="" onclick="src='<%=pjName%>resources/assets/img/products/minus.jpg'" >
                   				</c:if>
                   			</label>
@@ -154,7 +154,7 @@
 					</div>
 					<div class="col-md-7">
 						<div class="single-product-content">
-							<textarea name="pno" id="pno" class="col-lg-6 col-md-12" placeholder="Product ID" readonly>Product No: ${param.pno}</textarea>
+							<textarea name="pno" id="pno" class="col-lg-6 col-md-12" placeholder="Product ID" readonly>${param.pno}</textarea>
 							<textarea name="pname" id="pname" class="col-lg-6 col-md-12" placeholder="Product Name">${param.pname}</textarea>
 							<p class="single-product-pricing"><span>Per Kg</span></p>
 							<textarea name="price" id="price" class="col-lg-6 col-md-12" placeholder="Price">${param.price}</textarea>

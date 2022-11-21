@@ -35,7 +35,10 @@ public interface UserDAO {
 	// ----------------------------------user
 
 	// ---user product
+	public int removeCart(ListOrderVO vo);
 	public int insertCart(ListOrderVO vo);
+	public ListOrderVO selectCart(ListOrderVO vo);
+	public int updateCart(ListOrderVO vo);
 	// ---user product end
 	
 	// ---user contact
@@ -50,6 +53,7 @@ public interface UserDAO {
 	public List<ListOrderVO> getQuestionList();
 	// ----------------------------------user end
 	public List<HashMap> getQuestionAnswer(Integer loginCno);
+	public List<HashMap> getCartList(ListOrderVO vo);
 
 
 

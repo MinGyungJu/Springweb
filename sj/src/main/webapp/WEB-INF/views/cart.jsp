@@ -72,14 +72,19 @@
 									<div class="header-icons">
 										<span style="color:white">${sessionScope.loginId}</span>
 										<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
-										<a class="shopping-cart" href="cart.do"><i class="fas fa-shopping-cart"></i></a>
+											<c:if test="${sessionScope.loginId==null}">	
+												<a class="shopping-cart" href="login.do"><i class="fas fa-shopping-cart"></i></a>
+											</c:if>
+											<c:if test="${sessionScope.loginId!=null}">	
+												<a class="shopping-cart" href="cart.do?cno=${sessionScope.loginCno}"><i class="fas fa-shopping-cart"></i></a>
+											</c:if>	
 										<ul class="sub-menu">
 											<c:if test="${sessionScope.loginId==null}">	
 												<li><a href="login.do">Login Page</a></li>
 											</c:if>
 											<c:if test="${sessionScope.loginId!=null}">	
 												<li><a href="mypage.do">My Page</a></li>
-												<li><a href="cart.do">Cart</a></li>
+												<li><a href="cart.do?cno=${sessionScope.loginCno}">Cart</a></li>
 												<li><a href="logout.do">Logout</a></li>
 											</c:if>
 										</ul>
@@ -149,15 +154,14 @@
 								</tr>
 							</thead>
 							<tbody>
-							
-								<c:forEach items="${getCartList}" var="cart"> 
+								<c:forEach items ="${getCartList}" var ="cart">
 								<tr class="table-body-row">
-										<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-										<td class="product-image"><img src="<%=pjName%>resources/assets/img/products/product-img-1.jpg" alt=""></td>
-										<td class="product-name">${cart.cno}</td>
-										<td class="product-price">cart.pno</td>
-										<td class="product-quantity"><input type="number" placeholder="0"></td>
-										<td class="product-total">1</td>
+										<td class="product-remove"><a href="removeCart.do?cno=${sessionScope.loginCno}&pno=${cart.PNO}"><i class="far fa-window-close"></i></a></td>
+										<td class="product-image"><img src="<%=pjName%>resources/assets/img/products/${cart.IMG}" alt=""></td>
+										<td class="product-name">${cart.PNAME}</td>
+										<td class="product-price">${cart.PRICE}</td>
+										<td class="product-quantity"><input type="number" value="${cart.OCNT}"></td>
+										<td class="product-total">${cart.OCNT * cart.PRICE}</td>
 								</tr>
 								</c:forEach>
 							</tbody>

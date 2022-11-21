@@ -72,13 +72,18 @@
 									<div class="header-icons">
 										<span style="color:white">${sessionScope.loginId}</span>
 										<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
-										<a class="shopping-cart" href="cart.do"><i class="fas fa-shopping-cart"></i></a>
+											<c:if test="${sessionScope.loginId==null}">	
+												<a class="shopping-cart" href="login.do"><i class="fas fa-shopping-cart"></i></a>
+											</c:if>
+											<c:if test="${sessionScope.loginId!=null}">	
+												<a class="shopping-cart" href="cart.do?cno=${sessionScope.loginCno}"><i class="fas fa-shopping-cart"></i></a>
+											</c:if>	
 										<ul class="sub-menu">
 											<c:if test="${sessionScope.loginId==null}">	
 												<li><a href="login.do">Login Page</a></li>
 											</c:if>
 											<li><a href="mypage.do">My Page</a></li>
-											<li><a href="cart.do">Cart</a></li>
+											<li><a href="cart.do?cno=${sessionScope.loginCno}">Cart</a></li>
 											<c:if test="${sessionScope.loginId!=null}">	
 												<li><a href="logout.do">Logout</a></li>
 											</c:if>
@@ -137,21 +142,19 @@
 			<div class="row">
 				<div class="col-md-5">
 					<div class="single-product-img">
-						<img src="<%=pjName%>resources/assets/img/products/product-img-5.jpg" alt="">
+						<img src="<%=pjName%>resources/assets/img/products/${param.img}" alt="">
 					</div>
 				</div>
 				<div class="col-md-7">
+					<form action="addCart.do">
 					<div class="single-product-content">
-						<h3>Green apples have polyphenols</h3>
-						<p class="single-product-pricing"><span>Per Kg</span> $50</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta sint dignissimos, rem commodi cum voluptatem quae reprehenderit repudiandae ea tempora incidunt ipsa, quisquam animi perferendis eos eum modi! Tempora, earum.</p>
-						<div class="single-product-form">
-							<form action="index.do">
-								<input type="number" placeholder="0">
-							</form>
-							<a href="cart.do" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-							
-						</div>
+						<h3>${param.pname}</h3>
+						<p class="single-product-pricing"><span>Per Kg</span> $${param.price}</p>
+						<p>${param.description}</p>
+						<input type="number" placeholder="0" id="ocnt" name="ocnt" value="1">	<br/>			
+						<input type="hidden" name="pno" value="${param.pno}">
+						<input type="hidden" name="cno" value="${sessionScope.loginCno}">
+						<input type="submit" class="cart-btn" value="Add to Cart">
 						<h4>Share:</h4>
 						<ul class="product-share">
 							<li><a href=""><i class="fab fa-facebook-f"></i></a></li>
@@ -160,6 +163,7 @@
 							<li><a href=""><i class="fab fa-linkedin"></i></a></li>
 						</ul>
 					</div>
+					</form>
 				</div>
 			</div>
 		</div>

@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%  //web browser can cache the list so new list may not show immediately
+   response.setHeader("Pragma","No-cache");      // HTTP 1.0 version
+   response.setHeader("Cache-Control","no-cache");   // HTTP 1.1 version
+   response.setHeader("Cache-Control","no-store"); // related to some firefox settings
+   response.setDateHeader("Expires", 1L);         // set finished date before present to avoid being response cache.
+%>
 
 <!DOCTYPE html>
 <html lang="en">

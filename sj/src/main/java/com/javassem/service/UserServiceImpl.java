@@ -21,7 +21,6 @@ public class UserServiceImpl implements UserService {
 	private UserDAO userDAO;
 	// ----------------------------------manager
 	// ---manager product
-
 	public int insertProduct(ProductVO vo) {
 		return userDAO.insertProduct(vo);
 	}
@@ -70,11 +69,20 @@ public class UserServiceImpl implements UserService {
 
 	// ----------------------------------user
 	// ---user product
+	public int removeCart(ListOrderVO vo) {
+		return userDAO.removeCart(vo);
+	}
 	public int insertCart(ListOrderVO vo) {
 		return userDAO.insertCart(vo);
 	} 
+	public ListOrderVO selectCart(ListOrderVO vo) {
+		return userDAO.selectCart(vo);
+	}
+	public int updateCart(ListOrderVO vo) {
+		return userDAO.updateCart(vo);
+	}
 	// ---user product end
-
+	
 	// ---user contact
 	public int insertQustion(QuestionVO vo) {
 		return userDAO.insertQustion(vo);
@@ -103,6 +111,13 @@ public class UserServiceImpl implements UserService {
 		return userDAO.getQuestionAnswer(loginCno);
 	}
 	// ----------------------------------user end
+
+	@Override
+	public List<HashMap> getCartList(ListOrderVO vo) {
+		return userDAO.getCartList(vo);
+	}
+
+
 
 
 

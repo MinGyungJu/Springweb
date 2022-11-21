@@ -184,13 +184,29 @@ public class UserController {
 
 	// ----------------------------------user
 	// ---user product
+	@RequestMapping(value = "removeCart.do")
+	public String removeCart(ListOrderVO vo) {
+		userService.removeCart(vo);
+		return "redirect:cart.do?cno="+vo.getCno();
+		
+	}
+	
 	@RequestMapping(value = "addCart.do")
 	public String addCart(ListOrderVO vo , Model m) {
 		System.out.println("=>UserController.java::addCart.do");
-		int req = userService.insertCart(vo);
+		ListOrderVO exists = userService.selectCart(vo); //if pno cno exists in the cart
+		int req = 0;
+		if(exists == null)
+			req = userService.insertCart(vo);
+		else
+			req = userService.updateCart(vo);
+		
 		if (req == 1) {
-			
-		return "redirect:cart.do";
+			List<HashMap> list = userService.getCartList(vo);		// selectItemToCart
+			 m.addAttribute("getCartList", list);		
+			 System.out.println(list.size());
+			 
+			 return "cart";
 		} else {
 			return "404.do";
 		}
@@ -256,8 +272,10 @@ public class UserController {
 	}
 
 	@RequestMapping("cart.do")
-	public void cart() {
-
+	public void cart(ListOrderVO vo, Model m) {
+		List<HashMap> list = userService.getCartList(vo);		// selectItemToCart
+		 m.addAttribute("getCartList", list);	
+		 System.out.println(list.size());
 	}
 
 	@RequestMapping("checkout.do")
@@ -276,8 +294,9 @@ public class UserController {
 	}
 
 	@RequestMapping("index.do")
-	public void index() {
-
+	public void index(Model m) {
+		List<ProductVO> list = userService.getProductList();
+		m.addAttribute("productList", list);
 	}
 
 	@RequestMapping("login.do")

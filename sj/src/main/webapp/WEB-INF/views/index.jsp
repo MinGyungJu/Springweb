@@ -72,7 +72,12 @@
 									<div class="header-icons">
 										<span style="color:white">${sessionScope.loginId}</span>
 										<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
-										<a class="shopping-cart" href="cart.do"><i class="fas fa-shopping-cart"></i></a>
+										<c:if test="${sessionScope.loginId==null}">	
+											<a class="shopping-cart" href="login.do"><i class="fas fa-shopping-cart"></i></a>
+										</c:if>
+										<c:if test="${sessionScope.loginId!=null}">	
+											<a class="shopping-cart" href="cart.do?cno=${sessionScope.loginCno}"><i class="fas fa-shopping-cart"></i></a>
+										</c:if>
 										<ul class="sub-menu">
 											<c:if test="${sessionScope.loginId==null}">	
 												<li><a href="login.do">Login Page</a></li>
@@ -80,7 +85,7 @@
 											
 											<c:if test="${sessionScope.loginId!=null}">	
 												<li><a href="mypage.do">My Page</a></li>
-												<li><a href="cart.do">Cart</a></li>
+												<li><a href="cart.do?cno=${sessionScope.loginCno}">Cart</a></li>
 												<li><a href="logout.do">Logout</a></li>
 											</c:if>
 										</ul>
@@ -185,43 +190,38 @@
 			<div class="row">
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="section-title">	
-						<h3><span class="orange-text">Signature</span> Products</h3>
+						<h3><span class="orange-text">Newest</span> Arrival</h3>
 						<p>Featuring the freshest signature coffees sourced throughout the year.</p> 
 					</div>
 				</div>
 			</div>
 
-			<div class="row">
-				<div class="col-lg-4 col-md-6 text-center">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single_product.do"><img src="<%=pjName%>resources/assets/img/products/product-img-1.jpg" alt=""></a>
+			<div class="row product-lists">
+				<c:forEach items="${productList}" var ="product" step="${productList.size()/3+2}">
+					<div class="col-lg-4 col-md-6 text-center">
+						<form action="single_product.do">
+						<div class="single-product-item">
+							<div class="product-image">
+								<a href="single_product.do"><img src="<%=pjName%>resources/assets/img/products/${product.img}" alt=""></a>
+							</div>
+							<h3>${product.pname}</h3>
+							<p class="product-price"><span>Per Kg</span> ${product.price}</p>
+							<c:if test="${sessionScope.loginId==null}">
+                           		<a href="login.do" class="cart-btn">Login to Buy </a>
+                        	</c:if>
+                        	<c:if test="${sessionScope.loginId!=null}">
+                           		<input type="submit" value="Buy">
+                        	</c:if>
 						</div>
-						<h3>Light Coffee</h3>
-						<p class="product-price"><span>Per Kg</span> 85$ </p>
-						<a href="cart.do" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+						<input type="hidden" id="img" name="img" value="${product.img}">
+						<input type="hidden" id="pname" name="pname" value="${product.pname}">
+						<input type="hidden" id="price" name="price" value="${product.price}">
+						<input type="hidden" id="pno" name="pno" value="${product.pno}">
+						<input type="hidden" id="description" name="description" value="${product.description}">
+						<input type="hidden" id="stock" name="stock" value="${product.stock}">
+						</form>
 					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 text-center">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single_product.do"><img src="<%=pjName%>resources/assets/img/products/product-img-2.jpg" alt=""></a>
-						</div>
-						<h3>Medium Coffee</h3>
-						<p class="product-price"><span>Per Kg</span> 70$ </p>
-						<a href="cart.do" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0 text-center">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single_product.do"><img src="<%=pjName%>resources/assets/img/products/product-img-3.jpg" alt=""></a>
-						</div>
-						<h3>Dark Coffee</h3>
-						<p class="product-price"><span>Per Kg</span> 35$ </p>
-						<a href="cart.do" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
+				</c:forEach>
 			</div>
 		</div>
 	</div>

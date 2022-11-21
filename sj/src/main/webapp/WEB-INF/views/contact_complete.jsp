@@ -73,13 +73,18 @@
 									<div class="header-icons">
 										<span style="color:white">${sessionScope.loginId}</span>
 										<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
-										<a class="shopping-cart" href="cart.do"><i class="fas fa-shopping-cart"></i></a>
+											<c:if test="${sessionScope.loginId==null}">	
+												<a class="shopping-cart" href="login.do"><i class="fas fa-shopping-cart"></i></a>
+											</c:if>
+											<c:if test="${sessionScope.loginId!=null}">	
+												<a class="shopping-cart" href="cart.do?cno=${sessionScope.loginCno}"><i class="fas fa-shopping-cart"></i></a>
+											</c:if>	
 										<ul class="sub-menu">
 											<c:if test="${sessionScope.loginId==null}">	
 												<li><a href="login.do">Login Page</a></li>
 											</c:if>
 											<li><a href="mypage.do">My Page</a></li>
-											<li><a href="cart.do">Cart</a></li>
+											<li><a href="cart.do?cno=${sessionScope.loginCno}">Cart</a></li>
 											<c:if test="${sessionScope.loginId!=null}">	
 												<li><a href="logout.do">Logout</a></li>
 											</c:if>
