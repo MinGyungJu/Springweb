@@ -143,33 +143,50 @@
                     <div class="product-filters">
                         <ul>
                             <li class="active" data-filter="*">All</li>
-                            <li data-filter=".strawberry">Strawberry</li>
-                            <li data-filter=".berry">Berry</li>
+                            <li data-filter=".extraction">Extraction Tool</li>
+                            <li data-filter=".grinder">Grinder</li>
+                            <li data-filter=".cup">Cup</li>
                         </ul>
                     </div>
                 </div>
             </div>
 
 			<div class="row product-lists">
-				<div class="col-lg-4 col-md-6 text-center strawberry">
+				<div class="col-lg-4 col-md-6 text-center extraction grinder cup">
 					<div class="single-product-item">
-
-						<div class="product-image clickable-div" onclick="location.href='single_product_add2_m.do';">
+						<div class="product-image clickable-div" onclick="location.href='single_product_addExtraction_m.do';">
 							<img src="<%=pjName%>resources/assets/img/products/plus.jpg" alt="">
 						</div>
-						<h3>Add Product</h3>
+						<h3>Add Extraction</h3>
 						<p class="product-price"><span>Per Kg</span> - </p> 
-						
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 text-center extraction grinder cup">
+					<div class="single-product-item">
+						<div class="product-image clickable-div" onclick="location.href='single_product_addCup_m.do';">
+							<img src="<%=pjName%>resources/assets/img/products/plus.jpg" alt="">
+						</div>
+						<h3>Add Cup</h3>
+						<p class="product-price"><span>Per Kg</span> - </p> 
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 text-center extraction grinder cup">
+					<div class="single-product-item">
+						<div class="product-image clickable-div" onclick="location.href='single_product_addGrinder_m.do';">
+							<img src="<%=pjName%>resources/assets/img/products/plus.jpg" alt="">
+						</div>
+						<h3>Add Grinder</h3>
+						<p class="product-price"><span>Per Kg</span> - </p> 
 					</div>
 				</div> 
 				<c:forEach items="${productList2}" var="product"> 
-					<div class="col-lg-4 col-md-6 text-center strawberry">
+					<div class="col-lg-4 col-md-6 text-center ${product.type}">
 						<div class="single-product-item">
 							<div class="product-image clickable-div" onclick="location.href='single_product_modify_m.do?pno=${product.pno}&img=${product.img}&pname=${product.pname}&price=${product.price}&description=${product.description}&stock=${product.stock}';">
 								<img src="<%=pjName%>resources/assets/img/products/${product.img}" alt="">
 							</div>
 							<h3>${product.pname}</h3>
-							<p class="product-price"><span>Per Kg</span> ${product.price}$ </p> 
+							<p class="product-price"> ${product.price}$ </p> 
 							<input type="hidden" name="pno" value="${product.pno}">
 						</div>
 					</div>

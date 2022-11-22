@@ -137,14 +137,14 @@
 	<!-- single product -->
 	<div class="single-product mt-150 mb-150">
 		<div class="container">
-			 <form action="addProduct.do" method="post" enctype="multipart/form-data">
+			<form action="addProduct2.do">
 				<div class="row">
 					<div class="col-md-5">
 						<div class="single-product-img">
                   			<label for="file-input">
                      			<img src="<%=pjName%>resources/assets/img/products/plus.jpg" alt="" onclick="src='<%=pjName%>resources/assets/img/products/minus.jpg'" >
                   			</label>
-                     		<input id="file-input" type="file" style="display: none;" id="img" name="file"/>
+                     		<input id="file-input" type="file" style="display: none;" id="img" name="img"/>
                   		</div>
 					</div>
 					<div class="col-md-7">
@@ -156,7 +156,8 @@
 							<textarea name="description" id="description" class="col-lg-6 col-md-12" placeholder="Description" rows="2"></textarea>
 							
 							<div class="single-product-form">
-								<input name="stock" id="stock" value="0" type="number" placeholder="0"><br/>
+								<input name="stock" id="stock" type="number" placeholder="0"><br/>
+								<input type="hidden" name="type" id="type" value="grinder">
 								<input type="submit" value="Add New">	
 							</div>
 						</div>

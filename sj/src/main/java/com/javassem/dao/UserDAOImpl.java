@@ -90,6 +90,18 @@ public class UserDAOImpl implements UserDAO {
 	public int updateCart(ListOrderVO vo) {
 		return mybatis.update("UserDAO.updateCart", vo);
 	}
+	public int deleteCart(ListOrderVO vo) {
+		return mybatis.delete("UserDAO.deleteCart",vo);
+	}
+	public int selectLono() {
+		return mybatis.selectOne("UserDAO.selectLono");
+	}
+	public int insertOrder(HashMap map) {
+		return mybatis.insert("UserDAO.insertOrder", map);
+	}
+	public int insertOrders(HashMap map2) {
+		return mybatis.insert("UserDAO.insertOrders", map2);
+	}
 	// ---user product end
 
 	// ---user contact

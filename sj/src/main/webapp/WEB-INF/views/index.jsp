@@ -150,8 +150,8 @@
 					<div class="col-lg-10 offset-lg-1 text-center">
 						<div class="hero-text">
 							<div class="hero-text-tablecell">
-								<p class="subtitle">Fresh Everyday</p>
-								<h1>100% Organic Collection</h1>
+								<p class="subtitle">Coffee and Daily Life</p>
+								<h1>Coffee Bean Story by Country</h1>
 								<div class="hero-btns">
 									<a href="shop.do" class="boxed-btn">Visit Shop</a>
 									<a href="login.do" class="bordered-btn">Login</a>
@@ -197,31 +197,17 @@
 			</div>
 
 			<div class="row product-lists">
-				<c:forEach items="${productList}" var ="product" step="${productList.size()/3+2}">
-					<div class="col-lg-4 col-md-6 text-center">
-						<form action="single_product.do">
+					<c:forEach items="${productList}" var ="product" step="${productList.size()/3+2}">
+				<div class="col-lg-4 col-md-6 text-center">
 						<div class="single-product-item">
-							<div class="product-image">
-								<a href="single_product.do"><img src="<%=pjName%>resources/assets/img/products/${product.img}" alt=""></a>
-							</div>
-							<h3>${product.pname}</h3>
-							<p class="product-price"><span>Per Kg</span> ${product.price}</p>
-							<c:if test="${sessionScope.loginId==null}">
-                           		<a href="login.do" class="cart-btn">Login to Buy </a>
-                        	</c:if>
-                        	<c:if test="${sessionScope.loginId!=null}">
-                           		<input type="submit" value="Buy">
-                        	</c:if>
+						<div class="product-image">
+							<a href="single_product.do"><img src="<%=pjName%>resources/assets/img/products/${product.img}" alt=""></a>
 						</div>
-						<input type="hidden" id="img" name="img" value="${product.img}">
-						<input type="hidden" id="pname" name="pname" value="${product.pname}">
-						<input type="hidden" id="price" name="price" value="${product.price}">
-						<input type="hidden" id="pno" name="pno" value="${product.pno}">
-						<input type="hidden" id="description" name="description" value="${product.description}">
-						<input type="hidden" id="stock" name="stock" value="${product.stock}">
-						</form>
-					</div>
-				</c:forEach>
+						<h3>${product.pname}</h3>
+						<p class="product-price"><span>Per Kg</span> ${product.price}</p>
+						</div>
+				</div>
+					</c:forEach>
 			</div>
 		</div>
 	</div>
@@ -288,7 +274,7 @@
 			<div class="row">
 				<div class="col-lg-6 col-md-12">
 					<div class="abt-bg">
-						<a href="https://www.youtube.com/watch?v=DBLlFWYcIGQ" class="video-play-btn popup-youtube"><i class="fas fa-play"></i></a>
+						<a href="https://www.youtube.com/watch?v=gP7NRb-BWHo" class="video-play-btn popup-youtube"><i class="fas fa-play"></i></a>
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-12">
@@ -320,7 +306,7 @@
 									</div>
 									<div class="content">
 										<h3>Home Delivery</h3>
-										<p>Fast delivery within a week. While you are waiting, look for various recipes on the home page.</p>
+										<p>Fast delivery within a week. While waiting, look for various roasting methods on the homepage.</p>
 									</div>
 								</div>
 							</div>
@@ -378,10 +364,10 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-lg-4 col-md-6">
+				<div class="col-lg-5 col-md-6 ">
 					<div class="single-team-item">
 						<div class="team-bg team-bg-1"></div>
-						<h4>Jimmy Dona <span>Barista</span></h4>
+						<h4>Seunghwan Noh <span>Barista</span></h4>
 						<ul class="social-link-team">
 							<li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
 							<li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
@@ -389,10 +375,10 @@
 						</ul>
 					</div>
 				</div>
-				<div class="col-lg-4 col-md-6">
+				<div class="col-lg-5 col-md-6">
 					<div class="single-team-item">
 						<div class="team-bg team-bg-2"></div>
-						<h4>Marry Jane <span>Barista</span></h4>
+						<h4>Jisun Yoo <span>Barista</span></h4>
 						<ul class="social-link-team">
 							<li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
 							<li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
@@ -400,10 +386,11 @@
 						</ul>
 					</div>
 				</div>
-				<div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0">
+				
+				<div class="col-lg-5 col-md-6 ">
 					<div class="single-team-item">
 						<div class="team-bg team-bg-3"></div>
-						<h4>Simon Joe <span>Barista</span></h4>
+						<h4>Mingyeong Ju <span>Barista</span></h4>
 						<ul class="social-link-team">
 							<li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
 							<li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
@@ -411,6 +398,20 @@
 						</ul>
 					</div>
 				</div>
+				<div class="col-lg-5 col-md-6 ">
+					<div class="single-team-item">
+						<div class="team-bg team-bg-4"></div>
+						<h4>Youin Choi <span>Barista</span></h4>
+						<ul class="social-link-team">
+							<li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
+						</ul>
+					</div>
+				</div>
+				</div>
+				
+				
 			</div>
 		</div>
 	</div>

@@ -150,15 +150,16 @@
                     <div class="product-filters">
                         <ul>
                             <li class="active" data-filter="*">All</li>
-                            <li data-filter=".strawberry">Strawberry</li>
-                            <li data-filter=".berry">Berry</li>
+                            <li data-filter=".capsule">Capsule</li>
+                            <li data-filter=".dripbag">Dripbag</li>
+                            <li data-filter=".beans">Beans</li>
                         </ul>
                     </div>
                 </div>
             </div>
 			<div class="row product-lists">
 				<c:forEach items="${productList}" var="product"> 
-					<div class="col-lg-4 col-md-6 text-center">
+					<div class="col-lg-4 col-md-6 text-center ${product.type}">
 						<form action="single_product.do" >
 							<div class="single-product-item"> 
 								<c:if test="${product.img != null}">
@@ -169,12 +170,7 @@
 								</c:if> 
 								<h3>${product.pname}</h3>
 								<p class="product-price"><span>Per Kg</span> ${product.price}$ </p> 
-								<c:if test="${sessionScope.loginId==null}">
-                           			<a href="login.do" class="cart-btn">Login to Buy </a>
-                        		</c:if>
-                        		<c:if test="${sessionScope.loginId!=null}">
-                           			<input type="submit" value="Buy">
-                        		</c:if>
+								<input type="submit" value="Buy">
 							</div>
 							<input type="hidden" id="img" name="img" value="${product.img}">
 							<input type="hidden" id="pname" name="pname" value="${product.pname}">

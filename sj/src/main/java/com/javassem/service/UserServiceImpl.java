@@ -81,6 +81,18 @@ public class UserServiceImpl implements UserService {
 	public int updateCart(ListOrderVO vo) {
 		return userDAO.updateCart(vo);
 	}
+	public int deleteCart(ListOrderVO vo) {
+		return userDAO.deleteCart(vo);
+	}
+	public int selectLono() {
+		return userDAO.selectLono();
+	}
+	public int insertOrder(HashMap map) {
+		return userDAO.insertOrder(map);
+	}
+	public int insertOrders(HashMap map2) {
+		return userDAO.insertOrders(map2);
+	}
 	// ---user product end
 	
 	// ---user contact

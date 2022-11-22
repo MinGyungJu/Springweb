@@ -13,6 +13,7 @@ public class ProductVO {
 	private int price;
 	private String description;
 	private Integer stock;
+	private String type;
 	
 	MultipartFile file;
 	
@@ -66,6 +67,12 @@ public class ProductVO {
 	}
 	public void setStock(int stock) {
 		this.stock = stock;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
 	}
 	
 	

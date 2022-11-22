@@ -39,6 +39,10 @@ public interface UserDAO {
 	public int insertCart(ListOrderVO vo);
 	public ListOrderVO selectCart(ListOrderVO vo);
 	public int updateCart(ListOrderVO vo);
+	public int deleteCart(ListOrderVO vo);
+	public int selectLono();
+	public int insertOrder(HashMap map);
+	public int insertOrders(HashMap map2);
 	// ---user product end
 	
 	// ---user contact

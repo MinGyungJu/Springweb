@@ -142,27 +142,46 @@
                     <div class="product-filters">
                         <ul>
                             <li class="active" data-filter="*">All</li>
-                            <li data-filter=".strawberry">Strawberry</li>
-                            <li data-filter=".berry">Berry</li>
+                            <li data-filter=".capsule">Capsule</li>
+                            <li data-filter=".dripbag">Dripbag</li>
+                            <li data-filter=".beans">Beans</li>
                         </ul>
                     </div>
                 </div>
             </div>
 
 			<div class="row product-lists">
-				<div class="col-lg-4 col-md-6 text-center strawberry">
+				<div class="col-lg-4 col-md-6 text-center capsule dripbag beans">
 					<div class="single-product-item">
-						<div class="product-image clickable-div" onclick="location.href='single_product_add_m.do';">
+						<div class="product-image clickable-div" onclick="location.href='single_product_addBeans_m.do';">
 							<img src="<%=pjName%>resources/assets/img/products/plus.jpg" alt="">
 						</div>
-						<h3>Add Product</h3>
+						<h3>Add Beans</h3>
+						<p class="product-price"><span>Per Kg</span> - </p> 
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 text-center capsule dripbag beans">
+					<div class="single-product-item">
+						<div class="product-image clickable-div" onclick="location.href='single_product_addDripbag_m.do';">
+							<img src="<%=pjName%>resources/assets/img/products/plus.jpg" alt="">
+						</div>
+						<h3>Add Dripbag</h3>
+						<p class="product-price"><span>Per Kg</span> - </p> 
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 text-center capsule dripbag beans">
+					<div class="single-product-item">
+						<div class="product-image clickable-div" onclick="location.href='single_product_addCapsule_m.do';">
+							<img src="<%=pjName%>resources/assets/img/products/plus.jpg" alt="">
+						</div>
+						<h3>Add Capsule</h3>
 						<p class="product-price"><span>Per Kg</span> - </p> 
 					</div>
 				</div>
 				
 				
 				<c:forEach items="${productList}" var="product"> 
-					<div class="col-lg-4 col-md-6 text-center strawberry">
+					<div class="col-lg-4 col-md-6 text-center ${product.type}">
 						<div class="single-product-item">
 							<div class="product-image clickable-div" onclick="location.href='single_product_modify_m.do?pno=${product.pno}&img=${product.img}&pname=${product.pname}&price=${product.price}&description=${product.description}&stock=${product.stock}';">
 								<c:if test="${product.img == null}">

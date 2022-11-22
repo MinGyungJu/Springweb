@@ -50,12 +50,16 @@
 		FROM question Q LEFT OUTER JOIN answer A
 		ON Q.qno = A.qno
         WHERE Q.cno = #{cno}
+        ORDER BY Q.qno desc
 	</select>
-	<select id="getCartList" parameterType="ListOrderVO" resultType="HashMap" >
+	<select id="getCartList" parameterType="ListOrderVO" resultType="hashmap" >
 		select P.img as img, P.pname as pname, P.price as price, O.ocnt as ocnt, O.pno as pno
 		from product P inner join list_order O
 		on P.pno = O.pno
 		where O.cno = #{cno}
+	</select>
+	<select id="selectLono" resultType="integer">
+		select finished_order_seq.nextval FROM DUAL
 	</select>
 	
 	<update id="modifyProduct" parameterType="ProductVO">
@@ -77,6 +81,11 @@
 		DELETE FROM LIST_ORDER
 		WHERE pno=#{pno} AND cno=#{cno}
 	</delete>
+	<delete id="deleteCart" parameterType="ListOrderVO">
+		DELETE FROM LIST_ORDER
+		WHERE cno=#{cno}
+	</delete>
+	
 	<insert id="insertAnswer" parameterType="AnswerVO">
 		INSERT INTO ANSWER(qno,mno,cno,amessage)
 		 VALUES(#{qno},#{mno},#{cno},#{amessage})
@@ -105,7 +114,6 @@
 		INSERT INTO MANAGER(mno, name, gender, id, pw, tel, email, addr)
 		 VALUES(manager_seq.nextval,#{name},#{gender},#{id},#{pw},#{tel},#{email},#{addr})
 	</insert>
-	
 	<insert id="insertCart" parameterType="ListOrderVO">
 		INSERT INTO LIST_ORDER(cno,pno,ocnt)
 		 VALUES(#{cno},#{pno},#{ocnt})
@@ -118,7 +126,14 @@
 		INSERT INTO CUSTOMER(cno, name, gender, id, pw, tel, email, addr)
 		 VALUES(customer_seq.nextval,#{name},#{gender},#{id},#{pw},#{tel},#{email},#{addr})
 	</insert>
-
+	<insert id="insertOrder" parameterType="hashmap">
+		INSERT INTO FINISHED_ORDER(lono,cno,odrdate,addr)
+		 VALUES(#{lono},#{cno},sysdate,#{addr})
+	</insert>
+	<insert id="insertOrders" parameterType="hashmap">
+		INSERT INTO ORDERS(ono,lono,pno,ocnt)
+		 VALUES(orders_seq.nextval, #{lono}, #{pno}, #{ocnt})
+	</insert>
 	
 	
 	

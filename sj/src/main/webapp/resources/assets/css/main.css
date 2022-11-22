@@ -2336,6 +2336,7 @@ ul.social-link-team li a {
 # Shop Page Styles
 
 ----------------------------------------------------------------------------- */
+
 .product-filters {
   margin-bottom: 80px;
 }
@@ -2620,7 +2621,7 @@ tr.total-data td strong {
   padding: 20px;
 }
 
-.billing-address-form form p input {
+.billing-address-form p input {
   border: 1px solid #ddd;
   padding: 15px;
   width: 100%;
@@ -2636,6 +2637,12 @@ tr.total-data td strong {
   resize: none;
 }
 
+.card-details p input{
+  border: 1px solid #ddd;
+  padding: 15px;
+  width: 100%;
+  border-radius: 3px;
+}
 .shipping-address-form p, .card-details p {
   margin: 0;
 }

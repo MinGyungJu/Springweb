@@ -143,6 +143,7 @@ public class UserController {
 	public void registration_m_incomplete() {
 
 	}
+
 	@RequestMapping("registration_m.do")
 	public void registration_m() {
 
@@ -165,13 +166,33 @@ public class UserController {
 
 	}
 
-	@RequestMapping("single_product_add_m.do")
-	public void single_product_add_m() {
+	@RequestMapping("single_product_addBeans_m.do")
+	public void single_product_addBeans_m() {
 
 	}
 
-	@RequestMapping("single_product_add2_m.do")
-	public void single_product_add2_m() {
+	@RequestMapping("single_product_addCapule_m.do")
+	public void single_product_addCapsule_m() {
+
+	}
+
+	@RequestMapping("single_product_addDripbag_m.do")
+	public void single_product_addDripbag_m() {
+
+	}
+
+	@RequestMapping("single_product_addExtraction_m.do")
+	public void single_product_addExtraction_m() {
+
+	}
+
+	@RequestMapping("single_product_addGrinder_m.do")
+	public void single_product_addGrinder_m() {
+
+	}
+
+	@RequestMapping("single_product_addCup_m.do")
+	public void single_product_addCup_m() {
 
 	}
 
@@ -187,28 +208,28 @@ public class UserController {
 	@RequestMapping(value = "removeCart.do")
 	public String removeCart(ListOrderVO vo) {
 		userService.removeCart(vo);
-		return "redirect:cart.do?cno="+vo.getCno();
-		
+		return "redirect:cart.do?cno=" + vo.getCno();
+
 	}
-	
+
 	@RequestMapping(value = "addCart.do")
-	public String addCart(ListOrderVO vo , Model m) {
+	public String addCart(ListOrderVO vo, Model m) {
 		System.out.println("=>UserController.java::addCart.do");
-		ListOrderVO exists = userService.selectCart(vo); //if pno cno exists in the cart
+		ListOrderVO exists = userService.selectCart(vo); // if pno cno exists in the cart
 		int req = 0;
-		if(exists == null)
+		if (exists == null)
 			req = userService.insertCart(vo);
 		else
 			req = userService.updateCart(vo);
-		
+
 		if (req == 1) {
-			List<HashMap> list = userService.getCartList(vo);		// selectItemToCart
-			 m.addAttribute("getCartList", list);		
-			 System.out.println(list.size());
-			 
-			 return "cart";
+			List<HashMap> list = userService.getCartList(vo); // selectItemToCart
+			m.addAttribute("getCartList", list);
+			System.out.println(list.size());
+
+			return "redirect:cart.do?cno=" + vo.getCno();
 		} else {
-			return "404.do";
+			return "redirect:404.do";
 		}
 	}
 	// ---user product end
@@ -273,14 +294,14 @@ public class UserController {
 
 	@RequestMapping("cart.do")
 	public void cart(ListOrderVO vo, Model m) {
-		List<HashMap> list = userService.getCartList(vo);		// selectItemToCart
-		 m.addAttribute("getCartList", list);	
-		 System.out.println(list.size());
+		List<HashMap> list = userService.getCartList(vo);
+		m.addAttribute("getCartList", list);
 	}
 
 	@RequestMapping("checkout.do")
-	public void checkout() {
-
+	public void checkout(ListOrderVO vo, Model m) {
+		List<HashMap> list = userService.getCartList(vo);
+		m.addAttribute("getCartList", list);
 	}
 
 	@RequestMapping("contact_complete.do")
@@ -305,14 +326,15 @@ public class UserController {
 	}
 
 	@RequestMapping("mypage.do")
-	public void mypage( Model m, HttpSession session) {
-		//CustomerVO cvo, QuestionVO qvo,
-		//System.out.println("cvo:"+cvo);
-		//System.out.println("qvo:"+qvo);
+	public void mypage(Model m, HttpSession session) {
+		// CustomerVO cvo, QuestionVO qvo,
+		// System.out.println("cvo:"+cvo);
+		// System.out.println("qvo:"+qvo);
 		Integer cno = 0;
 		Object obj = session.getAttribute("loginCno");
-		if( obj != null ) cno = (Integer)obj;	
-		
+		if (obj != null)
+			cno = (Integer) obj;
+
 		List<HashMap> list = userService.getQuestionAnswer(cno);
 		m.addAttribute("questionAnswerList", list);
 		/*
@@ -331,7 +353,31 @@ public class UserController {
 	}
 
 	@RequestMapping("pay_complete.do")
-	public void pay_complete() {
+	public String pay_complete(ListOrderVO vo, String addr) {
+		int lono = userService.selectLono();
+
+		HashMap map = new HashMap();
+		map.put("cno", vo.getCno());
+		map.put("addr", addr);
+		map.put("lono", lono);
+
+		int result = userService.insertOrder(map); // insert into Finshed_Order
+		if (result > 0) {
+			List<HashMap> list = userService.getCartList(vo);// insert into Orders if order is made
+			for (HashMap m : list) {
+				System.out.println(m);
+				HashMap map2 = new HashMap();
+				map2.put("lono", lono);
+				map2.put("pno", m.get("PNO"));
+				map2.put("ocnt", m.get("OCNT"));
+				result = userService.insertOrders(map2);
+			} // for
+		} // if
+
+		if(result > 0)
+			userService.deleteCart(vo); //delete Cart when Orders are Finished
+		
+		return "checkout";
 
 	}
 
