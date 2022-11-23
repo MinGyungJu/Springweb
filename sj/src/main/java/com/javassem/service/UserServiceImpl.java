@@ -37,7 +37,16 @@ public class UserServiceImpl implements UserService {
 		return userDAO.deleteProduct(vo);
 	}
 	// ---manager product end
-
+	
+	// ---manager orders
+	public int deleteOrder(Integer lono) {
+		return userDAO.deleteOrder(lono);
+	}
+	public int deleteOrders(Integer lono) {
+		return userDAO.deleteOrders(lono);
+	}
+	// ---manager orders end
+	
 	// ---manager contact
 	public int insertAnswer(AnswerVO vo) {
 		return userDAO.insertAnswer(vo);
@@ -65,6 +74,9 @@ public class UserServiceImpl implements UserService {
 	public List<ProductVO> getProductList2() {
 		return userDAO.getProductList2();
 	}
+	public List<HashMap> getCustomersOrders(){
+		return userDAO.getCustomersOrders();
+	}
 	// ----------------------------------manager end
 
 	// ----------------------------------user
@@ -87,14 +99,17 @@ public class UserServiceImpl implements UserService {
 	public int selectLono() {
 		return userDAO.selectLono();
 	}
+	// ---user product end
+	
+	// --user orders
 	public int insertOrder(HashMap map) {
 		return userDAO.insertOrder(map);
 	}
 	public int insertOrders(HashMap map2) {
 		return userDAO.insertOrders(map2);
 	}
-	// ---user product end
-	
+	// --user orders end
+
 	// ---user contact
 	public int insertQustion(QuestionVO vo) {
 		return userDAO.insertQustion(vo);
@@ -122,14 +137,19 @@ public class UserServiceImpl implements UserService {
 	public List<HashMap> getQuestionAnswer(Integer loginCno) {
 		return userDAO.getQuestionAnswer(loginCno);
 	}
-	// ----------------------------------user end
 
+	public List<HashMap> getOrdersList(Integer loginCno){
+		return userDAO.getOrdersList(loginCno);
+	}
 	@Override
 	public List<HashMap> getCartList(ListOrderVO vo) {
 		return userDAO.getCartList(vo);
 	}
 
-
+	// ----------------------------------user end
+	public int stock(HashMap map) {
+		return userDAO.stock(map);
+	}
 
 
 

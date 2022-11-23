@@ -142,10 +142,7 @@
 			<div class="row">
 				<div class="col-lg-8">
 					<div class="checkout-accordion-wrap">
-						
-						
 						<div class="accordion" id="accordionExample">
-						  
 						  <div class="card single-accordion">
 						    <div class="card-header" id="headingOne">
 						      <h5 class="mb-0">
@@ -167,10 +164,7 @@
 						      </div>
 						    </div>
 						  </div>
-						  
 						</div>
-
-
 					</div>
 				</div>
 			</div>

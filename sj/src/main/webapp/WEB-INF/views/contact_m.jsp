@@ -138,7 +138,8 @@
 								<table class="cart-table" >
 									<thead class="cart-table-head">
 										<tr class="table-head-row">
-											<th class="product-remove">No</th>
+											<th class="product-remove">Qno.</th>
+											<th class="product-name">Cno.</th>
 											<th class="product-name">Message</th>
 											<th class="product-price">Response</th>
 											<th class="product-quantity"></th>
@@ -150,6 +151,7 @@
 										<tr class="table-body-row">
 											<form action="insertAnswer.do">
 												<td class="product-remove">${question.qno}</td>
+												<td>${question.cno}</td>
 												<td><text-field>${question.qname}<br/>${question.qmessage}</text-field></td>
 												<td class="product-price"><textarea name="amessage" id="amessage" class="col-lg-12 col-md-12" placeholder="please type your response to question"></textarea></td>
 													<input type="hidden" name="qno" id="qno" value="${question.qno}">

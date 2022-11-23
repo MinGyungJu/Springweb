@@ -155,7 +155,8 @@
 							<p><textarea name="qmessage" id="qmessage" cols="30" rows="10" placeholder="Message"></textarea></p>
 							<input type="hidden" name="cno" value="${sessionScope.loginCno}" />
 							<c:if test="${sessionScope.loginId!=null}">	
-								<p><input type="submit" value="Submit"></p>
+								<p><input type="submit" value="Submit">
+								<a href="mypage.do" class="boxed-btn black">goto my page</a></p>
 							</c:if>
 							<c:if test="${sessionScope.loginId==null}">	
 								<p><a href="login.do" class="boxed-btn black">Login to Ask</a></p>

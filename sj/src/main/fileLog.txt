@@ -1,0 +1,8 @@
+Customer 0 logged in : 2022-11-23T18:19:16.961137600
+Customer 0 logged out : 2022-11-23T18:19:19.325664900
+Customer 41 logged in : 2022-11-23T18:19:24.250224200
+Customer 41 logged out : 2022-11-23T18:19:26.877322400
+Customer 41 logged in : 2022-11-23T18:20:56.545953200
+Customer 41 logged out : 2022-11-23T18:20:58.517110400
+Customer 49 logged in : 2022-11-23T19:13:13.798576
+Customer 49 logged in : 2022-11-23T19:26:40.338380200

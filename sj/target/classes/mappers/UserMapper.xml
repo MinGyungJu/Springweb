@@ -52,6 +52,20 @@
         WHERE Q.cno = #{cno}
         ORDER BY Q.qno desc
 	</select>
+	<select id="getOrdersList" parameterType="int" resultType="hashmap">
+		SELECT P.img img, P.pname pname, P.price price, O.ocnt ocnt, O.lono lono
+		FROM product P inner join orders O 
+		ON P.pno = O.pno
+		WHERE O.lono in (SELECT lono from finished_order WHERE cno = #{cno})
+		ORDER BY lono desc
+	</select>
+	<select id="getCustomersOrders" resultType="hashmap">
+		SELECT F.lono lono, F.cno cno, P.pname pname, O.ocnt ocnt
+		FROM Finished_order F inner join Orders O
+		ON F.lono = O.lono inner join Product P
+		ON O.pno = P.pno
+		ORDER BY lono desc
+	</select>
 	<select id="getCartList" parameterType="ListOrderVO" resultType="hashmap" >
 		select P.img as img, P.pname as pname, P.price as price, O.ocnt as ocnt, O.pno as pno
 		from product P inner join list_order O
@@ -72,6 +86,11 @@
 		SET ocnt = #{ocnt}
 		WHERE pno=#{pno} AND cno=#{cno}
 	</update>
+	<update id="stock" parameterType="hashmap">
+	 	UPDATE Product
+	 	SET stock = stock - #{ocnt}
+	 	WHERE pno = #{pno}
+	</update>
 	
 	<delete id="deleteProduct" parameterType="ProductVO">
 		DELETE FROM PRODUCT
@@ -85,7 +104,14 @@
 		DELETE FROM LIST_ORDER
 		WHERE cno=#{cno}
 	</delete>
-	
+	<delete id="deleteOrder" parameterType="integer">
+		DELETE FROM FINISHED_ORDER
+		WHERE lono=#{lono}
+	</delete>
+	<delete id="deleteOrders" parameterType="integer">
+		DELETE FROM ORDERS
+		WHERE lono=#{lono}
+	</delete>
 	<insert id="insertAnswer" parameterType="AnswerVO">
 		INSERT INTO ANSWER(qno,mno,cno,amessage)
 		 VALUES(#{qno},#{mno},#{cno},#{amessage})

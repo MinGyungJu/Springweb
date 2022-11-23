@@ -274,15 +274,15 @@
 			<div class="row">
 				<div class="col-lg-6 col-md-12">
 					<div class="abt-bg">
-						<a href="https://www.youtube.com/watch?v=gP7NRb-BWHo" class="video-play-btn popup-youtube"><i class="fas fa-play"></i></a>
+						<a href="https://www.youtube.com/watch?v=7QNidjvFcDA" class="video-play-btn popup-youtube"><i class="fas fa-play"></i></a>
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-12">
 					<div class="abt-text">
-						<p class="top-sub">Since Year 1999</p>
-						<h2>We use <span class="orange-text">Organic</span></h2>
-						<p>We use 100% Arabica beans roasted in small batches to bring the beans to their full flavor. All our flavored coffees are available in Regular or Decaf and many of our blends and specialty coffees are also available in Decaf.</p>
-						<p>We make sure that quality is at the core of everything we do. It’s that simple, by selecting only the finest green beans, we can assure you a better cup of coffee.</p>
+						<p class="top-sub">World</p>
+						<h2>Barista<span class="orange-text"> Championship</span></h2>
+						<p>At the same time as opening the Yeongdo Coffee Bar, Momos Coffee embraced Choo Kyung-ha, who became the first World Cup Tasters champion in two years in Milan, Italy, in 2021.</p>
+						<p>Chubarista, a native of Busan, played as an Australian representative for Canberra Ona Coffee in Australia in October and lifted the trophy. Instead of returning to Australia, I decided to start my second coffee life at Momos Coffee.</p>
 						<a href="registration.do" class="boxed-btn mt-4">Please be our member</a>
 					</div>
 				</div>

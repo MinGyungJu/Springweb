@@ -161,7 +161,7 @@
 							<textarea name="description" id="description" class="col-lg-6 col-md-12" placeholder="Description" rows="2">${param.description}</textarea>
 							
 							<div class="single-product-form">
-								<input name="stock" id="stock" type="number" placeholder="0" value="0"><br/>
+								<input name="stock" id="stock" type="number" placeholder="0" value="${param.stock}"><br/>
 								<input type="submit" value="Modify">
 							</div>
 						</div>

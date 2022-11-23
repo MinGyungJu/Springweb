@@ -1,6 +1,9 @@
 package com.javassem.controller;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 
@@ -118,6 +121,14 @@ public class UserController {
 	}
 
 	// ---manager login end
+
+	@RequestMapping("deleteOrder.do")
+	public String deleteOrder(Integer lono) {
+		userService.deleteOrders(lono);
+		userService.deleteOrder(lono);
+		return "redirect:index_m.do";
+	}
+
 	@RequestMapping("contact_m.do")
 	public void contact_m(Model m) {
 		List<ListOrderVO> list = userService.getQuestionList();
@@ -130,8 +141,9 @@ public class UserController {
 	}
 
 	@RequestMapping("index_m.do")
-	public void index_m() {
-
+	public void index_m(Model m) {
+		List<HashMap> list = userService.getCustomersOrders();
+		m.addAttribute("getCustomersOrders", list);
 	}
 
 	@RequestMapping("registration_m_complete.do")
@@ -209,7 +221,12 @@ public class UserController {
 	public String removeCart(ListOrderVO vo) {
 		userService.removeCart(vo);
 		return "redirect:cart.do?cno=" + vo.getCno();
+	}
 
+	@RequestMapping(value = "updateCart.do")
+	public String updateCart(ListOrderVO vo) { // gets pno, cno, ocnt
+		userService.updateCart(vo);
+		return "redirect:cart.do?cno=" + vo.getCno();
 	}
 
 	@RequestMapping(value = "addCart.do")
@@ -225,7 +242,6 @@ public class UserController {
 		if (req == 1) {
 			List<HashMap> list = userService.getCartList(vo); // selectItemToCart
 			m.addAttribute("getCartList", list);
-			System.out.println(list.size());
 
 			return "redirect:cart.do?cno=" + vo.getCno();
 		} else {
@@ -262,6 +278,8 @@ public class UserController {
 	// func: checking login for customer
 	@RequestMapping(value = "loginCustomer.do")
 	public String loginCustomer(CustomerVO vo, HttpSession session) {
+
+
 		System.out.println("=>UserController.java::loginCustomer.do");
 		CustomerVO loginResult = userService.loginCustomer(vo);
 		if (loginResult != null) { // login success!
@@ -273,6 +291,27 @@ public class UserController {
 			session.setAttribute("loginTel", loginResult.getTel());
 			session.setAttribute("loginEmail", loginResult.getEmail());
 			session.setAttribute("loginAddr", loginResult.getAddr());
+			
+			try {
+				File myObj = new File("fileLog.txt");
+				FileWriter myWriter = null;
+				if (myObj.createNewFile()) {
+					myWriter = new FileWriter("D:\\springspace\\springweb\\sj\\src\\main\\fileLog.txt");
+					LocalDateTime now = LocalDateTime.now();
+					myWriter.write( "Customer " + session.getAttribute("loginCno")+" logged in : " + String.valueOf(now));
+					myWriter.write('\n');
+				} else {
+					//file already exists
+					myWriter = new FileWriter("D:\\springspace\\springweb\\sj\\src\\main\\fileLog.txt", true);
+					LocalDateTime now = LocalDateTime.now();
+					myWriter.write( "Customer " + session.getAttribute("loginCno")+" logged in : " + String.valueOf(now));
+					myWriter.write('\n');
+				}
+				myWriter.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
 			return "redirect:index.do";
 		}
 		return "redirect:login.do";
@@ -282,6 +321,27 @@ public class UserController {
 	@RequestMapping(value = "logout.do")
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession(true);
+
+		try {
+			File myObj = new File("fileLog.txt");
+			FileWriter myWriter = null;
+			if (myObj.createNewFile()) {
+				myWriter = new FileWriter("D:\\springspace\\springweb\\sj\\src\\main\\fileLog.txt");
+				LocalDateTime now = LocalDateTime.now();
+				myWriter.write( "Customer " + session.getAttribute("loginCno")+" logged out : " + String.valueOf(now));
+				myWriter.write('\n');
+			} else {
+				//file already exists
+				myWriter = new FileWriter("D:\\springspace\\springweb\\sj\\src\\main\\fileLog.txt", true);
+				LocalDateTime now = LocalDateTime.now();
+				myWriter.write( "Customer " + session.getAttribute("loginCno")+" logged out : " + String.valueOf(now));
+				myWriter.write('\n');
+			}
+			myWriter.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		session.invalidate();
 		return "redirect:index.do";
 	}
@@ -334,7 +394,8 @@ public class UserController {
 		Object obj = session.getAttribute("loginCno");
 		if (obj != null)
 			cno = (Integer) obj;
-
+		List<HashMap> list1 = userService.getOrdersList(cno);
+		m.addAttribute("OrdersList", list1);
 		List<HashMap> list = userService.getQuestionAnswer(cno);
 		m.addAttribute("questionAnswerList", list);
 		/*
@@ -353,7 +414,7 @@ public class UserController {
 	}
 
 	@RequestMapping("pay_complete.do")
-	public String pay_complete(ListOrderVO vo, String addr) {
+	public void pay_complete(ListOrderVO vo, String addr) {
 		int lono = userService.selectLono();
 
 		HashMap map = new HashMap();
@@ -370,15 +431,13 @@ public class UserController {
 				map2.put("lono", lono);
 				map2.put("pno", m.get("PNO"));
 				map2.put("ocnt", m.get("OCNT"));
-				result = userService.insertOrders(map2);
+				result = userService.insertOrders(map2); // insert into Orders
+				
+				userService.deleteCart(vo); // delete Cart when Orders are Finished
+				if(result==1) userService.stock(map2);
 			} // for
 		} // if
-
-		if(result > 0)
-			userService.deleteCart(vo); //delete Cart when Orders are Finished
-		
-		return "checkout";
-
+	
 	}
 
 	@RequestMapping("registration")

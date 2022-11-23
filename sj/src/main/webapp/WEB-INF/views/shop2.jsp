@@ -150,15 +150,16 @@
                     <div class="product-filters">
                         <ul>
                             <li class="active" data-filter="*">All</li>
-                            <li data-filter=".strawberry">Strawberry</li>
-                            <li data-filter=".berry">Berry</li>
+                            <li data-filter=".extraction">Extraction Tool</li>
+                            <li data-filter=".grinder">Grinder</li>
+                            <li data-filter=".cup">Cup</li>
                         </ul>
                     </div>
                 </div>
             </div>
          <div class="row product-lists">
             <c:forEach items="${productList2}" var="product"> 
-               <div class="col-lg-4 col-md-6 text-center">
+               <div class="col-lg-4 col-md-6 text-center ${product.type}">
                	  <form action="single_product.do">
 	                  <div class="single-product-item">
 	                     <c:if test="${product.img != null}">

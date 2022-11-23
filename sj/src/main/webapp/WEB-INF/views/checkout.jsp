@@ -175,9 +175,9 @@
 							    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
 							      <div class="card-body">
 							        <div class="billing-address-form">
-								       	<p>Name <input type="text" placeholder="Name" value="${sessionScope.loginName}"></p>
+								       	<p>Name <input type="text" placeholder="Name" value="${sessionScope.loginName}" required></p>
 							       		<p>Email <input type="email" placeholder="Email" value="${sessionScope.loginEmail}"></p>
-							       		<p>Address <input type="text" id="addr" name="addr" placeholder="Address" value="${sessionScope.loginAddr}"></p>
+							       		<p>Address <input type="text" id="addr" name="addr" placeholder="Address" value="${sessionScope.loginAddr}" required></p>
 							       		<p>Phone <input type="tel" placeholder="Phone" value="${sessionScope.loginTel}"></p>
 							       		<input type="hidden" id="cno" name="cno" value="${sessionScope.loginCno}">
 							        </div>
@@ -195,9 +195,9 @@
 							    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
 							      <div class="card-body">
 							        <div class="card-details">
-								       	<p>Card Number <input type="text" placeholder="0000-0000-0000-0000"></p>
-								       	<p>Card Expiration Date <input type="text" placeholder="00/00"></p>
-										<p>Card CVC <input type="text" placeholder="000"></p>
+								       	<p>Card Number <input type="text" placeholder="0000-0000-0000-0000" required></p>
+								       	<p>Card Expiration Date <input type="text" placeholder="00/00" required></p>
+										<p>Card CVC <input type="text" placeholder="000" required></p>
 							        </div>
 							      </div>
 							    </div>

@@ -20,6 +20,11 @@ public interface UserService {
 	public int modifyProduct(ProductVO vo);
 	public int deleteProduct(ProductVO vo);
 	// ---manager product end
+	
+	// ---manager orders
+	public int deleteOrder(Integer lono);
+	public int deleteOrders(Integer lono);
+	// ---manager orders end
 
 	// ---manager contact
 	public int insertAnswer(AnswerVO vo);
@@ -31,8 +36,10 @@ public interface UserService {
 	public ManagerVO loginManager(ManagerVO vo);
 	// ---manager login end
 
+	
 	List<ProductVO> getProductList();
 	public List<ProductVO> getProductList2();
+	public List<HashMap> getCustomersOrders();
 	// ----------------------------------manager end
 
 	
@@ -44,10 +51,13 @@ public interface UserService {
 	public int removeCart(ListOrderVO vo);
 	public int deleteCart(ListOrderVO vo);
 	public int selectLono();
+	// ---user product end
+	
+	// --user orders
 	public int insertOrder(HashMap map);
 	public int insertOrders(HashMap map2);
-	// ---user product end
-
+	// --user orders end
+	
 	// ---user contact
 	public int insertQustion(QuestionVO vo);
 	// ---user contact end
@@ -61,7 +71,8 @@ public interface UserService {
 	public List<ListOrderVO> getQuestionList();
 
 	public List<HashMap> getQuestionAnswer(Integer loginCno);
+	public List<HashMap> getOrdersList(Integer loginCno);
 	public List<HashMap> getCartList(ListOrderVO vo);
 	// ----------------------------------user end
-
+	public int stock(HashMap map);
 }

@@ -145,25 +145,26 @@
 						<table class="cart-table">
 							<thead class="cart-table-head">
 								<tr class="table-head-row">
-									<th class="product-remove"></th>
-									<th class="product-image">Product Image</th>
-									<th class="product-name">Name</th>
-									<th class="product-quantity">Price</th>
-									<th class="product-quantity">Quantity</th>
-									<th class="product-quantity">Total</th>
+									<th></th>
+									<th>Product Image</th>
+									<th>Name</th>
+									<th>Price</th>
+									<th>Quantity</th>
+									<th>Total</th>
 								</tr>
 							</thead>
 							<tbody>
 								<c:set var="totalTest" value="0"/>
 								<c:forEach items ="${getCartList}" var ="cart">
 								<tr class="table-body-row">
+	 								<!--when product-quantity is changed, main.js is called with on change func -->
 										<td class="product-remove"><a href="removeCart.do?cno=${sessionScope.loginCno}&pno=${cart.PNO}"><i class="far fa-window-close"></i></a></td>
 										<td class="product-image"><img src="<%=pjName%>resources/assets/img/products/${cart.IMG}" alt=""></td>
 										<td class="product-name">${cart.PNAME}</td>
 										<td class="product-price">${cart.PRICE}</td>
-										<td class="product-quantity"><input type="number" name = "ocnt" id= "ocnt" value="${cart.OCNT}"></td>
+										<td class="product-quantity" pno="${cart.PNO}"><input type="number" id="ocnt" value="${cart.OCNT}" min="0" ></td>
 										<td class="product-total">${cart.OCNT * cart.PRICE}</td>
-										<c:set var='totalTest' value='${ totalTest + (cart.OCNT * cart.PRICE)}'/>
+										<c:set var="totalTest" value="${ totalTest + (cart.OCNT * cart.PRICE)}"/>
 								</tr>
 								</c:forEach>
 							</tbody>
@@ -182,17 +183,17 @@
 							</thead>
 							<tbody>
 								<tr class="total-data">
-									<td><strong>Subtotal: </strong></td>
-									<td class="totalTest">$${totalTest}</td>
-								</tr>
-								<tr class="total-data">
-									<td><strong>Shipping: </strong></td>
-									<td class="shipping">$45</td>
-								</tr>
-								<tr class="total-data">
-									<td><strong>Total: </strong></td>
-									<td class="Total">$${totalTest+45}</td>
-								</tr>
+                         			<td><strong>Subtotal($): </strong></td>
+                           			<td class="totalTest">${totalTest}</td>
+                        		</tr>
+                        		<tr class="total-data">
+                           			<td><strong>Shipping($): </strong></td>
+                           			<td class="shipping">45</td>
+                        		</tr>
+                        		<tr class="total-data">
+                           			<td><strong>Total($): </strong></td>
+                           			<td class="total">${totalTest+45}</td>
+                        		</tr>
 							</tbody>
 						</table>
 						<div class="cart-buttons">
@@ -320,41 +321,6 @@
 	<script src="<%=pjName%>resources/assets/js/sticker.js"></script>
 	<!-- main js -->
 	<script src="<%=pjName%>resources/assets/js/main.js"></script>
-	<script type="text/javascript">
-	
-		$(function() {
-			$('.product-quantity').each(function(){
-				$(this).click( function() {
-		        	
-// 		        	alert($(this).parent().find('.product-price').text())
-		        	// 계산
-		        	let sum = $(this).parent().find('.product-price').text() * $(this).find('input').val();
-// 		        	alert(sum)
-		        	// 화면을 찾아서 값 지정
-		        	$(this).parent().find(".product-total").text(sum);
-		        	
-		        	
-// 		        	console.log($(".product-total"));
-// 		        	console.log($(".product-total").length());
-		        	
-		        	var total = 0;
-		        	
-		        	for(let i=0; i<$(".product-total").length; i++){
-		        		
-// 		        		var price = parseInt($('.product-total').text(),10);
-						var price = $(".product-total").html();
-		        		console.log(price)
-		        		total += price;
-		        	}
-		        	$('.totalTest').text(total);
-		        	
-		        } );
-			})
-	        
-	      } );
-		
-	</script>
-	
 
 </body>
 </html>

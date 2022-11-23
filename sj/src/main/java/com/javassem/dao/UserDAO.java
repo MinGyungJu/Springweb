@@ -18,6 +18,11 @@ public interface UserDAO {
 	public int modifyProduct(ProductVO vo);
 	public int deleteProduct(ProductVO vo);
 	// ---manager product end
+	
+	// ---manager orders
+	public int deleteOrder(Integer lono);
+	public int deleteOrders(Integer lono);
+	// ---manager orders end
 
 	// ---manager contact
 	public int insertAnswer(AnswerVO vo);
@@ -30,6 +35,7 @@ public interface UserDAO {
 	// ---manager login end
 	public List<ProductVO> getProductList();
 	public List<ProductVO> getProductList2();
+	public List<HashMap> getCustomersOrders();
 	// ----------------------------------manager end
 	
 	// ----------------------------------user
@@ -41,9 +47,12 @@ public interface UserDAO {
 	public int updateCart(ListOrderVO vo);
 	public int deleteCart(ListOrderVO vo);
 	public int selectLono();
+	// ---user product end
+	
+	// ---user orders
 	public int insertOrder(HashMap map);
 	public int insertOrders(HashMap map2);
-	// ---user product end
+	// ---user orders end
 	
 	// ---user contact
 	public int insertQustion(QuestionVO vo);
@@ -57,7 +66,10 @@ public interface UserDAO {
 	public List<ListOrderVO> getQuestionList();
 	// ----------------------------------user end
 	public List<HashMap> getQuestionAnswer(Integer loginCno);
+	public List<HashMap> getOrdersList(Integer loginCno);
 	public List<HashMap> getCartList(ListOrderVO vo);
+	
+	public int stock(HashMap map);
 
 
 

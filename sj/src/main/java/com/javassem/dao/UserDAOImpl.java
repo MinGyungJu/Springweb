@@ -41,7 +41,17 @@ public class UserDAOImpl implements UserDAO {
 		return mybatis.delete("UserDAO.deleteProduct", vo);
 	}
 	// ---manager product end
-
+	
+	// ---manager orders
+	public int deleteOrder(Integer lono) {
+		return mybatis.delete("UserDAO.deleteOrder", lono);
+	}
+	public int deleteOrders(Integer lono) {
+		return mybatis.delete("UserDAO.deleteOrders", lono);
+		
+	}
+	// ---manager orders end
+	
 	// ---manager contact
 	public int insertAnswer(AnswerVO vo) {
 		System.out.println("=>UserDAOImpl.java::UserMapper::deleteProduct");
@@ -72,7 +82,9 @@ public class UserDAOImpl implements UserDAO {
 	public List<ProductVO> getProductList2() {
 		return mybatis.selectList("UserDAO.getProductList2");
 	}
-
+	public List<HashMap> getCustomersOrders(){
+		return mybatis.selectList("UserDAO.getCustomersOrders");
+	}
 	// ----------------------------------manager end
 	// ----------------------------------user
 	// ---user product
@@ -133,11 +145,16 @@ public class UserDAOImpl implements UserDAO {
 	public List<HashMap> getQuestionAnswer(Integer loginCno){
 		return mybatis.selectList("UserDAO.getQuestionAnswer", loginCno);
 	}
-	// ----------------------------------user
-
+	public List<HashMap> getOrdersList(Integer loginCno){
+		return mybatis.selectList("UserDAO.getOrdersList", loginCno);
+	}
 	public List<HashMap> getCartList(ListOrderVO vo) {
 		return mybatis.selectList("getCartList",vo);
 	}
-
+	// ----------------------------------user
+	
+	public int stock(HashMap map) {
+		return mybatis.update("UserDAO.stock",map);
+	}
 
 }

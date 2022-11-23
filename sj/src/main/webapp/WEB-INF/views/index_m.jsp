@@ -135,45 +135,46 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 col-md-12" >
-					<h3>Orders</h3>	
+					<br/>
+					<h3>Chart</h3>
+					<br/>
+				</div>
+				<div class="col-lg-12 col-md-12" >
+					<h3>Finished Orders</h3>	
 					<div class="cart-table-wrap" >
 						<table class="cart-table" >
 							<thead class="cart-table-head">
 								<tr class="table-head-row">
 									<th class="product-remove"></th>
-									<th class="product-remove">No</th>
+									<th class="product-remove">Order No.</th>
 									<th class="product-name">Customer</th>
 									<th class="product-price">Orders</th> 
 								</tr>
 							</thead>
 							<tbody>
-								<tr class="table-body-row">
-									<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-									<td class="product-remove">1</td>
-									<td><input type="text" value ="customerID" readonly></td>
-									<td class="product-price"><textarea name="" id="" class="col-lg-12 col-md-12" placeholder="list of orders"></textarea></td>
-								</tr>
-								<tr class="table-body-row">
-									<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-									<td class="product-remove">2</td>
-									<td><input type="text" value ="customerID" readonly></td>
-									<td class="product-price"><textarea name="" id="" class="col-lg-12 col-md-12" placeholder="list of orders"></textarea></td>
-								</tr>
-								<tr class="table-body-row">
-									<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-									<td class="product-remove">3</td>
-									<td><input type="text" value ="customerID" readonly></td>
-									<td class="product-price"><textarea name="" id="" class="col-lg-12 col-md-12" placeholder="list of orders"></textarea></td>
-								</tr>
+								<c:set var="lono" value="-1"/>
+								<c:forEach items ="${getCustomersOrders}" var ="ordersList">
+									<c:if test="${lono ne ordersList.LONO}">
+										<tr class="table-body-row">
+											<td class="product-remove"><a href="deleteOrder.do?lono=${ordersList.LONO}"><i class="far fa-window-close"></i></a></td>
+											<td class="product-remove">${ordersList.LONO}</td>
+											<td>${ordersList.CNO}</td>
+											<td class="product-price">
+											<c:forEach items="${getCustomersOrders}" var="ordersList2">
+												<c:if test="${ordersList.LONO eq ordersList2.LONO}">
+													${ordersList2.PNAME} (${ordersList2.OCNT});
+												</c:if>
+											</c:forEach>
+											</td>
+										</tr>
+									</c:if>
+									<c:set var="lono" value="${ordersList.LONO}"/>
+								</c:forEach>
 							</tbody>
 						</table>
 					</div>
 				</div> 
 			</div>	
-			<div class="col-lg-12 col-md-12" >
-				<br/>
-				<h3>Chart</h3>
-			</div>
 		</div>
 	</div>
 	<!-- end contact form -->

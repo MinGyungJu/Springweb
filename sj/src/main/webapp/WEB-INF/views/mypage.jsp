@@ -141,45 +141,59 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 col-md-12" >
-					<h3>Order Status</h3>	
-					<div class="cart-table-wrap" >
-						<table class="cart-table" >
-							<thead class="cart-table-head">
-								<tr class="table-head-row">
-									<th class="product-image">Product Image</th>
-									<th class="product-name">Name</th>
-									<th class="product-price">Price</th>
-									<th class="product-quantity">Quantity</th>
-									<th class="product-total">Total</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr class="table-body-row">
-									<td class="product-image"><img src="<%=pjName%>resources/assets/img/products/product-img-1.jpg" alt=""></td>
-									<td class="product-name">Strawberry</td>
-									<td class="product-price">$85</td>
-									<td class="product-quantity"><input type="number" placeholder="0"></td>
-									<td class="product-total">1</td>
-								</tr>
-								<tr class="table-body-row">
-									<td class="product-image"><img src="<%=pjName%>resources/assets/img/products/product-img-2.jpg" alt=""></td>
-									<td class="product-name">Berry</td>
-									<td class="product-price">$70</td>
-									<td class="product-quantity"><input type="number" placeholder="0"></td>
-									<td class="product-total">1</td>
-								</tr>
-								<tr class="table-body-row">
-									<td class="product-image"><img src="<%=pjName%>resources/assets/img/products/product-img-3.jpg" alt=""></td>
-									<td class="product-name">Lemon</td>
-									<td class="product-price">$35</td>
-									<td class="product-quantity"><input type="number" placeholder="0"></td>
-									<td class="product-total">1</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
+					<h3>Order Status</h3> Recent orders are on the top.
 				</div>
 			</div>
+			<div class="checkout-accordion-wrap">
+				<c:set var="lono" value="-1"/>
+				<c:forEach items="${OrdersList}" var="ordersList" varStatus="status">
+					<div class="accordion" id="accordionExample">	  
+						<div class="card single-accordion">
+							<div class="card-header" id="headingOne">
+								<h5 class="mb-0">
+								<c:if test="${lono ne ordersList.LONO}">
+									<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne${status.index}" >
+										 Order No ${ordersList.LONO} 
+									</button>
+								</c:if>
+								</h5>
+								<div id="collapseOne${status.index}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+									<div class="card-body">
+										<div class="cart-table-wrap" >					
+											<table class="cart-table" >
+												<thead class="cart-table-head">
+													<tr class="table-head-row">
+														<th class="product-image">Product Image</th>
+														<th class="product-name">Name</th>
+														<th class="product-price">Price</th>
+														<th class="product-quantity">Quantity</th>
+														<th class="product-total">Total</th>
+													</tr>
+												</thead>
+												<c:forEach items="${OrdersList}" var="ordersList2" varStatus="status">
+													<tbody>
+														<c:if test="${ordersList.LONO eq ordersList2.LONO}">
+															<tr class="table-body-row">
+																<td class="product-image"><img src="<%=pjName%>resources/assets/img/products/${ordersList2.IMG}" alt=""></td>
+																<td class="product-name">${ordersList2.PNAME}</td>
+																<td class="product-price">${ordersList2.PRICE}</td>
+																<td class="product-quantity">${ordersList2.OCNT}</td>
+																<td class="product-total">${ordersList2.PRICE*ordersList2.OCNT}</td>
+															</tr>
+														</c:if>
+													</tbody>
+												</c:forEach>
+												<c:set var="lono" value="${ordersList.LONO}"/>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
+			</div>
+				
 			<div>
 				<br/>
 				<h3>Q &amp; A</h3>
