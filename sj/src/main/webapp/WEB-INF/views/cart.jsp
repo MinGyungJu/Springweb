@@ -321,6 +321,36 @@
 	<script src="<%=pjName%>resources/assets/js/sticker.js"></script>
 	<!-- main js -->
 	<script src="<%=pjName%>resources/assets/js/main.js"></script>
+	<script type="text/javascript">
+	$('.product-quantity').each(function(){
+	       $(this).change(function() {
+				//set the Total value accoding to the changed input value
+	       		let ocnt = $(this).find('input').val();// get the changed input value
+	       		let sum = $(this).parent().find('.product-price').text() * ocnt;
+	            $(this).parent().find(".product-total").text(sum);
+	            
+	            var total = 0;
+	            for(let i=0; i<$(".product-total").length; i++){
+	                total += Number($('.product-total').eq(i).text());
+	            }
+	            //set the Total values
+	            $('.totalTest').text(total);
+	            $('.total').text(total+45);
+	            
+	          
+	            $.ajax({  
+	                url : "updateCart.do",  
+	                type : 'POST',
+	                data:{"ocnt": ocnt,
+	                	  "cno" :"${sessionScope.loginCno}",//gets sessionScope
+	                	  "pno" :$(this).attr("pno") }//gets PNO tided to product-quantity
+	            })
+	            
+
+	         } );
+	})
+	
+	</script>
 
 </body>
 </html>

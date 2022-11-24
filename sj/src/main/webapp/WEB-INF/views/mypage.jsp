@@ -216,9 +216,10 @@ Question Message: ${qa.QMESSAGE}
 Answer: ${qa.AMESSAGE}
 								<%-- <c:forEach var="i" begin="0" end="188"><c:out value="-" /></c:forEach> --%>
 												</textarea>
+												<a href ="questionDelete.do?cno=${sessionScope.loginCno}&qno=${qa.QNO }" class ="boxed-btn">delete</a>
+<%-- 												<input type="button" class="boxed-btn" value="delete" onclick="location.href='questionDelete.do?cno=${sessionScope.loginCno}&qno=${qa.QNO }'"> --%>
 											</div>
 										</div>
-										
 									</div>
 								</div>
 							</div>

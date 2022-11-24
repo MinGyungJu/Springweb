@@ -41,24 +41,25 @@ public class UserDAOImpl implements UserDAO {
 		return mybatis.delete("UserDAO.deleteProduct", vo);
 	}
 	// ---manager product end
-	
+
 	// ---manager orders
 	public int deleteOrder(Integer lono) {
 		return mybatis.delete("UserDAO.deleteOrder", lono);
 	}
+
 	public int deleteOrders(Integer lono) {
 		return mybatis.delete("UserDAO.deleteOrders", lono);
-		
+
 	}
 	// ---manager orders end
-	
+
 	// ---manager contact
 	public int insertAnswer(AnswerVO vo) {
 		System.out.println("=>UserDAOImpl.java::UserMapper::deleteProduct");
-		return mybatis.insert("UserDAO.insertAnswer",vo);
+		return mybatis.insert("UserDAO.insertAnswer", vo);
 	}
 	// ---manager contact end
-	
+
 	// ---manager login
 	public ManagerVO checkMId(ManagerVO vo) {
 		System.out.println("=>UserDAOImpl.java::UserMapper::checkMId");
@@ -82,43 +83,77 @@ public class UserDAOImpl implements UserDAO {
 	public List<ProductVO> getProductList2() {
 		return mybatis.selectList("UserDAO.getProductList2");
 	}
-	public List<HashMap> getCustomersOrders(){
+
+	public List<HashMap> getCustomersOrders() {
 		return mybatis.selectList("UserDAO.getCustomersOrders");
 	}
+
 	// ----------------------------------manager end
 	// ----------------------------------user
 	// ---user product
 	public int removeCart(ListOrderVO vo) {
 		return mybatis.delete("UserDAO.removeCart", vo);
 	}
+
 	public int insertCart(ListOrderVO vo) {
 		return mybatis.insert("UserDAO.insertCart", vo);
 	}
+
 	public ListOrderVO selectCart(ListOrderVO vo) {
 
 		System.out.println(vo);
 		return mybatis.selectOne("UserDAO.selectCart", vo);
 	}
+
 	public int updateCart(ListOrderVO vo) {
 		return mybatis.update("UserDAO.updateCart", vo);
 	}
+
 	public int deleteCart(ListOrderVO vo) {
-		return mybatis.delete("UserDAO.deleteCart",vo);
+		return mybatis.delete("UserDAO.deleteCart", vo);
 	}
+
 	public int selectLono() {
 		return mybatis.selectOne("UserDAO.selectLono");
 	}
+
+	// ---user product end
+	// ---user orders
+	public int selectStock(int pno) {
+		return mybatis.selectOne("selectStock", pno);
+	}
+
+	public int increaseStock(HashMap map) {
+		return mybatis.update("UserDAO.increaseStock", map);
+	}
+
+	public int decreaseStock(HashMap map) {
+		return mybatis.update("UserDAO.decreaseStock", map);
+	}
+
 	public int insertOrder(HashMap map) {
 		return mybatis.insert("UserDAO.insertOrder", map);
 	}
-	public int insertOrders(HashMap map2) {
-		return mybatis.insert("UserDAO.insertOrders", map2);
-	}
-	// ---user product end
 
+	public int insertOrders(HashMap map) {
+		return mybatis.insert("UserDAO.insertOrders", map);
+	}
+
+
+
+	// ---user orders end
 	// ---user contact
 	public int insertQustion(QuestionVO vo) {
 		return mybatis.insert("UserDAO.insertQustion", vo);
+	}
+
+	public int questionDelete(QuestionVO vo) {
+		System.out.println("=>UserDAOImpl.java::UserMapper::questionDelete");
+		return mybatis.delete("UserDAO.questionDelete", vo);
+	}
+
+	public int answerDelete(AnswerVO avo) {
+		return mybatis.delete("UserDAO.answerDelete", avo);
 	}
 	// ---user contact end
 
@@ -138,23 +173,25 @@ public class UserDAOImpl implements UserDAO {
 	}
 	// ---user login end
 
-	public List<ListOrderVO> getQuestionList(){
+	public List<ListOrderVO> getQuestionList() {
 		return mybatis.selectList("UserDAO.getQuestionList");
 	}
 
-	public List<HashMap> getQuestionAnswer(Integer loginCno){
+	public List<HashMap> getQuestionAnswer(Integer loginCno) {
 		return mybatis.selectList("UserDAO.getQuestionAnswer", loginCno);
 	}
-	public List<HashMap> getOrdersList(Integer loginCno){
+
+	public List<HashMap> getOrdersList(Integer loginCno) {
 		return mybatis.selectList("UserDAO.getOrdersList", loginCno);
 	}
+
 	public List<HashMap> getCartList(ListOrderVO vo) {
-		return mybatis.selectList("getCartList",vo);
+		return mybatis.selectList("getCartList", vo);
 	}
 	// ----------------------------------user
+
+
 	
-	public int stock(HashMap map) {
-		return mybatis.update("UserDAO.stock",map);
-	}
+
 
 }

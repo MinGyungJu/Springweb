@@ -75,6 +75,11 @@
 	<select id="selectLono" resultType="integer">
 		select finished_order_seq.nextval FROM DUAL
 	</select>
+	<select id="selectStock" resultType="integer" parameterType="integer">
+		SELECT stock 
+		FROM product
+		WHERE pno =#{pno}
+	</select>
 	
 	<update id="modifyProduct" parameterType="ProductVO">
 		UPDATE PRODUCT 
@@ -86,12 +91,16 @@
 		SET ocnt = #{ocnt}
 		WHERE pno=#{pno} AND cno=#{cno}
 	</update>
-	<update id="stock" parameterType="hashmap">
+	<update id="decreaseStock" parameterType="hashmap">
 	 	UPDATE Product
 	 	SET stock = stock - #{ocnt}
 	 	WHERE pno = #{pno}
 	</update>
-	
+	<update id ="increaseStock" parameterType="hashmap">
+		UPDATE Product 
+		SET stock = stock + #{ocnt}
+		WHERE pno = #{pno}
+	</update>	
 	<delete id="deleteProduct" parameterType="ProductVO">
 		DELETE FROM PRODUCT
 		WHERE pno=#{pno}
@@ -112,6 +121,15 @@
 		DELETE FROM ORDERS
 		WHERE lono=#{lono}
 	</delete>
+	<delete id ="answerDelete" parameterType="AnswerVO">
+		delete from Answer
+		where qno= #{qno}
+	</delete>
+	<delete id="questionDelete" parameterType="QuestionVO">
+		delete from Question
+		where qno = #{qno}
+	</delete>
+	
 	<insert id="insertAnswer" parameterType="AnswerVO">
 		INSERT INTO ANSWER(qno,mno,cno,amessage)
 		 VALUES(#{qno},#{mno},#{cno},#{amessage})

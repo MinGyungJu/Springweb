@@ -128,50 +128,65 @@
 	</div>
 	<!-- end breadcrumb section -->
 
-	<!-- contact form -->
-	<div class="contact-from-section mt-150 mb-150">
-		<div class="container">
+	<c:if test="${sessionScope.loginMno!=null}">	
+		<!-- contact form -->
+		<div class="contact-from-section mt-150 mb-150">
+			<div class="container">
+					<div class="row">
+						<div class="col-lg-12 col-md-12" >
+							<h3>Contact</h3>	
+							<div class="cart-table-wrap" >
+									<table class="cart-table" >
+										<thead class="cart-table-head">
+											<tr class="table-head-row">
+												<th class="product-remove">Qno.</th>
+												<th class="product-name">Cno.</th>
+												<th class="product-name">Message</th>
+												<th class="product-price">Response</th>
+												<th class="product-quantity"></th>
+											</tr>
+										</thead>
+										<tbody>
+											
+											<c:forEach items="${questionList}" var="question"> 
+											<tr class="table-body-row">
+												<form action="insertAnswer.do">
+													<td class="product-remove">${question.qno}</td>
+													<td>${question.cno}</td>
+													<td><text-field>${question.qname}<br/>${question.qmessage}</text-field></td>
+													<td class="product-price"><textarea name="amessage" id="amessage" class="col-lg-12 col-md-12" placeholder="please type your response to question"></textarea></td>
+														<input type="hidden" name="qno" id="qno" value="${question.qno}">
+														<input type="hidden" name="mno" id="mno" value="${sessionScope.loginMno}">
+														<input type="hidden" name="cno" id="cno" value="${question.cno}">
+													<td class="product-quantity"><input type="submit" value="submit"></td>
+											   </form>
+										    </tr> 
+									   		</c:forEach>
+									   		
+									   </tbody>
+									</table>
+								
+							</div>
+						</div> 
+					</div>
+			</div>
+		</div>
+		<!-- end contact form -->
+	</c:if>
+	<c:if test="${sessionScope.loginMno==null}">	
+		<div class="contact-from-section mt-150 mb-150">
+			<div class="container">
 				<div class="row">
 					<div class="col-lg-12 col-md-12" >
-						<h3>Contact</h3>	
-						<div class="cart-table-wrap" >
-								<table class="cart-table" >
-									<thead class="cart-table-head">
-										<tr class="table-head-row">
-											<th class="product-remove">Qno.</th>
-											<th class="product-name">Cno.</th>
-											<th class="product-name">Message</th>
-											<th class="product-price">Response</th>
-											<th class="product-quantity"></th>
-										</tr>
-									</thead>
-									<tbody>
-										
-										<c:forEach items="${questionList}" var="question"> 
-										<tr class="table-body-row">
-											<form action="insertAnswer.do">
-												<td class="product-remove">${question.qno}</td>
-												<td>${question.cno}</td>
-												<td><text-field>${question.qname}<br/>${question.qmessage}</text-field></td>
-												<td class="product-price"><textarea name="amessage" id="amessage" class="col-lg-12 col-md-12" placeholder="please type your response to question"></textarea></td>
-													<input type="hidden" name="qno" id="qno" value="${question.qno}">
-													<input type="hidden" name="mno" id="mno" value="${sessionScope.loginMno}">
-													<input type="hidden" name="cno" id="cno" value="${question.cno}">
-												<td class="product-quantity"><input type="submit" value="submit"></td>
-										   </form>
-									    </tr> 
-								   		</c:forEach>
-								   		
-								   </tbody>
-								</table>
-							
-						</div>
-					</div> 
+						<br/>
+						<h3>Please Login to View and Edit Questions</h3><a href="login_m.do" class="boxed-btn">login</a>
+						<br/>
+					</div>
 				</div>
+			</div>
 		</div>
-	</div>
-	<!-- end contact form -->
-
+	</c:if>
+	
 	<!-- footer -->
 	<div class="footer-area">
 		<div class="container">

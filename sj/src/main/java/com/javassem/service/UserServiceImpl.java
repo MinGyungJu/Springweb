@@ -102,17 +102,38 @@ public class UserServiceImpl implements UserService {
 	// ---user product end
 	
 	// --user orders
+	public int selectStock(int pno) {
+		return userDAO.selectStock(pno);
+	}
+
+	public int increaseStock(HashMap map) {
+		return userDAO.increaseStock(map);
+	}
+
+	public int decreaseStock(HashMap map) {
+		return userDAO.decreaseStock(map);
+	}
+
 	public int insertOrder(HashMap map) {
 		return userDAO.insertOrder(map);
 	}
-	public int insertOrders(HashMap map2) {
-		return userDAO.insertOrders(map2);
+	public int insertOrders(HashMap map) {
+		return userDAO.insertOrders(map);
 	}
+
 	// --user orders end
 
 	// ---user contact
 	public int insertQustion(QuestionVO vo) {
 		return userDAO.insertQustion(vo);
+	}
+
+	public int questionDelete(QuestionVO vo) {
+		return userDAO.questionDelete(vo);
+	}
+
+	public int answerDelete(AnswerVO avo) {
+		return userDAO.answerDelete(avo);
 	}
 	// ---user contact end
 
@@ -141,15 +162,15 @@ public class UserServiceImpl implements UserService {
 	public List<HashMap> getOrdersList(Integer loginCno){
 		return userDAO.getOrdersList(loginCno);
 	}
-	@Override
 	public List<HashMap> getCartList(ListOrderVO vo) {
 		return userDAO.getCartList(vo);
 	}
 
+
+	
+
 	// ----------------------------------user end
-	public int stock(HashMap map) {
-		return userDAO.stock(map);
-	}
+
 
 
 

@@ -50,12 +50,18 @@ public interface UserDAO {
 	// ---user product end
 	
 	// ---user orders
+	public int selectStock(int pno);
+	public int increaseStock(HashMap map);
+	public int decreaseStock(HashMap map);
 	public int insertOrder(HashMap map);
-	public int insertOrders(HashMap map2);
+	public int insertOrders(HashMap map);
 	// ---user orders end
 	
 	// ---user contact
 	public int insertQustion(QuestionVO vo);
+	public int questionDelete(QuestionVO vo);
+	public int answerDelete(AnswerVO avo);
+
 	// ---user contact
 
 	// ---user login
@@ -69,8 +75,7 @@ public interface UserDAO {
 	public List<HashMap> getOrdersList(Integer loginCno);
 	public List<HashMap> getCartList(ListOrderVO vo);
 	
-	public int stock(HashMap map);
-
+	
 
 
 }

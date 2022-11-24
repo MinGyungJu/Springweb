@@ -139,7 +139,7 @@
 	<!-- check out section -->
 	<div class="checkout-section mt-150 mb-150">
 		<div class="container">
-			<form action="pay_complete.do">
+			<form action="pay_mid_complete.do">
 				<div class="row">
 					<div class="col-lg-8">
 						<div class="checkout-accordion-wrap">

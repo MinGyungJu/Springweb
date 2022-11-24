@@ -120,7 +120,7 @@
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="breadcrumb-text">
 						<p>Fresh and Energetic</p>
-						<h1>Login</h1>
+						<h1>Login Manager</h1>
 					</div>
 				</div>
 			</div>
@@ -151,7 +151,7 @@
 						        <div class="billing-address-form">
 						        	<form method="POST" id="login-customer" action="loginManager.do">
 						        		<p><input type="text" placeholder="Id" name="id" id="id"></p>
-						        		<p><input type="text" placeholder="Password" name="pw" id="pw"></p>
+						        		<p><input type="password" placeholder="Password" name="pw" id="pw"></p>
 										<input type="submit" class="boxed-btn" value="Login"> 
 										<a href="registration_m.do" class="boxed-btn">Registeration</a>
 						        	</form>

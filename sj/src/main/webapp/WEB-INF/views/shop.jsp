@@ -170,7 +170,12 @@
 								</c:if> 
 								<h3>${product.pname}</h3>
 								<p class="product-price"><span>Per Kg</span> ${product.price}$ </p> 
-								<input type="submit" value="Buy">
+								<c:if test="${sessionScope.loginId==null}">
+	                     			<a href="login.do" class="cart-btn">Login to Buy </a>
+		                     	</c:if>
+			                    <c:if test="${sessionScope.loginId!=null}">
+			                     	<input type="submit" value="Buy">
+			                    </c:if>
 							</div>
 							<input type="hidden" id="img" name="img" value="${product.img}">
 							<input type="hidden" id="pname" name="pname" value="${product.pname}">

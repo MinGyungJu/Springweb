@@ -278,8 +278,6 @@ public class UserController {
 	// func: checking login for customer
 	@RequestMapping(value = "loginCustomer.do")
 	public String loginCustomer(CustomerVO vo, HttpSession session) {
-
-
 		System.out.println("=>UserController.java::loginCustomer.do");
 		CustomerVO loginResult = userService.loginCustomer(vo);
 		if (loginResult != null) { // login success!
@@ -291,26 +289,7 @@ public class UserController {
 			session.setAttribute("loginTel", loginResult.getTel());
 			session.setAttribute("loginEmail", loginResult.getEmail());
 			session.setAttribute("loginAddr", loginResult.getAddr());
-			
-			try {
-				File myObj = new File("fileLog.txt");
-				FileWriter myWriter = null;
-				if (myObj.createNewFile()) {
-					myWriter = new FileWriter("D:\\springspace\\springweb\\sj\\src\\main\\fileLog.txt");
-					LocalDateTime now = LocalDateTime.now();
-					myWriter.write( "Customer " + session.getAttribute("loginCno")+" logged in : " + String.valueOf(now));
-					myWriter.write('\n');
-				} else {
-					//file already exists
-					myWriter = new FileWriter("D:\\springspace\\springweb\\sj\\src\\main\\fileLog.txt", true);
-					LocalDateTime now = LocalDateTime.now();
-					myWriter.write( "Customer " + session.getAttribute("loginCno")+" logged in : " + String.valueOf(now));
-					myWriter.write('\n');
-				}
-				myWriter.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			logCustomer(" logged in at ", session);
 
 			return "redirect:index.do";
 		}
@@ -321,31 +300,34 @@ public class UserController {
 	@RequestMapping(value = "logout.do")
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession(true);
+		logCustomer(" logged out at ", session);
+		session.invalidate();
+		return "redirect:index.do";
+	}
 
+	// func: recording customer behavior into fileLog.txt
+	public void logCustomer(String strToWrite, HttpSession session) {
 		try {
 			File myObj = new File("fileLog.txt");
 			FileWriter myWriter = null;
 			if (myObj.createNewFile()) {
 				myWriter = new FileWriter("D:\\springspace\\springweb\\sj\\src\\main\\fileLog.txt");
 				LocalDateTime now = LocalDateTime.now();
-				myWriter.write( "Customer " + session.getAttribute("loginCno")+" logged out : " + String.valueOf(now));
+				myWriter.write("Customer " + session.getAttribute("loginCno") + strToWrite + String.valueOf(now));
 				myWriter.write('\n');
 			} else {
-				//file already exists
+				// file already exists
 				myWriter = new FileWriter("D:\\springspace\\springweb\\sj\\src\\main\\fileLog.txt", true);
 				LocalDateTime now = LocalDateTime.now();
-				myWriter.write( "Customer " + session.getAttribute("loginCno")+" logged out : " + String.valueOf(now));
+				myWriter.write("Customer " + session.getAttribute("loginCno") + strToWrite + String.valueOf(now));
 				myWriter.write('\n');
 			}
 			myWriter.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		session.invalidate();
-		return "redirect:index.do";
-	}
-	// ---user login end
+	}// logCustomer
+		// ---user login end\
 
 	@RequestMapping("404.do")
 	public void notfound() {
@@ -413,31 +395,71 @@ public class UserController {
 
 	}
 
-	@RequestMapping("pay_complete.do")
-	public void pay_complete(ListOrderVO vo, String addr) {
-		int lono = userService.selectLono();
+	@RequestMapping("pay_incomplete.do")
+	public void pay_incomplete() {
 
+	}
+
+	@RequestMapping("pay_complete.do")
+	public void pay_complete() {
+
+	}
+
+	@RequestMapping("pay_mid_complete.do")
+	public String pay_complete(String cno, String addr) {
+		ListOrderVO vo = new ListOrderVO();
+		vo.setCno(Integer.valueOf(cno));
+		// cart
+		List<HashMap> list = userService.getCartList(vo);
+		// for cart items
+		for (HashMap m : list) {
+			// check if the stock is available
+			int stock = userService.selectStock(Integer.valueOf(String.valueOf(m.get("PNO"))));
+			int checkStock = stock - Integer.valueOf(String.valueOf(m.get("OCNT")));
+			// no stock, add back values that were subtracted from stock
+			if (checkStock < 0) {
+				for (HashMap m3 : list) { // for cart items
+					stock = userService.selectStock(Integer.valueOf(String.valueOf(m3.get("PNO"))));
+					checkStock = stock - Integer.valueOf(String.valueOf(m3.get("OCNT")));
+					if (checkStock < 0)
+						break; // when you reach the part where stock is less than the ordered
+					System.out.println("CHECKING STOCK : " + m3 + checkStock);
+					HashMap map2 = new HashMap();
+					map2.put("pno", m3.get("PNO"));
+					map2.put("ocnt", m3.get("OCNT"));
+					userService.increaseStock(map2);
+				}
+				return "redirect:pay_incomplete.do";
+			} else {
+				// if stock > order, decrease stock
+				HashMap map2 = new HashMap();
+				map2.put("pno", m.get("PNO"));
+				map2.put("ocnt", m.get("OCNT"));
+				userService.decreaseStock(map2);
+			} //else
+		} //for
+		// making finished_order object
+		int lono = userService.selectLono();
 		HashMap map = new HashMap();
 		map.put("cno", vo.getCno());
 		map.put("addr", addr);
 		map.put("lono", lono);
-
-		int result = userService.insertOrder(map); // insert into Finshed_Order
+		// insert into Finshed_Order
+		int result = userService.insertOrder(map);
 		if (result > 0) {
-			List<HashMap> list = userService.getCartList(vo);// insert into Orders if order is made
+			// insert into Orders if order is made
+			list = userService.getCartList(vo);
 			for (HashMap m : list) {
-				System.out.println(m);
 				HashMap map2 = new HashMap();
 				map2.put("lono", lono);
 				map2.put("pno", m.get("PNO"));
 				map2.put("ocnt", m.get("OCNT"));
-				result = userService.insertOrders(map2); // insert into Orders
-				
-				userService.deleteCart(vo); // delete Cart when Orders are Finished
-				if(result==1) userService.stock(map2);
+				result = userService.insertOrders(map2);
+				// delete Cart when Orders are Finished
+				userService.deleteCart(vo);
 			} // for
 		} // if
-	
+		return "redirect:pay_complete.do";
 	}
 
 	@RequestMapping("registration")
@@ -461,6 +483,14 @@ public class UserController {
 	public void single_product() {
 
 	}
+
 	// ----------------------------------user end
+	@RequestMapping("questionDelete.do")
+	public String questionDelete(AnswerVO avo, QuestionVO vo) {
+		System.out.println("=>UserController.java::questionDelete.do");
+		userService.answerDelete(avo);
+		userService.questionDelete(vo);
+		return "redirect:mypage.do";
+	}
 
 }

@@ -54,12 +54,17 @@ public interface UserService {
 	// ---user product end
 	
 	// --user orders
+	public int selectStock(int pno);
+	public int increaseStock(HashMap map);
+	public int decreaseStock(HashMap map);
 	public int insertOrder(HashMap map);
-	public int insertOrders(HashMap map2);
+	public int insertOrders(HashMap map);
 	// --user orders end
 	
 	// ---user contact
 	public int insertQustion(QuestionVO vo);
+	public int questionDelete(QuestionVO vo);
+	public int answerDelete(AnswerVO avo);
 	// ---user contact end
 
 	// ---user login
@@ -74,5 +79,4 @@ public interface UserService {
 	public List<HashMap> getOrdersList(Integer loginCno);
 	public List<HashMap> getCartList(ListOrderVO vo);
 	// ----------------------------------user end
-	public int stock(HashMap map);
 }

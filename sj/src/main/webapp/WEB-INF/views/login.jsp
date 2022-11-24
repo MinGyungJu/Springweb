@@ -156,7 +156,7 @@
 						        <div class="billing-address-form">
 						        	<form method="POST" id="login-customer" action="loginCustomer.do">
 						        		<p><input type="text" placeholder="Id" name="id" id="id"></p>
-						        		<p><input type="text" placeholder="Password" name="pw" id="pw"></p>
+						        		<p><input type="password" placeholder="Password" name="pw" id="pw"></p>
 										<input type="submit" class="boxed-btn" value="Login"> 
 										<a href="registration.do" class="boxed-btn">Registeration</a>
 						        	</form>

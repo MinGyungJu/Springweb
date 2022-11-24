@@ -134,109 +134,96 @@
 	</div>
 	<!-- end breadcrumb section -->
 
-	<!-- products -->
-	<div class="product-section mt-150 mb-150">
-		<div class="container">
-
-			<div class="row">
-                <div class="col-md-12">
-                    <div class="product-filters">
-                        <ul>
-                            <li class="active" data-filter="*">All</li>
-                            <li data-filter=".extraction">Extraction Tool</li>
-                            <li data-filter=".grinder">Grinder</li>
-                            <li data-filter=".cup">Cup</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-			<div class="row product-lists">
-				<div class="col-lg-4 col-md-6 text-center extraction grinder cup">
-					<div class="single-product-item">
-						<div class="product-image clickable-div" onclick="location.href='single_product_addExtraction_m.do';">
-							<img src="<%=pjName%>resources/assets/img/products/plus.jpg" alt="">
-						</div>
-						<h3>Add Extraction</h3>
-						<p class="product-price"><span>Per Kg</span> - </p> 
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 text-center extraction grinder cup">
-					<div class="single-product-item">
-						<div class="product-image clickable-div" onclick="location.href='single_product_addCup_m.do';">
-							<img src="<%=pjName%>resources/assets/img/products/plus.jpg" alt="">
-						</div>
-						<h3>Add Cup</h3>
-						<p class="product-price"><span>Per Kg</span> - </p> 
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 text-center extraction grinder cup">
-					<div class="single-product-item">
-						<div class="product-image clickable-div" onclick="location.href='single_product_addGrinder_m.do';">
-							<img src="<%=pjName%>resources/assets/img/products/plus.jpg" alt="">
-						</div>
-						<h3>Add Grinder</h3>
-						<p class="product-price"><span>Per Kg</span> - </p> 
-					</div>
-				</div> 
-				<c:forEach items="${productList2}" var="product"> 
-					<div class="col-lg-4 col-md-6 text-center ${product.type}">
+	<c:if test="${sessionScope.loginMno!=null}">	
+		<!-- products -->
+		<div class="product-section mt-150 mb-150">
+			<div class="container">
+	
+				<div class="row">
+	                <div class="col-md-12">
+	                    <div class="product-filters">
+	                        <ul>
+	                            <li class="active" data-filter="*">All</li>
+	                            <li data-filter=".extraction">Extraction Tool</li>
+	                            <li data-filter=".grinder">Grinder</li>
+	                            <li data-filter=".cup">Cup</li>
+	                        </ul>
+	                    </div>
+	                </div>
+	            </div>
+	
+				<div class="row product-lists">
+					<div class="col-lg-4 col-md-6 text-center extraction grinder cup">
 						<div class="single-product-item">
-							<div class="product-image clickable-div" onclick="location.href='single_product_modify_m.do?pno=${product.pno}&img=${product.img}&pname=${product.pname}&price=${product.price}&description=${product.description}&stock=${product.stock}';">
-								<img src="<%=pjName%>resources/assets/img/products/${product.img}" alt="">
+							<div class="product-image clickable-div" onclick="location.href='single_product_addExtraction_m.do';">
+								<img src="<%=pjName%>resources/assets/img/products/plus.jpg" alt="">
 							</div>
-							<h3>${product.pname}</h3>
-							<p class="product-price"> ${product.price}$ </p> 
-							<input type="hidden" name="pno" value="${product.pno}">
+							<h3>Add Extraction</h3>
+							<p class="product-price"><span>Per Kg</span> - </p> 
 						</div>
 					</div>
-				</c:forEach>
-			</div>
-
-			<div class="row">
-				<div class="col-lg-12 text-center">
-					<div class="pagination-wrap">
-						<ul>
-							<li><a href="#">Prev</a></li>
-							<li><a href="#">1</a></li>
-							<li><a class="active" href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">Next</a></li>
-						</ul>
+					<div class="col-lg-4 col-md-6 text-center extraction grinder cup">
+						<div class="single-product-item">
+							<div class="product-image clickable-div" onclick="location.href='single_product_addCup_m.do';">
+								<img src="<%=pjName%>resources/assets/img/products/plus.jpg" alt="">
+							</div>
+							<h3>Add Cup</h3>
+							<p class="product-price"><span>Per Kg</span> - </p> 
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-6 text-center extraction grinder cup">
+						<div class="single-product-item">
+							<div class="product-image clickable-div" onclick="location.href='single_product_addGrinder_m.do';">
+								<img src="<%=pjName%>resources/assets/img/products/plus.jpg" alt="">
+							</div>
+							<h3>Add Grinder</h3>
+							<p class="product-price"><span>Per Kg</span> - </p> 
+						</div>
+					</div> 
+					<c:forEach items="${productList2}" var="product"> 
+						<div class="col-lg-4 col-md-6 text-center ${product.type}">
+							<div class="single-product-item">
+								<div class="product-image clickable-div" onclick="location.href='single_product_modify_m.do?pno=${product.pno}&img=${product.img}&pname=${product.pname}&price=${product.price}&description=${product.description}&stock=${product.stock}';">
+									<img src="<%=pjName%>resources/assets/img/products/${product.img}" alt="">
+								</div>
+								<h3>${product.pname}</h3>
+								<p class="product-price"> ${product.price}$ </p> 
+								<input type="hidden" name="pno" value="${product.pno}">
+							</div>
+						</div>
+					</c:forEach>
+				</div>
+	
+				<div class="row">
+					<div class="col-lg-12 text-center">
+						<div class="pagination-wrap">
+							<ul>
+								<li><a href="#">Prev</a></li>
+								<li><a href="#">1</a></li>
+								<li><a class="active" href="#">2</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#">Next</a></li>
+							</ul>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<!-- end products -->
-
-	<!-- logo carousel -->
-	<div class="logo-carousel-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="logo-carousel-inner">
-						<div class="single-logo-item">
-							<img src="<%=pjName%>resources/assets/img/company-logos/1.png" alt="">
-						</div>
-						<div class="single-logo-item">
-							<img src="<%=pjName%>resources/assets/img/company-logos/2.png" alt="">
-						</div>
-						<div class="single-logo-item">
-							<img src="<%=pjName%>resources/assets/img/company-logos/3.png" alt="">
-						</div>
-						<div class="single-logo-item">
-							<img src="<%=pjName%>resources/assets/img/company-logos/4.png" alt="">
-						</div>
-						<div class="single-logo-item">
-							<img src="<%=pjName%>resources/assets/img/company-logos/5.png" alt="">
-						</div>
+		<!-- end products -->
+	</c:if>
+	<c:if test="${sessionScope.loginMno==null}">	
+		<div class="contact-from-section mt-150 mb-150">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 col-md-12" >
+						<br/>
+						<h3>Please Login to View and Edit Shop Goods</h3><a href="login_m.do" class="boxed-btn">login</a>
+						<br/>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<!-- end logo carousel -->
+	</c:if>
 
 	<!-- footer -->
 	<div class="footer-area">
