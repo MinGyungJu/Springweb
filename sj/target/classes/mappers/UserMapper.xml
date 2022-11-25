@@ -179,6 +179,38 @@
 		 VALUES(orders_seq.nextval, #{lono}, #{pno}, #{ocnt})
 	</insert>
 	
-	
+	<select id="getSalesListBy" resultType="map">
+	<![CDATA[
+	SELECT MONTH,NVL(SALES,0) SALES 
+	FROM (SELECT TO_NUMBER(TO_CHAR(F.ODRDATE,'MM')) MONTH,SUM(P.price*O.ocnt) SALES
+    	FROM FINISHED_ORDER F inner join Orders O 
+	    	on O.lono = F.lono
+	    	inner join Product P
+	    	on O.pno = P.pno
+	    	WHERE TO_CHAR(F.ODRDATE,'YYYY') = #{YEAR}
+	    GROUP BY TO_NUMBER(TO_CHAR(F.ODRDATE,'MM'))) A 
+		RIGHT JOIN
+		(SELECT ROWNUM MONTH FROM DICT WHERE ROWNUM <= 12) B 
+		USING(MONTH) ORDER BY 1
+	]]>
+	</select>
+	<select id="getCountSalesListBy" resultType="map">
+	<![CDATA[
+	SELECT MONTH,NVL(SALESCOUNT,0) SALESCOUNT
+	FROM (SELECT TO_NUMBER(TO_CHAR(F.ODRDATE,'MM')) MONTH, count(F.lono) SALESCOUNT
+	    FROM FINISHED_ORDER F inner join Orders O 
+	    	on O.lono = F.lono
+	    	WHERE TO_CHAR(F.ODRDATE,'YYYY') = #{YEAR}
+	    GROUP BY TO_NUMBER(TO_CHAR(F.ODRDATE,'MM')))A 
+		RIGHT JOIN
+		(SELECT ROWNUM MONTH FROM DICT WHERE ROWNUM <= 12) B
+		 USING(MONTH) ORDER BY 1
+	]]>
+	</select>
+	<select id="shop_search" parameterType="hashmap" resultType="ProductVO">
+		SELECT * FROM PRODUCT
+		WHERE pname LIKE '%${searchKeyword}%'
+		ORDER BY pno desc
+	</select>
 	
 </mapper>

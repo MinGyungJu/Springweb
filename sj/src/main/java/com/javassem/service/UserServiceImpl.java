@@ -2,6 +2,7 @@ package com.javassem.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -166,12 +167,18 @@ public class UserServiceImpl implements UserService {
 		return userDAO.getCartList(vo);
 	}
 
-
-	
-
 	// ----------------------------------user end
 
 
-
+	public List<Map<String,Object>> getSalesListBy(String year){
+		return userDAO.getSalesListBy(year);
+	}
+	public List<Map<String,Object>> getCountSalesListBy(String year){
+		return userDAO.getCountSalesListBy(year);
+	}
+	
+	public List<ProductVO> shop_search(HashMap map) {
+		return userDAO.shop_search(map);
+	}
 
 }

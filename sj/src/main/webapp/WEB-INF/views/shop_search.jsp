@@ -17,7 +17,7 @@
 	<meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
 
 	<!-- title -->
-	<title>Single Product</title>
+	<title>Shop Beans</title>
 	<%String pjName="/sj/";%>
 
 	<!-- favicon -->
@@ -40,7 +40,7 @@
 	<!-- main style -->
 	<link rel="stylesheet" href="<%=pjName%>resources/assets/css/main.css">
 	<!-- responsive -->
-	
+	<link rel="stylesheet" href="<%=pjName%>resources/assets/css/responsive.css">
 
 </head>
 <body>
@@ -61,7 +61,7 @@
 					<div class="main-menu-wrap">
 						<!-- logo -->
 						<div class="site-logo">
-							<a href="index_m.do">
+							<a href="index.do">
 								<img src="<%=pjName%>resources/assets/img/logo.png" alt="">
 							</a>
 						</div>
@@ -70,20 +70,28 @@
 						<!-- menu start -->
 						<nav class="main-menu">
 							<ul>
-								<li><a href="index_m.do">ORDERS</a></li>
-								<li><a href="shop_m.do">COFFEE BEANS</a></li>
-								<li><a href="shop2_m.do">GOODS</a></li>
-								<li><a href="contact_m.do">SUPPORT</a>
+								<li><a href="index.do">ABOUT</a></li>
+								<li class="current-list-item"><a>COFFEE BEANS</a></li>
+								<li><a href="shop2.do">GOODS</a></li>
+								<li><a href="contact.do">SUPPORT</a>
 								<li>
 									<div class="header-icons">
 										<span style="color:white">${sessionScope.loginId}</span>
 										<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
-										<ul class="sub-menu">
 											<c:if test="${sessionScope.loginId==null}">	
-												<li><a href="login_m.do">Login Page</a></li>
+												<a class="shopping-cart" href="login.do"><i class="fas fa-shopping-cart"></i></a>
 											</c:if>
 											<c:if test="${sessionScope.loginId!=null}">	
-												<li><a href="logout_m.do">Logout</a></li>
+												<a class="shopping-cart" href="cart.do?cno=${sessionScope.loginCno}"><i class="fas fa-shopping-cart"></i></a>
+											</c:if>	
+										<ul class="sub-menu">
+											<c:if test="${sessionScope.loginId==null}">	
+												<li><a href="login.do">Login Page</a></li>
+											</c:if>
+											<c:if test="${sessionScope.loginId!=null}">	
+												<li><a href="mypage.do">My Page</a></li>
+												<li><a href="cart.do?cno=${sessionScope.loginCno}">Cart</a></li>
+												<li><a href="logout.do">Logout</a></li>
 											</c:if>
 										</ul>
 									</div>
@@ -107,6 +115,7 @@
 				<div class="col-lg-12">
 					<span class="close-btn"><i class="fas fa-window-close"></i></span>
 					<div class="search-bar">
+						<form action="">
 						<div class="search-bar-tablecell">
 							<form action="shop_search.do">
 								<h3>Search For:</h3>
@@ -114,6 +123,7 @@
 								<button type="submit">Search <i class="fas fa-search"></i></button>
 							</form>
 						</div>
+						</form>
 					</div>
 				</div>
 			</div>
@@ -127,8 +137,8 @@
 			<div class="row">
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="breadcrumb-text">
-						<p>See more Details</p>
-						<h1>Single Product</h1>
+						<p>Fresh and Organic</p>
+						<h1>Shop Beans</h1>
 					</div>
 				</div>
 			</div>
@@ -136,38 +146,67 @@
 	</div>
 	<!-- end breadcrumb section -->
 
-	<!-- single product -->
-	<div class="single-product mt-150 mb-150">
+	<!-- products -->
+	<div class="product-section mt-150 mb-150">
 		<div class="container">
-			 <form action="addProduct.do" method="post" enctype="multipart/form-data">
-				<div class="row">
-					<div class="col-md-5">
-						<div class="single-product-img">
-                  			<label for="file-input">
-                     			<img src="<%=pjName%>resources/assets/img/products/plus.jpg" alt="" onclick="src='<%=pjName%>resources/assets/img/products/minus.jpg'" >
-                  			</label>
-                     		<input id="file-input" type="file" style="display: none;" id="img" name="file"/>
-                  		</div>
-					</div>
-					<div class="col-md-7">
-						<div class="single-product-content">
-							<textarea id="pno" class="col-lg-6 col-md-12" placeholder="Product ID (Not Writable)" readonly></textarea>
-							<textarea name="pname" id="pname" class="col-lg-6 col-md-12" placeholder="Product Name"></textarea>
-							<p class="single-product-pricing"><span>Per Kg</span></p>
-							<textarea name="price" id="price" class="col-lg-6 col-md-12" placeholder="($)Price"></textarea>
-							<textarea name="description" id="description" class="col-lg-6 col-md-12" placeholder="Description" rows="2"></textarea>
-							<div class="single-product-form">
-								<input name="stock" id="stock" value="0" type="number" placeholder="0"><br/>
-								<input type="hidden" name="type" id="type" value="dripbag">
-								<input type="submit" value="Add New">	
+			<div class="row">
+                <div class="col-md-12">
+                    <div class="product-filters">
+                        <ul>
+                            <li class="active" data-filter="*">All</li>
+                            <li data-filter=".capsule">Capsule</li>
+                            <li data-filter=".dripbag">Dripbag</li>
+                            <li data-filter=".beans">Beans</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+			<div class="row product-lists">
+				<c:forEach items="${productList}" var="product"> 
+					<div class="col-lg-4 col-md-6 text-center ${product.type}">
+						<form action="single_product.do" >
+							<div class="single-product-item"> 
+								<c:if test="${product.img != null}">
+									<div class="product-image"><img src="<%=pjName%>resources/assets/img/products/${product.img}" alt=""></div>
+								</c:if>
+								<c:if test="${product.img == null}">
+									<div class="product-image"><img src="<%=pjName%>resources/assets/img/products/noImage.jpg" alt=""></div>
+								</c:if> 
+								<h3>${product.pname}</h3>
+								<p class="product-price"><span>Per Kg</span> ${product.price}$ </p> 
+								<c:if test="${sessionScope.loginId==null}">
+	                     			<a href="login.do" class="cart-btn">Login to Buy </a>
+		                     	</c:if>
+			                    <c:if test="${sessionScope.loginId!=null}">
+			                     	<input type="submit" value="Buy">
+			                    </c:if>
 							</div>
-						</div>
+							<input type="hidden" id="img" name="img" value="${product.img}">
+							<input type="hidden" id="pname" name="pname" value="${product.pname}">
+							<input type="hidden" id="price" name="price" value="${product.price}">
+							<input type="hidden" id="pno" name="pno" value="${product.pno}">
+							<input type="hidden" id="description" name="description" value="${product.description}">
+							<input type="hidden" id="stock" name="stock" value="${product.stock}">
+						</form>
+					</div>
+				</c:forEach>
+			</div>
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<div class="pagination-wrap">
+						<ul>
+							<li><a href="#">Prev</a></li>
+							<li><a href="#">1</a></li>
+							<li><a class="active" href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li><a href="#">Next</a></li>
+						</ul>
 					</div>
 				</div>
-			</form>
+			</div>
 		</div>
 	</div>
-	<!-- end single product -->
+	<!-- end products -->
 
 	<!-- logo carousel -->
 	<div class="logo-carousel-section">
@@ -204,16 +243,17 @@
 				<div class="col-lg-3 col-md-6">
 					<div class="footer-box about-widget">
 						<h2 class="widget-title">About us</h2>
-						<p>Ut enim ad minim veniam perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae.</p>
+						<p>We are proudly serving coffee beans and coffee related products to our customer. 
+							Our duty is to please the customer with the best tasting bean and perfectly match the preferences of coffee.</p>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6">
 					<div class="footer-box get-in-touch">
 						<h2 class="widget-title">Get in Touch</h2>
 						<ul>
-							<li>34/8, East Hukupara, Gifirtok, Sadan.</li>
-							<li>support@fruitkha.com</li>
-							<li>+00 111 222 3333</li>
+							<li>Seoul, Geumcheon-gu, Gasan digital 2-ro, 123 building2) 4th-floor (suite.413) World Meridian</li>
+							<li>support@kosmo.com</li>
+							<li> +02 2025 8523 </li>
 						</ul>
 					</div>
 				</div>
@@ -221,10 +261,10 @@
 					<div class="footer-box pages">
 						<h2 class="widget-title">Pages</h2>
 						<ul>
-							<li><a href="index_m.do">ORDERS</a></li>
-							<li><a href="shop_m.do">COFFEE BEANS</a></li>
-							<li><a href="shop2_m.do">GOODS</a></li>
-							<li><a href="contact_m.do">SUPPORT</a></li>
+							<li><a href="index.do">ABOUT</a></li>
+							<li><a href="shop.do">COFFEE BEANS</a></li>
+							<li><a href="shop2.do">GOODS</a></li>
+							<li><a href="contact.do">SUPPORT</a></li>
 						</ul>
 					</div>
 				</div>
@@ -276,6 +316,8 @@
 	<script src="<%=pjName%>resources/assets/js/sticker.js"></script>
 	<!-- main js -->
 	<script src="<%=pjName%>resources/assets/js/main.js"></script>
+<!-- 	<!-- main js2 --> -->
+<%-- 	<script src="<%=pjName%>resources/assets/js/mainAdded.js"></script> --%>
 
 </body>
 </html>

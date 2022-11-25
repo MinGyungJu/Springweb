@@ -2,6 +2,7 @@ package com.javassem.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.javassem.domain.AnswerVO;
 import com.javassem.domain.CustomerVO;
@@ -79,4 +80,9 @@ public interface UserService {
 	public List<HashMap> getOrdersList(Integer loginCno);
 	public List<HashMap> getCartList(ListOrderVO vo);
 	// ----------------------------------user end
+	
+	public List<Map<String,Object>> getSalesListBy(String year);
+	public List<Map<String,Object>> getCountSalesListBy(String year);
+	
+	public List<ProductVO> shop_search(HashMap map);
 }

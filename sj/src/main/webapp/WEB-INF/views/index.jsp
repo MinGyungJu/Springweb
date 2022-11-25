@@ -111,9 +111,11 @@
 					<span class="close-btn"><i class="fas fa-window-close"></i></span>
 					<div class="search-bar">
 						<div class="search-bar-tablecell">
+						<form action="shop_search.do">
 							<h3>Search For:</h3>
-							<input type="text" placeholder="Keywords">
+							<input type="text" placeholder="Keywords" name='searchKeyword'>
 							<button type="submit">Search <i class="fas fa-search"></i></button>
+						</form>
 						</div>
 					</div>
 				</div>
@@ -241,7 +243,7 @@
 								<img src="<%=pjName%>resources/assets/img/avaters/avatar1.png" alt="">
 							</div>
 							<div class="client-meta">
-								<h3>Saira Hakim <span>Slow's Barista</span></h3>
+								<h3>Byeonguk Jeon<span>Slow's Barista</span></h3>
 								<p class="testimonial-body">
 									" We worked hard to build a holiday blend that captures the beauty and flavor of balanced in-season coffees. "
 								</p>
@@ -255,7 +257,7 @@
 								<img src="<%=pjName%>resources/assets/img/avaters/avatar2.png" alt="">
 							</div>
 							<div class="client-meta">
-								<h3>David Niph <span>Offline Slow shop owner</span></h3>
+								<h3>Kyungho Oh<span>Offline Slow shop owner</span></h3>
 								<p class="testimonial-body">
 									" A refreshing blend of coffee and sea salt are legendary for their therapeutic and clarifying properties. "
 								</p>
@@ -269,7 +271,7 @@
 								<img src="<%=pjName%>resources/assets/img/avaters/avatar3.png" alt="">
 							</div>
 							<div class="client-meta">
-								<h3>Jacob Sikim <span>CEO</span></h3>
+								<h3>Chanju Baek<span>CEO</span></h3>
 								<p class="testimonial-body">
 									" Roasted to perfection by our very own Roast Master in small batches for a more gourmet roast. Every coffee is prepared for you. "
 								</p>
@@ -441,19 +443,19 @@
 				<div class="col-lg-12">
 					<div class="logo-carousel-inner">
 						<div class="single-logo-item">
-							<img src="<%=pjName%>resources/assets/img/company-logos/1.png" alt="">
+							<a href="https://www.starbucks.com/" target="_blank"><img src="<%=pjName%>resources/assets/img/company-logos/1.png" alt=""></a>
 						</div>
 						<div class="single-logo-item">
-							<img src="<%=pjName%>resources/assets/img/company-logos/2.png" alt="">
+							<a href="https://www.caffe-pascucci.co.kr/" target="_blank"><img src="<%=pjName%>resources/assets/img/company-logos/2.png" alt=""></a>
 						</div>
 						<div class="single-logo-item">
-							<img src="<%=pjName%>resources/assets/img/company-logos/3.png" alt="">
+							<a href="https://composecoffee.com/" target="_blank"><img src="<%=pjName%>resources/assets/img/company-logos/3.png" alt=""></a>
 						</div>
 						<div class="single-logo-item">
-							<img src="<%=pjName%>resources/assets/img/company-logos/4.png" alt="">
+							<a href="https://www.twosome.co.kr/" target="_blank"><img src="<%=pjName%>resources/assets/img/company-logos/4.png" alt=""></a>
 						</div>
 						<div class="single-logo-item">
-							<img src="<%=pjName%>resources/assets/img/company-logos/5.png" alt="">
+							<a href="https://www.lotteeatz.com/" target="_blank"><img src="<%=pjName%>resources/assets/img/company-logos/5.png" alt=""></a>
 						</div>
 					</div>
 				</div>

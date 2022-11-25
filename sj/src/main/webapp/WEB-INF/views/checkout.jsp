@@ -110,9 +110,11 @@
 					<span class="close-btn"><i class="fas fa-window-close"></i></span>
 					<div class="search-bar">
 						<div class="search-bar-tablecell">
+						<form action="shop_search.do">
 							<h3>Search For:</h3>
-							<input type="text" placeholder="Keywords">
+							<input type="text" placeholder="Keywords" name='searchKeyword'>
 							<button type="submit">Search <i class="fas fa-search"></i></button>
+						</form>
 						</div>
 					</div>
 				</div>

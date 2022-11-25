@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,8 +14,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javassem.domain.AnswerVO;
 import com.javassem.domain.CustomerVO;
@@ -259,6 +263,14 @@ public class UserController {
 			return "redirect:contact_complete.do";
 		return "redirect:contact.do";
 	}
+
+	@RequestMapping("questionDelete.do")
+	public String questionDelete(AnswerVO avo, QuestionVO vo) {
+		System.out.println("=>UserController.java::questionDelete.do");
+		userService.answerDelete(avo);
+		userService.questionDelete(vo);
+		return "redirect:mypage.do";
+	}
 	// ---user contact end
 
 	// ---user login
@@ -436,9 +448,9 @@ public class UserController {
 				map2.put("pno", m.get("PNO"));
 				map2.put("ocnt", m.get("OCNT"));
 				userService.decreaseStock(map2);
-			} //else
-		} //for
-		// making finished_order object
+			} // else
+		} // for
+			// making finished_order object
 		int lono = userService.selectLono();
 		HashMap map = new HashMap();
 		map.put("cno", vo.getCno());
@@ -485,12 +497,29 @@ public class UserController {
 	}
 
 	// ----------------------------------user end
-	@RequestMapping("questionDelete.do")
-	public String questionDelete(AnswerVO avo, QuestionVO vo) {
-		System.out.println("=>UserController.java::questionDelete.do");
-		userService.answerDelete(avo);
-		userService.questionDelete(vo);
-		return "redirect:mypage.do";
+	@ResponseBody 
+	@RequestMapping("sales/{year}") 
+	public List<Map<String,Object>> getSalesByYear(@PathVariable String year){
+		return userService.getSalesListBy(year); 
+	} 
+	@ResponseBody 
+	@RequestMapping("countsales/{year}") 
+	public List<Map<String,Object>> getCountSalesByYear(@PathVariable String year){
+		return userService.getCountSalesListBy(year); 
+	} 
+	
+	@RequestMapping("shop_search.do")
+	public void shop_search(String searchKeyword,Model m) {
+		
+		System.out.println("searchKeyword : "+  searchKeyword);
+//		searchKeyword = searchKeyword + "&";
+		HashMap map = new HashMap();
+		map.put("searchKeyword", searchKeyword);
+		
+		List<ProductVO>list = userService.shop_search(map);
+		
+		System.out.println(list.size());
+		
+		m.addAttribute("productList",list);
 	}
-
 }

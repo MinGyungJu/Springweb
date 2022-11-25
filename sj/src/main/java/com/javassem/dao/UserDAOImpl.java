@@ -2,6 +2,7 @@ package com.javassem.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -139,8 +140,6 @@ public class UserDAOImpl implements UserDAO {
 		return mybatis.insert("UserDAO.insertOrders", map);
 	}
 
-
-
 	// ---user orders end
 	// ---user contact
 	public int insertQustion(QuestionVO vo) {
@@ -186,12 +185,21 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	public List<HashMap> getCartList(ListOrderVO vo) {
-		return mybatis.selectList("getCartList", vo);
+		return mybatis.selectList("UserDAO.getCartList", vo);
 	}
 	// ----------------------------------user
 
+	public List<Map<String, Object>> getSalesListBy(String year) {
+		return mybatis.selectList("UserDAO.getSalesListBy", year);
+	}
 
-	
+	public List<Map<String, Object>> getCountSalesListBy(String year) {
+		return mybatis.selectList("UserDAO.getCountSalesListBy", year);
+	}
 
+	public List<ProductVO> shop_search(HashMap map) {
+		System.out.println("===> UserDAO.shop_search 호출");
+		return mybatis.selectList("UserDAO.shop_search", map);
+	}
 
 }

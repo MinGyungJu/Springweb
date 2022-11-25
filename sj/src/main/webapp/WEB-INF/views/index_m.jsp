@@ -104,9 +104,11 @@
 					<span class="close-btn"><i class="fas fa-window-close"></i></span>
 					<div class="search-bar">
 						<div class="search-bar-tablecell">
-							<h3>Search For:</h3>
-							<input type="text" placeholder="Keywords">
-							<button type="submit">Search <i class="fas fa-search"></i></button>
+							<form action="shop_search.do">
+								<h3>Search For:</h3>
+								<input type="text" placeholder="Keywords" name='searchKeyword'>
+								<button type="submit">Search <i class="fas fa-search"></i></button>
+							</form>
 						</div>
 					</div>
 				</div>
@@ -136,8 +138,11 @@
 			<div class="row">
 				<c:if test="${sessionScope.loginMno!=null}">	
 					<div class="col-lg-12 col-md-12" >
-						<br/>
 						<h3>Chart</h3>
+						<div id ="chart"> 
+							<canvas id="ctx"></canvas> 
+						</div> 
+						<br/>
 						<br/>
 					</div>
 					<div class="col-lg-12 col-md-12" >
@@ -249,7 +254,9 @@
 	<!-- end copyright -->
 	
 	<!-- jquery -->
-	<script src="<%=pjName%>resources/assets/js/jquery-1.11.3.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<!-- chart -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script> 
 	<!-- bootstrap -->
 	<script src="<%=pjName%>resources/assets/bootstrap/js/bootstrap.min.js"></script>
 	<!-- count down -->
@@ -270,6 +277,50 @@
 	<script src="<%=pjName%>resources/assets/js/form-validate.js"></script>
 	<!-- main js -->
 	<script src="<%=pjName%>resources/assets/js/main.js"></script>
+	<script type="text/javascript">
+	
+	$(function(){ 
+
+// 		console.log(labels) 
+// 		console.log(datas) 
+	// 	var year='${year}'
+	// 	alert(year)
+	var salesDatas = null;
+	var salesBgColor = null;
+	var salesBorderColor = null;
+
+	
+	function doNext() {
+		$.getJSON("countsales/"+new Date().getFullYear()).done( //use to be year variable
+		function(data){ 
+			console.log(data); 
+			var ctx=$("#ctx").get(0).getContext('2d'); 
+			var labels=data.map(obj=>obj.MONTH); 
+			var datas=data.map(obj=>obj.SALESCOUNT); 
+			var bgColor=['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)' ]; 
+			var borderColor=[ 'rgba(255,99,132,1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)' ]; 
+			var myChart = new Chart(ctx, { 
+				type: 'line', 
+				data: { labels: labels , datasets: [{ label: 'Sales Count', data: datas, backgroundColor:bgColor, borderColor:borderColor, borderWidth: 1 }
+				,{ label: 'Sales($)', data: salesDatas, backgroundColor:salesBgColor, borderColor:salesBorderColor, borderWidth: 1 }]
+				}
+			}); 
+		}
+		)
+	}
+		
+	$.getJSON("sales/"+new Date().getFullYear()).done( //use to be year variable
+		function(data){  
+			salesDatas = data.map(obj=>obj.SALES); 
+			salesBgColor = ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)' ]; 
+			salesBorderColor = [ 'rgba(155,99,232,1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)' ]; 
+			//setted salesDatas and call to chart
+		doNext();
+		}//function	
+// 		doNext();
+	)//sales
+	}) 
+	</script>
 	
 </body>
 </html>
