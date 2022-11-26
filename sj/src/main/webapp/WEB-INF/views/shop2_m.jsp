@@ -191,6 +191,7 @@
 								<h3>${product.pname}</h3>
 								<p class="product-price"> ${product.price}$ </p> 
 								<input type="hidden" name="pno" value="${product.pno}">
+								<h4>stock : ${product.stock }</h4>
 							</div>
 						</div>
 					</c:forEach>

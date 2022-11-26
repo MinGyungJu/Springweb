@@ -196,6 +196,7 @@
 								</div>
 								<h3>${product.pname}</h3>
 								<p class="product-price"><span>Per Kg</span> ${product.price}$ </p>
+								<h4>stock : ${product.stock }</h4>
 							</div>
 						</div>
 					</c:forEach>

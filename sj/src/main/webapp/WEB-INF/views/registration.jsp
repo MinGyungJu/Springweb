@@ -152,8 +152,8 @@
                <!--   onSubmit="return valid_datas( this );" -->
                   <form method="POST" id="insert-customer" action="insertCustomer.do">
                      <p>
-                        <input type="text" placeholder="Name" name="name" id="name">
-                        <select name="gender" id="gender">
+                        <input type="text" placeholder="Name" name="name" id="name" required>
+                        <select name="gender" id="gender" >
                            <option>Check Gender</option>
                            <option>Female</option>
                            <option>Male</option>
@@ -161,15 +161,21 @@
                         </select>
                      </p>
                      <p>
-                        <input type="text" placeholder="ID" name="id" id="id">
-                        <input type="text" placeholder="Password" name="pw" id="pw">
+                        <input type="text" placeholder="ID" name="id" id="id" required>
+                        <input type="text" placeholder="Password" name="pw" id="pw" required>
                      </p>
                      <p>
-                        <input type="tel" placeholder="Phone" name="tel" id="tel">
-                        <input type="email" placeholder="Email" name="email" id="email">
+                        <input type="tel" placeholder="Phone" name="tel" id="tel" required>
+                        <input type="email" placeholder="Email" name="email" id="email" required>
                      </p>
                      <p>
-                        <textarea placeholder="Address" name="addr" id="addr"></textarea>
+                     	<input type="text" name = "addr" id = "addr_postcode" onclick="findAddress()" placeholder="postcode"  readonly>
+                     </p>
+                     <p>
+                     </p>
+                     <p>
+						<input type="text" name = "addr" id = "addr_address" placeholder="address"  readonly>
+						<input type="text" name = "addr" id = "addr_detailAddress" placeholder="detailAddress" >
                      </p>
                      <p><input type="submit" value="Submit"></p>
                   </form>
@@ -262,6 +268,32 @@
    <script src="<%=pjName%>resources/assets/js/form-validate.js"></script>
    <!-- main js -->
    <script src="<%=pjName%>resources/assets/js/main.js"></script>
+   <!-- Address API -->
+   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+   
+   <script type="text/javascript">
+   
+	 //function of Address API
+	   function findAddress() {
+	       new daum.Postcode({
+	           oncomplete: function(data) {
+	
+	               var addr = ''; // 주소 변수
+	               var extraAddr = ''; // 참고항목 변수
+	
+	               if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+	                   addr = data.roadAddress;
+	               } else { // 사용자가 지번 주소를 선택했을 경우(J)
+	                   addr = data.jibunAddress;
+	               }
+	
+	               document.getElementById("addr_postcode").value = data.zonecode;
+	               document.getElementById("addr_address").value = addr;
+	               document.getElementById("addr_detailAddress").focus();
+	           }
+	       }).open();
+	   }
+</script>
    
 </body>
 </html>
