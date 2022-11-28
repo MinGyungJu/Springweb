@@ -14,18 +14,19 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javassem.domain.AnswerVO;
+import com.javassem.domain.CriteriaVO;
 import com.javassem.domain.CustomerVO;
 import com.javassem.domain.ListOrderVO;
 import com.javassem.domain.ManagerVO;
 import com.javassem.domain.ProductVO;
 import com.javassem.domain.QuestionVO;
+import com.javassem.paging.PageMaker;
 import com.javassem.service.UserService;
 
 @Controller
@@ -166,15 +167,15 @@ public class UserController {
 	}
 
 	@RequestMapping("shop_m.do")
-	public void shop_m(Model m) {
-		List<ProductVO> list = userService.getProductList();
+	public void shop_m(Model m, CriteriaVO cri) throws Exception {
+		List<ProductVO> list = userService.getProductList(cri);
 		m.addAttribute("productList", list);
-	}
+		}
 
 	@RequestMapping("shop2_m.do")
-	public void shop2_m(Model m) {
-		List<ProductVO> list = userService.getProductList2();
-		m.addAttribute("productList2", list);
+	public void shop2_m(Model m, CriteriaVO cri) throws Exception {
+		List<ProductVO> list = userService.getProductList2(cri);
+		m.addAttribute("productList", list);
 	}
 
 	@RequestMapping("single_product_m.do")
@@ -369,10 +370,10 @@ public class UserController {
 	}
 
 	@RequestMapping("index.do")
-	public void index(Model m) {
-		List<ProductVO> list = userService.getProductList();
+	public void index(Model m, CriteriaVO cri) throws Exception {
+		List<ProductVO> list = userService.getProductList(cri);
 		m.addAttribute("productList", list);
-	}
+		}
 
 	@RequestMapping("login.do")
 	public void login() {
@@ -479,16 +480,34 @@ public class UserController {
 
 	}
 
-	@RequestMapping("shop.do")
-	public void shop(Model m) {
-		List<ProductVO> list = userService.getProductList();
-		m.addAttribute("productList", list);
+	@RequestMapping(value = "shop.do", method = RequestMethod.GET)
+	public String shop(Model m, CriteriaVO cri) throws Exception {
+
+		m.addAttribute("productList", userService.getProductList(cri));
+
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(userService.listCount());
+
+		m.addAttribute("pageMaker", pageMaker);
+
+		return "shop";
 	}
 
-	@RequestMapping("shop2.do")
-	public void shop2(Model m) {
-		List<ProductVO> list = userService.getProductList2();
-		m.addAttribute("productList2", list);
+	@RequestMapping(value = "shop2.do",  method = RequestMethod.GET)
+	public String shop2(Model m, CriteriaVO cri) throws Exception {
+		System.out.println("shop2.do 요청");
+		List<ProductVO> list = userService.getProductList2(cri);
+		m.addAttribute("productList", list);
+		System.out.println("list.size()" + list.size());
+
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(userService.listCount());
+
+		m.addAttribute("pageMaker", pageMaker);
+
+		return "shop2";
 	}
 
 	@RequestMapping("single_product.do")
@@ -521,5 +540,10 @@ public class UserController {
 		System.out.println(list.size());
 		
 		m.addAttribute("productList",list);
+	}
+	
+	@RequestMapping("modify.do")
+	public void modify() {
+		
 	}
 }

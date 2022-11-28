@@ -71,12 +71,12 @@
 						<nav class="main-menu">
 							<ul>
 								<li><a href="index.do">ABOUT</a></li>
-								<li class="current-list-item"><a>COFFEE BEANS</a></li>
+								<li class="current-list-item"><a href="shop.do">COFFEE BEANS</a></li>
 								<li><a href="shop2.do">GOODS</a></li>
 								<li><a href="contact.do">SUPPORT</a>
 								<li>
 									<div class="header-icons">
-										<span style="color:white">${sessionScope.loginId}</span>
+										<span style="color:white">${sessionScope.loginName}</span>
 										<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
 											<c:if test="${sessionScope.loginId==null}">	
 												<a class="shopping-cart" href="login.do"><i class="fas fa-shopping-cart"></i></a>
@@ -115,7 +115,6 @@
 				<div class="col-lg-12">
 					<span class="close-btn"><i class="fas fa-window-close"></i></span>
 					<div class="search-bar">
-						<form action="">
 						<div class="search-bar-tablecell">
 							<form action="shop_search.do">
 								<h3>Search For:</h3>
@@ -123,7 +122,6 @@
 								<button type="submit">Search <i class="fas fa-search"></i></button>
 							</form>
 						</div>
-						</form>
 					</div>
 				</div>
 			</div>
@@ -316,8 +314,8 @@
 	<script src="<%=pjName%>resources/assets/js/sticker.js"></script>
 	<!-- main js -->
 	<script src="<%=pjName%>resources/assets/js/main.js"></script>
-<!-- 	<!-- main js2 --> -->
-<%-- 	<script src="<%=pjName%>resources/assets/js/mainAdded.js"></script> --%>
+	<!-- main js2 -->
+	<script src="<%=pjName%>resources/assets/js/mainAdded.js"></script>
 
 </body>
 </html>

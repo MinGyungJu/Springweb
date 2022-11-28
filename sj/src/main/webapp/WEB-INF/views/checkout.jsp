@@ -70,7 +70,7 @@
 								<li><a href="contact.do">SUPPORT</a>
 								<li>
 									<div class="header-icons">
-										<span style="color:white">${sessionScope.loginId}</span>
+										<span style="color:white">${sessionScope.loginName}</span>
 										<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
 											<c:if test="${sessionScope.loginId==null}">	
 												<a class="shopping-cart" href="login.do"><i class="fas fa-shopping-cart"></i></a>
@@ -218,13 +218,17 @@
 								</thead>
 								<tbody class="order-details-body">
 									<c:set var="totalTest" value="0"/>
+									<c:set var='cnt' value='0'/>
 									<c:forEach items ="${getCartList}" var ="cart">
 									<tr>
 										<td>${cart.PNAME}</td>
 										<td>$${cart.OCNT * cart.PRICE}</td>
 										<c:set var='totalTest' value='${ totalTest + (cart.OCNT * cart.PRICE)}'/>
+										<c:set var='totalProductName' value='${cart.PNAME}'/>
+										<c:set var='cnt' value='${ cnt= cnt+1 }'/>
 									</tr>
 									</c:forEach>
+								
 								</tbody>
 								<tbody class="checkout-details">
 									<tr>
@@ -370,16 +374,18 @@
 	// 결제시스템 스크립트 시작
 	IMP.init("imp05370542"); // 예: imp00000000
 	function requestPaykakao() {
-	   IMP.request_pay({
+	   let addr = document.getElementById("addr").value;
+	   let cno = document.getElementById("cno").value;
+		IMP.request_pay({
 	       pg : 'kakaopay',
 	       pay_method : 'card', //생략 가능
-	       merchant_uid: "order_no_"+ new Date().getTime(), // 상점에서 관리하는 주문 번호
-	       name : '주문명3', // 상품이름 ->  우리 주문번호? 그걸로 가능?
-	       amount : ${totalTest+45}, //결제 금액 -> 우리결제금액으로 끌어오기 가능?
-	       buyer_email : 'asdf@asdfadsf.sdf', 
-	       buyer_name : '유지선', 
-	       buyer_tel : '010-1234-5678',
-	       buyer_addr : '서울특별시 강남구 삼성동',
+	       merchant_uid: "order_no_"+ new Date().getTime(), // 상점에서 관리하는 주문 번호 
+	       name : '${totalProductName} 및 ${cnt-1}개', // 상품이름 ->  우리 주문번호? 그걸로 가능?
+	       amount :  ${totalTest+45}, //결제 금액 -> 우리결제금액으로 끌어오기 가능?
+	       buyer_email : 'support@kosmo.com', 
+	       buyer_name : '최기태', 
+	       buyer_tel : '+00 111 222 3333',
+	       buyer_addr : 'Seoul, Geumcheon-gu, Gasan digital 2-ro, 123 building2) 4th-floor (suite.413) World Meridian',
 	       buyer_postcode : '123-456'
 	   }, function(rsp) { 
 	      if ( rsp.success ) {
@@ -389,7 +395,7 @@
 	        msg += '결제 금액 : ' + rsp.paid_amount;
 	        msg += '카드 승인번호 : ' + rsp.apply_num;
 	        
-	        location.href = "pay_complete.do";
+	        location.href = "pay_mid_complete.do?addr="+addr+"&cno="+cno;
  	       } //else {
 // 	           var msg = '결제에 실패하였습니다.';
 // 	           msg += '에러내용 : ' + rsp.error_msg;
@@ -398,16 +404,18 @@
 	    });
 	}
 	function requestPaytoss() {
+		let addr = document.getElementById("addr").value;
+		let cno = document.getElementById("cno").value;
 	   IMP.request_pay({
 	       pg : 'tosspay',
 	       pay_method : 'card', //생략 가능
 	       merchant_uid: "order_no_0003"+ new Date().getTime(), // 상점에서 관리하는 주문 번호
-	       name : '지옥행티켓',
+	       name : '${totalProductName} 및 ${cnt-1}개',
 	       amount : ${totalTest+45},
-	       buyer_email : 'iamport@siot.do',
-	       buyer_name : '앙마',
-	       buyer_tel : '010-1234-5678',
-	       buyer_addr : '서울특별시 강남구 삼성동',
+	       buyer_email : 'support@kosmo.com',
+	       buyer_name : '최기태',
+	       buyer_tel : '+00 111 222 3333',
+	       buyer_addr : 'Seoul, Geumcheon-gu, Gasan digital 2-ro, 123 building2) 4th-floor (suite.413) World Meridian',
 	       buyer_postcode : '123-456'
 	   }, function(rsp) {
 	      if ( rsp.success ) {
@@ -416,7 +424,7 @@
 	           msg += '상점 거래ID : ' + rsp.merchant_uid;
 	           msg += '결제 금액 : ' + rsp.paid_amount;
 	           msg += '카드 승인번호 : ' + rsp.apply_num;
-	           location.href = "pay_complete.do";
+	           location.href = "pay_mid_complete.do?addr="+addr+"&cno="+cno;
  	       } //else {
 // 	           var msg = '결제에 실패하였습니다.';
 // 	           msg += '에러내용 : ' + rsp.error_msg;

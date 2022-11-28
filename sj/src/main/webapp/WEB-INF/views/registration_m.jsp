@@ -23,10 +23,6 @@
    <link rel="stylesheet" href="<%=pjName%>resources/assets/css/all.min.css">
    <!-- bootstrap -->
    <link rel="stylesheet" href="<%=pjName%>resources/assets/bootstrap/css/bootstrap.min.css">
-   <!-- owl carousel -->
-   <link rel="stylesheet" href="<%=pjName%>resources/assets/css/owl.carousel.css">
-   <!-- magnific popup -->
-   <link rel="stylesheet" href="<%=pjName%>resources/assets/css/magnific-popup.css">
    <!-- animate css -->
    <link rel="stylesheet" href="<%=pjName%>resources/assets/css/animate.css">
    <!-- mean menu css -->
@@ -70,7 +66,7 @@
                         <li><a href="contact_m.do">SUPPORT</a>
                         <li>
 							<div class="header-icons">
-								<span style="color:white">${sessionScope.loginId}</span>
+								<span style="color:white">${sessionScope.loginName}</span>
 								<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
 								<ul class="sub-menu">
 									<c:if test="${sessionScope.loginId==null}">	
@@ -160,8 +156,14 @@
                         <input type="tel" placeholder="Phone" name="tel" id="tel">
                         <input type="email" placeholder="Email" name="email" id="email">
                      </p>
+ 					 <p>
+                     	<input type="text" name = "addr" id = "addr_postcode" onclick="findAddress()" placeholder="postcode"  readonly>
+                     </p>
                      <p>
-                        <textarea placeholder="Address" name="addr" id="addr"></textarea>
+                     </p>
+                     <p>
+						<input type="text" name = "addr" id = "addr_address" placeholder="address"  readonly>
+						<input type="text" name = "addr" id = "addr_detailAddress" placeholder="detailAddress" >
                      </p>
                      <p><input type="submit" value="Submit"></p>
                   </form>
@@ -176,14 +178,14 @@
    <div class="footer-area">
       <div class="container">
          <div class="row">
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-4 col-md-6">
                <div class="footer-box about-widget">
                   <h2 class="widget-title">About us</h2>
                   <p>We are proudly serving coffee beans and coffee related products to our customer. 
                      Our duty is to please the customer with the best tasting bean and perfectly match the preferences of coffee.</p>
                </div>
             </div>
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-5 col-md-6">
                <div class="footer-box get-in-touch">
                   <h2 class="widget-title">Get in Touch</h2>
                   <ul>
@@ -236,24 +238,35 @@
    <script src="<%=pjName%>resources/assets/js/jquery-1.11.3.min.js"></script>
    <!-- bootstrap -->
    <script src="<%=pjName%>resources/assets/bootstrap/js/bootstrap.min.js"></script>
-   <!-- count down -->
-   <script src="<%=pjName%>resources/assets/js/jquery.countdown.js"></script>
-   <!-- isotope -->
-   <script src="<%=pjName%>resources/assets/js/jquery.isotope-3.0.6.min.js"></script>
-   <!-- waypoints -->
-   <script src="<%=pjName%>resources/assets/js/waypoints.js"></script>
-   <!-- owl carousel -->
-   <script src="<%=pjName%>resources/assets/js/owl.carousel.min.js"></script>
-   <!-- magnific popup -->
-   <script src="<%=pjName%>resources/assets/js/jquery.magnific-popup.min.js"></script>
    <!-- mean menu -->
    <script src="<%=pjName%>resources/assets/js/jquery.meanmenu.min.js"></script>
-   <!-- sticker js -->
-   <script src="<%=pjName%>resources/assets/js/sticker.js"></script>
    <!-- form validation js -->
    <script src="<%=pjName%>resources/assets/js/form-validate.js"></script>
    <!-- main js -->
    <script src="<%=pjName%>resources/assets/js/main.js"></script>
-   
+   <!-- Address API -->
+   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+   <script type="text/javascript">
+	 //function of Addre	ss API
+	   function findAddress() {
+	       new daum.Postcode({
+	           oncomplete: function(data) {
+	
+	               var addr = ''; // 주소 변수
+	               var extraAddr = ''; // 참고항목 변수
+	
+	               if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+	                   addr = data.roadAddress;
+	               } else { // 사용자가 지번 주소를 선택했을 경우(J)
+	                   addr = data.jibunAddress;
+	               }
+	
+	               document.getElementById("addr_postcode").value = data.zonecode;
+	               document.getElementById("addr_address").value = addr;
+	               document.getElementById("addr_detailAddress").focus();
+	           }
+	       }).open();
+	   }
+	 </script>   
 </body>
-</html>
+</html>	

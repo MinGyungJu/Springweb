@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.javassem.domain.AnswerVO;
+import com.javassem.domain.CriteriaVO;
 import com.javassem.domain.CustomerVO;
 import com.javassem.domain.ListOrderVO;
 import com.javassem.domain.ManagerVO;
@@ -77,12 +78,18 @@ public class UserDAOImpl implements UserDAO {
 	}
 	// ---manager login end
 
-	public List<ProductVO> getProductList() {
-		return mybatis.selectList("UserDAO.getProductList");
+	// 상품 목록 조회
+	public List<ProductVO> getProductList(CriteriaVO cri) throws Exception{
+	return mybatis.selectList("UserDAO.getProductList", cri);
 	}
 
-	public List<ProductVO> getProductList2() {
-		return mybatis.selectList("UserDAO.getProductList2");
+	public List<ProductVO> getProductList2(CriteriaVO cri) throws Exception{
+		return mybatis.selectList("UserDAO.getProductList2", cri);
+	}
+
+	// 상품 총 갯수
+	public int listCount() throws Exception {
+		return mybatis.selectOne("UserDAO.listCount");
 	}
 
 	public List<HashMap> getCustomersOrders() {

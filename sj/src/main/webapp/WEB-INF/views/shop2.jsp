@@ -76,7 +76,7 @@
                         <li><a href="contact.do">SUPPORT</a>
                         <li>
                            <div class="header-icons">
-                              <span style="color:white">${sessionScope.loginId}</span>
+                              <span style="color:white">${sessionScope.loginName}</span>
                               <a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
                                  <c:if test="${sessionScope.loginId==null}">   
                                     <a class="shopping-cart" href="login.do"><i class="fas fa-shopping-cart"></i></a>
@@ -160,7 +160,7 @@
                 </div>
             </div>
          <div class="row product-lists">
-            <c:forEach items="${productList2}" var="product"> 
+            <c:forEach items="${productList}" var="product"> 
                <div class="col-lg-4 col-md-6 text-center ${product.type}">
                	  <form action="single_product.do">
 	                  <div class="single-product-item">
@@ -189,19 +189,33 @@
                </div>
             </c:forEach>
          </div>
-         <div class="row">
-            <div class="col-lg-12 text-center">
-               <div class="pagination-wrap">
-                  <ul>
-                     <li><a href="#">Prev</a></li>
-                     <li><a href="#">1</a></li>
-                     <li><a class="active" href="#">2</a></li>
-                     <li><a href="#">3</a></li>
-                     <li><a href="#">Next</a></li>
-                  </ul>
-               </div>
-            </div>
-         </div>
+        
+        
+        <div class="row">
+			<div class="col-lg-12 text-center">
+				<div class="pagination-wrap">
+		 
+					 <ul>
+						    <c:if test="${pageMaker.prev}">
+						    	<li><a class="active" href="shop2.do${pageMaker.makeQuery(pageMaker.startPage - 1)}">Prev</a></li>
+						    </c:if>
+			
+						    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+						    	<li><a href="shop2.do${pageMaker.makeQuery(idx)}">${idx}</a></li>
+						    </c:forEach>
+			
+						    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+						    	<li><a class="active" href="shop2.do${pageMaker.makeQuery(pageMaker.endPage + 1)}">Next</a></li>
+						    </c:if>
+					  </ul>
+
+
+  				</div>
+  			</div>
+		</div>
+
+     <br/><br/><br/><br/>
+        
       </div>
    </div>
    <!-- end products -->

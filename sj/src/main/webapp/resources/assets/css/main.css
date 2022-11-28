@@ -1281,6 +1281,7 @@ ul.product-share li:hover a {
   -webkit-transition: 0.3s;
   -o-transition: 0.3s;
   transition: 0.3s;
+  position : relative;
 }
 
 .single-product-item:hover {

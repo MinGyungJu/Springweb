@@ -27,20 +27,55 @@
 		FROM LIST_ORDER
 		WHERE pno=#{pno} AND cno=#{cno}
 	</select>
-	<select id="getProductList" resultType="ProductVO">
+	
+	<!-- Paging -->
+	<select id="getProductList" resultType="ProductVO" parameterType="CriteriaVO">
 		<![CDATA[
-		SELECT * FROM PRODUCT
-		WHERE PNO < 100000
-		ORDER BY pno desc
-		 ]]>
+			SELECT *
+			FROM (
+					SELECT PNO,
+					IMG,
+					PNAME,
+					PRICE,
+					DESCRIPTION,
+					STOCK,
+					TYPE,
+					ROW_NUMBER() OVER(ORDER BY PNO DESC) AS RNUM
+			FROM PRODUCT WHERE PNO < 100000
+					) MP
+		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+		ORDER BY PNO DESC
+		]]>
 	</select>
-	<select id="getProductList2" resultType="ProductVO">
+	
+	<select id="getProductList2" resultType="ProductVO" parameterType="CriteriaVO">
 		<![CDATA[
-		SELECT * FROM PRODUCT
-		WHERE PNO >= 100000
-		ORDER BY pno desc
-		 ]]>
+		SELECT *
+		FROM (
+		        SELECT PNO,
+		               IMG,
+		               PNAME,
+		               PRICE,
+		               DESCRIPTION,
+		               STOCK,
+		               TYPE,
+		               ROW_NUMBER() OVER(ORDER BY PNO DESC) AS RNUM
+		         FROM PRODUCT WHERE PNO >= 100000
+		                       ) MP
+		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+		ORDER BY PNO DESC
+		]]>
 	</select>
+	
+	<select id="listCount" resultType="int">
+	<![CDATA[
+		SELECT COUNT(PNO)
+		  FROM PRODUCT
+		WHERE PNO > 0
+	]]>
+	</select>
+	
+	
 	<select id="getQuestionList" resultType="QuestionVO">
 		SELECT * FROM QUESTION
 		WHERE qno NOT IN (SELECT qno FROM ANSWER)
@@ -209,7 +244,7 @@
 	</select>
 	<select id="shop_search" parameterType="hashmap" resultType="ProductVO">
 		SELECT * FROM PRODUCT
-		WHERE pname LIKE '%${searchKeyword}%'
+		WHERE upper(pname) LIKE upper('%${searchKeyword}%')
 		ORDER BY pno desc
 	</select>
 	

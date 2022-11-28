@@ -25,8 +25,6 @@
 	<link rel="stylesheet" href="<%=pjName%>resources/assets/bootstrap/css/bootstrap.min.css">
 	<!-- owl carousel -->
 	<link rel="stylesheet" href="<%=pjName%>resources/assets/css/owl.carousel.css">
-	<!-- magnific popup -->
-	<link rel="stylesheet" href="<%=pjName%>resources/assets/css/magnific-popup.css">
 	<!-- animate css -->
 	<link rel="stylesheet" href="<%=pjName%>resources/assets/css/animate.css">
 	<!-- mean menu css -->
@@ -70,7 +68,7 @@
 								<li><a href="contact_m.do">SUPPORT</a>
 								<li>
 									<div class="header-icons">
-										<span style="color:white">${sessionScope.loginId}</span>
+										<span style="color:white">${sessionScope.loginName}</span>
 										<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
 										<ul class="sub-menu">
 											<c:if test="${sessionScope.loginId==null}">	
@@ -264,20 +262,12 @@
 	<script src="<%=pjName%>resources/assets/js/jquery-1.11.3.min.js"></script>
 	<!-- bootstrap -->
 	<script src="<%=pjName%>resources/assets/bootstrap/js/bootstrap.min.js"></script>
-	<!-- count down -->
-	<script src="<%=pjName%>resources/assets/js/jquery.countdown.js"></script>
 	<!-- isotope -->
 	<script src="<%=pjName%>resources/assets/js/jquery.isotope-3.0.6.min.js"></script>
-	<!-- waypoints -->
-	<script src="<%=pjName%>resources/assets/js/waypoints.js"></script>
 	<!-- owl carousel -->
 	<script src="<%=pjName%>resources/assets/js/owl.carousel.min.js"></script>
-	<!-- magnific popup -->
-	<script src="<%=pjName%>resources/assets/js/jquery.magnific-popup.min.js"></script>
 	<!-- mean menu -->
 	<script src="<%=pjName%>resources/assets/js/jquery.meanmenu.min.js"></script>
-	<!-- sticker js -->
-	<script src="<%=pjName%>resources/assets/js/sticker.js"></script>
 	<!-- main js -->
 	<script src="<%=pjName%>resources/assets/js/main.js"></script>
 

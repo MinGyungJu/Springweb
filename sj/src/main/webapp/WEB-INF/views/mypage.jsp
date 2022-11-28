@@ -70,7 +70,7 @@
 								<li><a href="contact.do">SUPPORT</a>
 								<li>
 									<div class="header-icons">
-										<span style="color:white">${sessionScope.loginId}</span>
+										<span style="color:white">${sessionScope.loginName}</span>
 										<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
 											<c:if test="${sessionScope.loginId==null}">	
 												<a class="shopping-cart" href="login.do"><i class="fas fa-shopping-cart"></i></a>
@@ -141,6 +141,14 @@
 	<!-- order status -->
 	<div class="cart-section mt-150 mb-150">
 		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12" >
+					 <div class="contact-form">
+                     <p><input type="submit" value="Modify Member Information" onclick = 'location.href="modify.do"'></p>
+                     <P>
+             		 </div>
+				</div>
+			</div>
 			<div class="row">
 				<div class="col-lg-12 col-md-12" >
 					<h3>Order Status</h3> Recent orders are on the top.

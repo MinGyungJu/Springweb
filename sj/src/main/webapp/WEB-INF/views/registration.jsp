@@ -70,7 +70,7 @@
                         <li><a href="contact.do">SUPPORT</a>
                         <li>
 							<div class="header-icons">
-								<span style="color:white">${sessionScope.loginId}</span>
+								<span style="color:white">${sessionScope.loginName}</span>
 								<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
 									<c:if test="${sessionScope.loginId==null}">	
 										<a class="shopping-cart" href="login.do"><i class="fas fa-shopping-cart"></i></a>
@@ -152,7 +152,7 @@
                <!--   onSubmit="return valid_datas( this );" -->
                   <form method="POST" id="insert-customer" action="insertCustomer.do">
                      <p>
-                        <input type="text" placeholder="Name" name="name" id="name" required>
+                        <input type="text" placeholder="Name" name="name" id="name" required>&nbsp;&nbsp;&nbsp;
                         <select name="gender" id="gender" >
                            <option>Check Gender</option>
                            <option>Female</option>
@@ -161,11 +161,11 @@
                         </select>
                      </p>
                      <p>
-                        <input type="text" placeholder="ID" name="id" id="id" required>
+                        <input type="text" placeholder="ID" name="id" id="id" required>&nbsp;&nbsp;
                         <input type="text" placeholder="Password" name="pw" id="pw" required>
                      </p>
                      <p>
-                        <input type="tel" placeholder="Phone" name="tel" id="tel" required>
+                        <input type="tel" placeholder="Phone" name="tel" id="tel" required>&nbsp;&nbsp;
                         <input type="email" placeholder="Email" name="email" id="email" required>
                      </p>
                      <p>
@@ -174,7 +174,7 @@
                      <p>
                      </p>
                      <p>
-						<input type="text" name = "addr" id = "addr_address" placeholder="address"  readonly>
+						<input type="text" name = "addr" id = "addr_address" placeholder="address"  readonly>&nbsp;&nbsp;
 						<input type="text" name = "addr" id = "addr_detailAddress" placeholder="detailAddress" >
                      </p>
                      <p><input type="submit" value="Submit"></p>

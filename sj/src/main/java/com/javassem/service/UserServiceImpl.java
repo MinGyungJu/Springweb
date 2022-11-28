@@ -9,9 +9,10 @@ import org.springframework.stereotype.Service;
 
 import com.javassem.dao.UserDAO;
 import com.javassem.domain.AnswerVO;
+import com.javassem.domain.CriteriaVO;
 import com.javassem.domain.CustomerVO;
 import com.javassem.domain.ListOrderVO;
-import com.javassem.domain.ManagerVO; 
+import com.javassem.domain.ManagerVO;
 import com.javassem.domain.ProductVO;
 import com.javassem.domain.QuestionVO;
 
@@ -68,13 +69,20 @@ public class UserServiceImpl implements UserService {
 	}
 	// ---manager login end
 
-	public List<ProductVO> getProductList() {
-		return userDAO.getProductList();
+	// 상품 목록 조회
+	public List<ProductVO> getProductList(CriteriaVO cri) throws Exception {
+	return userDAO.getProductList(cri);
 	}
 
-	public List<ProductVO> getProductList2() {
-		return userDAO.getProductList2();
+	public List<ProductVO> getProductList2(CriteriaVO cri) throws Exception {
+		return userDAO.getProductList2(cri);
 	}
+
+	// 상품 총 갯수
+	public int listCount() throws Exception {
+		return userDAO.listCount();
+	}
+	
 	public List<HashMap> getCustomersOrders(){
 		return userDAO.getCustomersOrders();
 	}

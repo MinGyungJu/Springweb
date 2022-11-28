@@ -65,12 +65,12 @@
 							<ul>
 								<li class="current-list-item"><a href="#">ABOUT</a></li>
 								<li><a href="shop.do">COFFEE BEANS</a></li>
-								<li><a href="shop2.do">DRINKWARE</a></li>
+								<li><a href="shop2.do">GOODS</a></li>
 								<li><a href="contact.do">SUPPORT</a> 
 								</li>
 								<li>
 									<div class="header-icons">
-										<span style="color:white">${sessionScope.loginId}</span>
+										<span style="color:white">${sessionScope.loginName}</span>
 										<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
 										<c:if test="${sessionScope.loginId==null}">	
 											<a class="shopping-cart" href="login.do"><i class="fas fa-shopping-cart"></i></a>
@@ -174,7 +174,7 @@
 								<p class="subtitle">Make coffee with special tools</p>
 								<h1>Become a Expert</h1>
 								<div class="hero-btns">
-									<a href="shop.do" class="boxed-btn">Visit Shop</a>
+									<a href="shop2.do" class="boxed-btn">Visit Shop</a>
 									<a href="login.do" class="bordered-btn">Login</a>
 								</div>
 							</div>
@@ -199,7 +199,7 @@
 			</div>
 
 			<div class="row product-lists">
-					<c:forEach items="${productList}" var ="product" step="${productList.size()/3+2}">
+					<c:forEach items="${productList}" var ="product" step="${productList.size()/3}">
 				<div class="col-lg-4 col-md-6 text-center">
 						<form action="single_product.do" >
 							<div class="single-product-item"> 
@@ -435,6 +435,8 @@
 		</div>
 	</div>
 	<!-- end team section -->
+	
+	<br/><br/><br/><br/>
 
 	<!-- logo carousel -->
 	<div class="logo-carousel-section">

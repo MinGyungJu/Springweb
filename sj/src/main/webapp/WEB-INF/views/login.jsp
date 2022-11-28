@@ -70,7 +70,7 @@
 								<li><a href="contact.do">SUPPORT</a>
 								<li>
 									<div class="header-icons">
-										<span style="color:white">${sessionScope.loginId}</span>
+										<span style="color:white">${sessionScope.loginName}</span>
 										<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
 											<c:if test="${sessionScope.loginId==null}">	
 												<a class="shopping-cart" href="login.do"><i class="fas fa-shopping-cart"></i></a>
@@ -158,8 +158,8 @@
 						        <div class="billing-address-form">
 						        	<form method="POST" id="login-customer" action="loginCustomer.do">
 						        		<p><input type="text" placeholder="Id" name="id" id="id"></p>
-						        		<p><input type="password" placeholder="Password" name="pw" id="pw"></p>
-										<input type="submit" class="boxed-btn" value="Login"> 
+						        		<p><input type="password" placeholder="Password" name="pw" id="pw"></p><br/>
+										<input type="submit" class="boxed-btn" value="Login"> &nbsp&nbsp&nbsp
 										<a href="registration.do" class="boxed-btn">Registeration</a>
 						        	</form>
 						        </div>

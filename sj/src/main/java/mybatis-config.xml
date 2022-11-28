@@ -12,6 +12,7 @@
 		<typeAlias alias="QuestionVO" type="com.javassem.domain.QuestionVO" />
 		<typeAlias alias="ListOrderVO" type="com.javassem.domain.ListOrderVO" />
 		<typeAlias alias="AnswerVO" type="com.javassem.domain.AnswerVO"/>
+		<typeAlias alias="CriteriaVO" type="com.javassem.domain.CriteriaVO"/>
 	</typeAliases>
 
 

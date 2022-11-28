@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.javassem.domain.AnswerVO;
+import com.javassem.domain.CriteriaVO;
 import com.javassem.domain.CustomerVO;
 import com.javassem.domain.ListOrderVO;
 import com.javassem.domain.ManagerVO;
@@ -34,9 +35,16 @@ public interface UserDAO {
 	public int insertManager(ManagerVO vo);
 	public ManagerVO loginManager(ManagerVO vo);
 	// ---manager login end
-	public List<ProductVO> getProductList();
-	public List<ProductVO> getProductList2();
+	
+	// 상품 목록 조회 (커피랑 굿즈)
+	public List<ProductVO> getProductList(CriteriaVO cri) throws Exception;
+	public List<ProductVO> getProductList2(CriteriaVO cri) throws Exception;
+
+	// 상품 총 갯수
+	public int listCount() throws Exception;
+	
 	public List<HashMap> getCustomersOrders();
+	
 	// ----------------------------------manager end
 	
 	// ----------------------------------user
