@@ -151,10 +151,10 @@
                 <div class="col-md-12">
                     <div class="product-filters">
                         <ul>
-                            <li class="active" data-filter="*">All</li>
-                            <li data-filter=".capsule">Capsule</li>
-                            <li data-filter=".dripbag">Dripbag</li>
-                            <li data-filter=".beans">Beans</li>
+							<a href = "shop.do"><li class="active" data-filter="*">All</li></a>
+                            <a href = "shop_capsule.do"><li data-filter=".capsule">Capsule</li></a>
+                            <a href = "shop_dripbag.do"><li data-filter=".dripbag">Dripbag</li></a>
+                            <a href = "shop_beans.do"><li data-filter=".beans">Beans</li></a>
                         </ul>
                     </div>
                 </div>

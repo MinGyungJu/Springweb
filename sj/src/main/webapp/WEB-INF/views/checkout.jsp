@@ -289,14 +289,14 @@
 	<div class="footer-area">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-3 col-md-6">
+				<div class="col-lg-4 col-md-6">
 					<div class="footer-box about-widget">
 						<h2 class="widget-title">About us</h2>
 						<p>We are proudly serving coffee beans and coffee related products to our customer. 
 							Our duty is to please the customer with the best tasting bean and perfectly match the preferences of coffee.</p>
 					</div>
 				</div>
-				<div class="col-lg-3 col-md-6">
+				<div class="col-lg-5 col-md-6">
 					<div class="footer-box get-in-touch">
 						<h2 class="widget-title">Get in Touch</h2>
 						<ul>
@@ -368,9 +368,8 @@
 	
 	<!-- iamport.payment.js -->
   	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-	
 	<script type="text/javascript">
-	
+
 	// 결제시스템 스크립트 시작
 	IMP.init("imp05370542"); // 예: imp00000000
 	function requestPaykakao() {
@@ -380,8 +379,8 @@
 	       pg : 'kakaopay',
 	       pay_method : 'card', //생략 가능
 	       merchant_uid: "order_no_"+ new Date().getTime(), // 상점에서 관리하는 주문 번호 
-	       name : '${totalProductName} 및 ${cnt-1}개', // 상품이름 ->  우리 주문번호? 그걸로 가능?
-	       amount :  ${totalTest+45}, //결제 금액 -> 우리결제금액으로 끌어오기 가능?
+	       name : '${totalProductName} 및 ${cnt-1}개', // 상품이름 및 갯수
+	       amount :  ${totalTest+45}, //결제 금액 
 	       buyer_email : 'support@kosmo.com', 
 	       buyer_name : '최기태', 
 	       buyer_tel : '+00 111 222 3333',
@@ -394,13 +393,8 @@
 	        msg += '상점 거래ID : ' + rsp.merchant_uid;
 	        msg += '결제 금액 : ' + rsp.paid_amount;
 	        msg += '카드 승인번호 : ' + rsp.apply_num;
-	        
 	        location.href = "pay_mid_complete.do?addr="+addr+"&cno="+cno;
- 	       } //else {
-// 	           var msg = '결제에 실패하였습니다.';
-// 	           msg += '에러내용 : ' + rsp.error_msg;
-// 	           location.href = "pay_incomplete.do";
-// 	       } 
+ 	       } 
 	    });
 	}
 	function requestPaytoss() {
@@ -409,7 +403,7 @@
 	   IMP.request_pay({
 	       pg : 'tosspay',
 	       pay_method : 'card', //생략 가능
-	       merchant_uid: "order_no_0003"+ new Date().getTime(), // 상점에서 관리하는 주문 번호
+	       merchant_uid: "order_no_0003"+ new Date().getTime(), 
 	       name : '${totalProductName} 및 ${cnt-1}개',
 	       amount : ${totalTest+45},
 	       buyer_email : 'support@kosmo.com',
@@ -425,15 +419,10 @@
 	           msg += '결제 금액 : ' + rsp.paid_amount;
 	           msg += '카드 승인번호 : ' + rsp.apply_num;
 	           location.href = "pay_mid_complete.do?addr="+addr+"&cno="+cno;
- 	       } //else {
-// 	           var msg = '결제에 실패하였습니다.';
-// 	           msg += '에러내용 : ' + rsp.error_msg;
-// 	           location.href = "pay_incomplete.do";
-// 	       } 
+ 	       } 
 	   });
 	}
 	//결제시스템 스크립트 끝
-	
 	</script>
 	
 

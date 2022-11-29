@@ -146,7 +146,7 @@
 					<h3>Modifying Member Information</h3>
 					 <div class="contact-form">
               		 <!--   onSubmit="return valid_datas( this );" -->
-                  	 <form method="POST" id="insert-customer" action="insertCustomer.do">
+                  	 <form method="POST" id="modify-customer" action="modifyCustomer.do">
                      <p>
                         <input type="text" placeholder="Name" name="name" id="name" value="${sessionScope.loginName }" required>&nbsp;&nbsp;&nbsp;
                         <select name="gender" id="gender">
@@ -157,7 +157,7 @@
                         </select>
                      </p>
                      <p>
-                        <input type="text" placeholder="ID" name="id" id="id" value="${ sessionScope.loginId}" required>&nbsp;&nbsp;
+                        <input type="text" placeholder="ID" name="id" id="id" value="${ sessionScope.loginId}" readonly required>&nbsp;&nbsp;
                         <input type="text" placeholder="Password" name="pw" id="pw" value="${sessionScope.loginPw}" required>
                      </p>
                      <p>
@@ -174,7 +174,7 @@
 						<input type="text" name = "addr" id = "addr_detailAddress" placeholder="detailAddress" >
                      </p>
                      <p><input type="submit" value="Modify Member Information"></p>
-                     <P>
+                     <a href="deleteMember.do?cno=${sessionScope.loginCno}" class="cart-btn">DELETE MEMBER</a>
                   	 </form>
                		 </div>
 				</div>
@@ -215,14 +215,14 @@
 	<div class="footer-area">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-3 col-md-6">
+				<div class="col-lg-4 col-md-6">
 					<div class="footer-box about-widget">
 						<h2 class="widget-title">About us</h2>
 						<p>We are proudly serving coffee beans and coffee related products to our customer. 
 							Our duty is to please the customer with the best tasting bean and perfectly match the preferences of coffee.</p>
 					</div>
 				</div>
-				<div class="col-lg-3 col-md-6">
+				<div class="col-lg-5 col-md-6">
 					<div class="footer-box get-in-touch">
 						<h2 class="widget-title">Get in Touch</h2>
 						<ul>
@@ -291,6 +291,32 @@
 	<script src="<%=pjName%>resources/assets/js/sticker.js"></script>
 	<!-- main js -->
 	<script src="<%=pjName%>resources/assets/js/main.js"></script>
+	<!-- Address API -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+   
+    <script type="text/javascript">
+   
+	 //카카오 주소찿기 api 기능
+	   function findAddress() {
+	       new daum.Postcode({
+	           oncomplete: function(data) {
+	
+	               var addr = ''; // 주소 변수
+	               var extraAddr = ''; // 참고항목 변수
+	
+	               if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+	                   addr = data.roadAddress;
+	               } else { // 사용자가 지번 주소를 선택했을 경우(J)
+	                   addr = data.jibunAddress;
+	               }
+				   //각각의 아이디에 우편번호, 주소 기입 후 상세주소에 focus
+	               document.getElementById("addr_postcode").value = data.zonecode;
+	               document.getElementById("addr_address").value = addr;
+	               document.getElementById("addr_detailAddress").focus();
+	           }
+	       }).open();
+	   }
+	</script>
 
 </body>
 </html>

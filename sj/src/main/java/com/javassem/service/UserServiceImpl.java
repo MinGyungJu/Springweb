@@ -70,18 +70,42 @@ public class UserServiceImpl implements UserService {
 	// ---manager login end
 
 	// 상품 목록 조회
-	public List<ProductVO> getProductList(CriteriaVO cri) throws Exception {
-	return userDAO.getProductList(cri);
-	}
+		public List<ProductVO> getProductList(CriteriaVO cri) throws Exception {
+		return userDAO.getProductList(cri);
+		}
+		
+		public List<ProductVO> getProductList_1(CriteriaVO cri) throws Exception {
+			return userDAO.getProductList_1(cri); 
+		}
+		
+		public List<ProductVO> getProductList_2(CriteriaVO cri) throws Exception {
+			return userDAO.getProductList_2(cri);
+		}
+		
+		public List<ProductVO> getProductList_3(CriteriaVO cri) throws Exception {
+			return userDAO.getProductList_3(cri);
+		}
 
-	public List<ProductVO> getProductList2(CriteriaVO cri) throws Exception {
-		return userDAO.getProductList2(cri);
-	}
+		public List<ProductVO> getProductList2(CriteriaVO cri) throws Exception {
+			return userDAO.getProductList2(cri);
+		}
+		
+		public List<ProductVO> getProductList2_1(CriteriaVO cri) throws Exception {
+			return userDAO.getProductList2_1(cri);
+		}
+		
+		public List<ProductVO> getProductList2_2(CriteriaVO cri) throws Exception {
+			return userDAO.getProductList2_2(cri);
+		}
+		
+		public List<ProductVO> getProductList2_3(CriteriaVO cri) throws Exception {
+			return userDAO.getProductList2_3(cri);
+		}
 
-	// 상품 총 갯수
-	public int listCount() throws Exception {
-		return userDAO.listCount();
-	}
+		// 상품 총 갯수
+		public int listCount() throws Exception {
+			return userDAO.listCount();
+		}
 	
 	public List<HashMap> getCustomersOrders(){
 		return userDAO.getCustomersOrders();
@@ -137,12 +161,12 @@ public class UserServiceImpl implements UserService {
 		return userDAO.insertQustion(vo);
 	}
 
-	public int questionDelete(QuestionVO vo) {
-		return userDAO.questionDelete(vo);
+	public int deleteQuestion(QuestionVO vo) {
+		return userDAO.deleteQuestion(vo);
 	}
 
-	public int answerDelete(AnswerVO avo) {
-		return userDAO.answerDelete(avo);
+	public int deleteAnswer(AnswerVO vo) {
+		return userDAO.deleteAnswer(vo);
 	}
 	// ---user contact end
 
@@ -187,6 +211,21 @@ public class UserServiceImpl implements UserService {
 	
 	public List<ProductVO> shop_search(HashMap map) {
 		return userDAO.shop_search(map);
+	}
+
+	@Override
+	public int modifyCustomer(CustomerVO vo) {
+		return userDAO.modifyCustomer(vo);
+	}
+
+	@Override
+	public List<ProductVO> getAllProductList() {
+		return userDAO.getAllProductList();
+	}
+
+	@Override
+	public List<ProductVO> getAllProductList2() {
+		return userDAO.getAllProductList2();
 	}
 
 }

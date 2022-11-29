@@ -247,14 +247,14 @@
 	<div class="footer-area">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-3 col-md-6">
+				<div class="col-lg-4 col-md-6">
 					<div class="footer-box about-widget">
 						<h2 class="widget-title">About us</h2>
 						<p>We are proudly serving coffee beans and coffee related products to our customer. 
 							Our duty is to please the customer with the best tasting bean and perfectly match the preferences of coffee.</p>
 					</div>
 				</div>
-				<div class="col-lg-3 col-md-6">
+				<div class="col-lg-5 col-md-6">
 					<div class="footer-box get-in-touch">
 						<h2 class="widget-title">Get in Touch</h2>
 						<ul>
@@ -326,26 +326,28 @@
 	<script type="text/javascript">
 	$('.product-quantity').each(function(){
 	       $(this).change(function() {
-				//set the Total value accoding to the changed input value
-	       		let ocnt = $(this).find('input').val();// get the changed input value
-	       		let sum = $(this).parent().find('.product-price').text() * ocnt;
+	    	   	// TotalValue를 inputValue가 바뀌는것에 따라 바꿈
+	       		let ocnt = $(this).find('input').val(); // 바뀐 inputValue를 가져온다
+	       		let sum = $(this).parent().find('.product-price').text() * ocnt; 
+	       		// sum을 product-total에 삽입
 	            $(this).parent().find(".product-total").text(sum);
 	            
 	            var total = 0;
+	            //total금액을 구한다
 	            for(let i=0; i<$(".product-total").length; i++){
 	                total += Number($('.product-total').eq(i).text());
 	            }
-	            //set the Total values
+	            //total value를 totlatext에 지정한다.
 	            $('.totalTest').text(total);
 	            $('.total').text(total+45);
 	            
-	          
+	          	//장바구니 update 
 	            $.ajax({  
 	                url : "updateCart.do",  
 	                type : 'POST',
 	                data:{"ocnt": ocnt,
-	                	  "cno" :"${sessionScope.loginCno}",//gets sessionScope
-	                	  "pno" :$(this).attr("pno") }//gets PNO tided to product-quantity
+	                	  "cno" :"${sessionScope.loginCno}",//sessionScope를 가져온다
+	                	  "pno" :$(this).attr("pno") }//ProductQuantity에 있는 pno attr를 가져온다.
 	            })
 	            
 

@@ -195,14 +195,14 @@
 	<div class="footer-area">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-3 col-md-6">
+				<div class="col-lg-4 col-md-6">
 					<div class="footer-box about-widget">
 						<h2 class="widget-title">About us</h2>
 						<p>We are proudly serving coffee beans and coffee related products to our customer. 
 							Our duty is to please the customer with the best tasting bean and perfectly match the preferences of coffee.</p>
 					</div>
 				</div>
-				<div class="col-lg-3 col-md-6">
+				<div class="col-lg-5 col-md-6">
 					<div class="footer-box get-in-touch">
 						<h2 class="widget-title">Get in Touch</h2>
 						<ul>
@@ -279,45 +279,42 @@
 	
 	$(function(){ 
 
-// 		console.log(labels) 
-// 		console.log(datas) 
-	// 	var year='${year}'
-	// 	alert(year)
 	var salesDatas = null;
 	var salesBgColor = null;
 	var salesBorderColor = null;
 
-	
+	// function doNext()는 차트를 레이블값들을 가져온것으로 만든다
 	function doNext() {
-		$.getJSON("countsales/"+new Date().getFullYear()).done( //use to be year variable
-		function(data){ 
-			console.log(data); 
+		$.getJSON("countsales/"+new Date().getFullYear()).done( //현재연도로 데이터값을 가져온다.
+		function(data){
+			//차트를 만든다.
 			var ctx=$("#ctx").get(0).getContext('2d'); 
+			//레이블 데이터 background 색깔 지정
 			var labels=data.map(obj=>obj.MONTH); 
 			var datas=data.map(obj=>obj.SALESCOUNT); 
 			var bgColor=['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)' ]; 
 			var borderColor=[ 'rgba(255,99,132,1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)' ]; 
+			// 위에 지정값과 레이블값들을 금액레이블(${sales})가져온것으로 지정
 			var myChart = new Chart(ctx, { 
 				type: 'line', 
 				data: { labels: labels , datasets: [{ label: 'Sales Count', data: datas, backgroundColor:bgColor, borderColor:borderColor, borderWidth: 1 }
 				,{ label: 'Sales($)', data: salesDatas, backgroundColor:salesBgColor, borderColor:salesBorderColor, borderWidth: 1 }]
 				}
 			}); 
-		}
-		)
-	}
-		
-	$.getJSON("sales/"+new Date().getFullYear()).done( //use to be year variable
+		}//data
+		)//countSales
+	}//donext
+	// 총 판매액수를 그래프에 그리려고 데이터 가져옴	
+	$.getJSON("sales/"+new Date().getFullYear()).done(
 		function(data){  
 			salesDatas = data.map(obj=>obj.SALES); 
 			salesBgColor = ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)' ]; 
 			salesBorderColor = [ 'rgba(155,99,232,1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)' ]; 
-			//setted salesDatas and call to chart
-		doNext();
+			//sales 데이터를 지정하고 차트를 부른다
+			doNext();
 		}//function	
-// 		doNext();
 	)//sales
-	}) 
+	})//function
 	</script>
 	
 </body>

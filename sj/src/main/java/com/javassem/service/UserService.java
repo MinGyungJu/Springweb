@@ -41,10 +41,18 @@ public interface UserService {
 	
 	// 상품 목록 조회
 	List<ProductVO> getProductList(CriteriaVO cri) throws Exception;
+	List<ProductVO> getProductList_1(CriteriaVO cri) throws Exception;
+	List<ProductVO> getProductList_2(CriteriaVO cri) throws Exception;
+	List<ProductVO> getProductList_3(CriteriaVO cri) throws Exception; 
+	
 	List<ProductVO> getProductList2(CriteriaVO cri) throws Exception;
+	List<ProductVO> getProductList2_1(CriteriaVO cri) throws Exception;
+	List<ProductVO> getProductList2_2(CriteriaVO cri) throws Exception;
+	List<ProductVO> getProductList2_3(CriteriaVO cri) throws Exception;
 
 	// 상품 총 갯수
 	public int listCount() throws Exception;
+	
 	
 	public List<HashMap> getCustomersOrders();
 	// ----------------------------------manager end
@@ -70,8 +78,8 @@ public interface UserService {
 	
 	// ---user contact
 	public int insertQustion(QuestionVO vo);
-	public int questionDelete(QuestionVO vo);
-	public int answerDelete(AnswerVO avo);
+	public int deleteQuestion(QuestionVO vo);
+	public int deleteAnswer(AnswerVO vo);
 	// ---user contact end
 
 	// ---user login
@@ -91,4 +99,7 @@ public interface UserService {
 	public List<Map<String,Object>> getCountSalesListBy(String year);
 	
 	public List<ProductVO> shop_search(HashMap map);
+	public int modifyCustomer(CustomerVO vo);
+	public List<ProductVO> getAllProductList();
+	public List<ProductVO> getAllProductList2();
 }

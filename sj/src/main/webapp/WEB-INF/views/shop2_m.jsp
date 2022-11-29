@@ -183,32 +183,23 @@
 						</div>
 					</div> 
 					<c:forEach items="${productList2}" var="product"> 
-						<div class="col-lg-4 col-md-6 text-center ${product.type}">
+						<div class="col-lg-4 col-md-6 text-center ${product.TYPE}">
 							<div class="single-product-item">
-								<div class="product-image clickable-div" onclick="location.href='single_product_modify_m.do?pno=${product.pno}&img=${product.img}&pname=${product.pname}&price=${product.price}&description=${product.description}&stock=${product.stock}';">
-									<img src="<%=pjName%>resources/assets/img/products/${product.img}" alt="">
+								<div class="product-image clickable-div" onclick="location.href='single_product_modify_m.do?pno=${product.PNO}&img=${product.IMG}&pname=${product.PNAME}&price=${product.PRICE}&description=${product.DESCRIPTION}&stock=${product.STOCK}';">
+								<c:if test="${product.IMG == null}">
+                             		<img src="<%=pjName%>resources/assets/img/products/noImage.jpg" alt="">
+                           		</c:if>
+		                        <c:if test="${product.IMG != null}">
+		                            <img src="<%=pjName%>resources/assets/img/products/${product.IMG}" alt="">
+		                        </c:if>
 								</div>
-								<h3>${product.pname}</h3>
-								<p class="product-price"> ${product.price}$ </p> 
-								<input type="hidden" name="pno" value="${product.pno}">
-								<h4>stock : ${product.stock }</h4>
+								<h3>${product.PNAME}</h3>
+								<p class="product-price"> ${product.PRICE}$ </p> 
+								<input type="hidden" name="pno" value="${product.PNO}">
+								<h4>stock : ${product.STOCK}</h4>
 							</div>
 						</div>
 					</c:forEach>
-				</div>
-	
-				<div class="row">
-					<div class="col-lg-12 text-center">
-						<div class="pagination-wrap">
-							<ul>
-								<li><a href="#">Prev</a></li>
-								<li><a href="#">1</a></li>
-								<li><a class="active" href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">Next</a></li>
-							</ul>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>

@@ -36,8 +36,7 @@ public class UserController {
 
 	// ----------------------------------manager
 	// ---manager product
-
-	// func: manager inserting beans
+	// 메니저가 재품(BEANS) 더하기
 	@RequestMapping(value = "addProduct.do")
 	public String addProduct(ProductVO vo) {
 		System.out.println("=>UserController.java::addProduct.do");
@@ -45,7 +44,7 @@ public class UserController {
 		return "redirect:shop_m.do";
 	}
 
-	// func: manager inserting goods
+	// 메니저가 재품(GOODS) 더하기
 	@RequestMapping(value = "addProduct2.do")
 	public String addProduct2(ProductVO vo) {
 		System.out.println("=>UserController.java::addProduct2.do");
@@ -53,7 +52,7 @@ public class UserController {
 		return "redirect:shop2_m.do";
 	}
 
-	// func: manager modifying goods or beans
+	// 메니저가 재품 수정하기
 	@RequestMapping(value = "modifyProduct.do")
 	public String modifyProduct(ProductVO vo) {
 		System.out.println("=>UserController.java::modifyProduct.do");
@@ -61,13 +60,14 @@ public class UserController {
 		return "redirect:shop_m.do";
 	}
 
-	// func: manager deleting goods or beans
+	// 메니저가 재품 삭제하기
 	@RequestMapping(value = "deleteProduct.do")
 	public String deleteProduct(ProductVO vo) {
 		System.out.println("=>UserController.java::deleteProduct.do");
 		userService.deleteProduct(vo);
 		File file = new File(
 				"D:\\springspace\\springweb\\sj\\src\\main\\webapp\\resources\\assets\\img\\products\\" + vo.getImg());
+		// 절대 경로로 이지지를 없엘 경로를 지정해준다. sj 아래서부터는 같음
 		if (file.exists()) {
 			file.delete();
 		}
@@ -76,6 +76,7 @@ public class UserController {
 	// ---manager product end
 
 	// ---manager contact
+	// 메니저가 질문에 응답 삽입
 	@RequestMapping(value = "insertAnswer.do")
 	public String insertAnswer(AnswerVO vo) {
 		System.out.println("=>UserController.java::insertAnswer.do");
@@ -83,9 +84,9 @@ public class UserController {
 		return "redirect:contact_m.do";
 	}
 	// ---manager contact end
-	// ---manager login
 
-	// func: registering new manager to db
+	// ---manager login
+	// 새로운 메니저 삽입
 	@RequestMapping(value = "insertManager.do", method = RequestMethod.POST)
 	public String insertManager(ManagerVO vo) {
 		System.out.println("=>UserController.java::insertManager.do");
@@ -98,7 +99,7 @@ public class UserController {
 		return "redirect:registration_m_complete.do";
 	}
 
-	// func: checking login for manager
+	// 메니저 로그인 확인
 	@RequestMapping(value = "loginManager.do")
 	public String loginManager(ManagerVO vo, HttpSession session) {
 		System.out.println("=>UserController.java::loginManager.do");
@@ -117,16 +118,16 @@ public class UserController {
 		return "redirect:login_m.do";
 	}
 
-	// func: logging out for manager
+	// 메니저 로그아웃
 	@RequestMapping(value = "logout_m.do")
 	public String logout_m(HttpServletRequest request) {
 		HttpSession session = request.getSession(true);
 		session.invalidate();
 		return "redirect:index_m.do";
 	}
-
 	// ---manager login end
-
+	
+	// 주문 지우기
 	@RequestMapping("deleteOrder.do")
 	public String deleteOrder(Integer lono) {
 		userService.deleteOrders(lono);
@@ -134,120 +135,68 @@ public class UserController {
 		return "redirect:index_m.do";
 	}
 
+	// 대답이 없는 질문들 리스트
 	@RequestMapping("contact_m.do")
 	public void contact_m(Model m) {
 		List<ListOrderVO> list = userService.getQuestionList();
 		m.addAttribute("questionList", list);
 	}
 
-	@RequestMapping("login_m")
-	public void login_m() {
-
-	}
-
+	// 메니저에게 고객들 주문 내역들 보이기
 	@RequestMapping("index_m.do")
 	public void index_m(Model m) {
 		List<HashMap> list = userService.getCustomersOrders();
 		m.addAttribute("getCustomersOrders", list);
 	}
-
-	@RequestMapping("registration_m_complete.do")
-	public void registration_m_complete() {
-
-	}
-
-	@RequestMapping("registration_m_incomplete.do")
-	public void registration_m_incomplete() {
-
-	}
-
-	@RequestMapping("registration_m.do")
-	public void registration_m() {
-
-	}
-
+	
+	// BEANS list 가져요기 (페이징 포함)
 	@RequestMapping("shop_m.do")
-	public void shop_m(Model m, CriteriaVO cri) throws Exception {
-		List<ProductVO> list = userService.getProductList(cri);
+	public void shop_m(Model m) {
+		List<ProductVO> list = userService.getAllProductList();
 		m.addAttribute("productList", list);
-		}
+	}
+	
 
+	// GOODS list 가져오기 (페이징 포함)
 	@RequestMapping("shop2_m.do")
-	public void shop2_m(Model m, CriteriaVO cri) throws Exception {
-		List<ProductVO> list = userService.getProductList2(cri);
-		m.addAttribute("productList", list);
-	}
-
-	@RequestMapping("single_product_m.do")
-	public void singleProduct_m() {
-
-	}
-
-	@RequestMapping("single_product_addBeans_m.do")
-	public void single_product_addBeans_m() {
-
-	}
-
-	@RequestMapping("single_product_addCapule_m.do")
-	public void single_product_addCapsule_m() {
-
-	}
-
-	@RequestMapping("single_product_addDripbag_m.do")
-	public void single_product_addDripbag_m() {
-
-	}
-
-	@RequestMapping("single_product_addExtraction_m.do")
-	public void single_product_addExtraction_m() {
-
-	}
-
-	@RequestMapping("single_product_addGrinder_m.do")
-	public void single_product_addGrinder_m() {
-
-	}
-
-	@RequestMapping("single_product_addCup_m.do")
-	public void single_product_addCup_m() {
-
-	}
-
-	@RequestMapping("single_product_modify_m.do")
-	public void single_product_modify_m() {
-
+	public void shop2_m(Model m)  {
+		List<ProductVO> list = userService.getAllProductList2();
+		m.addAttribute("productList2", list);
 	}
 
 	// ----------------------------------manager end
 
 	// ----------------------------------user
 	// ---user product
+	// 장바구니에서 상품 지우기
 	@RequestMapping(value = "removeCart.do")
 	public String removeCart(ListOrderVO vo) {
 		userService.removeCart(vo);
 		return "redirect:cart.do?cno=" + vo.getCno();
 	}
 
+	// 장바구니 물품 갯수 수정 
 	@RequestMapping(value = "updateCart.do")
-	public String updateCart(ListOrderVO vo) { // gets pno, cno, ocnt
+	public String updateCart(ListOrderVO vo) { // pno, cno, ocnt 를 가져옴
 		userService.updateCart(vo);
 		return "redirect:cart.do?cno=" + vo.getCno();
 	}
 
+	// 장바구니에 더하기 (업데이트 하기)
 	@RequestMapping(value = "addCart.do")
 	public String addCart(ListOrderVO vo, Model m) {
-		System.out.println("=>UserController.java::addCart.do");
-		ListOrderVO exists = userService.selectCart(vo); // if pno cno exists in the cart
+		// 장바구니에 고객이 산 상품의 갯수
+		ListOrderVO exists = userService.selectCart(vo); // 만약 pno cno 가 장바구니 안에 있다면
 		int req = 0;
+		//만약 장바구니에 exist 제품이 없다면 insert, 있다면 overwrite
 		if (exists == null)
 			req = userService.insertCart(vo);
 		else
 			req = userService.updateCart(vo);
-
 		if (req == 1) {
-			List<HashMap> list = userService.getCartList(vo); // selectItemToCart
+			List<HashMap> list = userService.getCartList(vo);
 			m.addAttribute("getCartList", list);
-
+			//자기의 카트로 다시 가게 하기
 			return "redirect:cart.do?cno=" + vo.getCno();
 		} else {
 			return "redirect:404.do";
@@ -256,6 +205,7 @@ public class UserController {
 	// ---user product end
 
 	// ---user contact
+	// 고객이 질문하기
 	@RequestMapping(value = "insertQustion.do")
 	public String insertQustion(QuestionVO vo) {
 		System.out.println("=>UserController.java::insertQustion.do");
@@ -265,17 +215,19 @@ public class UserController {
 		return "redirect:contact.do";
 	}
 
+	// 고객이 질문 지우기
 	@RequestMapping("questionDelete.do")
 	public String questionDelete(AnswerVO avo, QuestionVO vo) {
 		System.out.println("=>UserController.java::questionDelete.do");
-		userService.answerDelete(avo);
-		userService.questionDelete(vo);
+		userService.deleteAnswer(avo);
+		//만약 답변이 달린 경우 먼저 지우고 질문을 지우기
+		userService.deleteQuestion(vo);
 		return "redirect:mypage.do";
 	}
 	// ---user contact end
 
 	// ---user login
-	// func: registration for new customer
+	// 새로운 고객을 추가함
 	@RequestMapping(value = "insertCustomer.do", method = RequestMethod.POST)
 	public String insertCustomer(CustomerVO vo) {
 		System.out.println("=>UserController.java::insertCustomer.do");
@@ -288,7 +240,7 @@ public class UserController {
 		return "redirect:registration_complete.do";
 	}
 
-	// func: checking login for customer
+	// 고객 로그인 확인
 	@RequestMapping(value = "loginCustomer.do")
 	public String loginCustomer(CustomerVO vo, HttpSession session) {
 		System.out.println("=>UserController.java::loginCustomer.do");
@@ -309,7 +261,7 @@ public class UserController {
 		return "redirect:login.do";
 	}
 
-	// func: logging out customer
+	// 고객 로그아웃
 	@RequestMapping(value = "logout.do")
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession(true);
@@ -317,8 +269,9 @@ public class UserController {
 		session.invalidate();
 		return "redirect:index.do";
 	}
+	
 
-	// func: recording customer behavior into fileLog.txt
+	// fileLog.txt 로 고객이 하는 일<strToWrite> 을 시간과 함께 적음
 	public void logCustomer(String strToWrite, HttpSession session) {
 		try {
 			File myObj = new File("fileLog.txt");
@@ -340,103 +293,90 @@ public class UserController {
 			e.printStackTrace();
 		}
 	}// logCustomer
-		// ---user login end\
-
-	@RequestMapping("404.do")
-	public void notfound() {
-
+	
+	// 고객 회원정보 수정
+	@RequestMapping(value = "modifyCustomer.do", method = RequestMethod.POST)
+	public String modifyCustomer(CustomerVO vo, HttpSession session) {
+		//데이터베이스에서 고객정보 수정		
+		userService.modifyCustomer(vo);
+		
+		//수정값을 세션값에 저장
+		session.setAttribute("loginName", vo.getName());
+		session.setAttribute("loginGender", vo.getGender());
+		session.setAttribute("loginId", vo.getId());
+		session.setAttribute("loginPw", vo.getPw());
+		session.setAttribute("loginTel", vo.getTel());
+		session.setAttribute("loginEmail", vo.getEmail());
+		session.setAttribute("loginAddr", vo.getAddr());
+		
+		//수정 후 mypage로 이동
+		return "redirect:mypage.do";
+		
 	}
+	@RequestMapping("deleteMember.do")
+	public String deleteMember(CustomerVO cvo, QuestionVO qvo, ListOrderVO lvo, AnswerVO avo) {
+	
+		return "redirect:index.do";
+	}
+	// ---user login end
 
+	// 장바구니 리스트
 	@RequestMapping("cart.do")
 	public void cart(ListOrderVO vo, Model m) {
 		List<HashMap> list = userService.getCartList(vo);
 		m.addAttribute("getCartList", list);
 	}
 
+	// 장바구니 리스트
 	@RequestMapping("checkout.do")
 	public void checkout(ListOrderVO vo, Model m) {
 		List<HashMap> list = userService.getCartList(vo);
 		m.addAttribute("getCartList", list);
 	}
 
-	@RequestMapping("contact_complete.do")
-	public void contact_complete() {
-
-	}
-
-	@RequestMapping("contact.do")
-	public void contact() {
-
-	}
-
+	// 상품 목록 리스트
 	@RequestMapping("index.do")
 	public void index(Model m, CriteriaVO cri) throws Exception {
 		List<ProductVO> list = userService.getProductList(cri);
 		m.addAttribute("productList", list);
-		}
-
-	@RequestMapping("login.do")
-	public void login() {
-
 	}
 
+	// 마이 페이지의 주문 목록, 질의 목록
 	@RequestMapping("mypage.do")
 	public void mypage(Model m, HttpSession session) {
-		// CustomerVO cvo, QuestionVO qvo,
-		// System.out.println("cvo:"+cvo);
-		// System.out.println("qvo:"+qvo);
 		Integer cno = 0;
 		Object obj = session.getAttribute("loginCno");
 		if (obj != null)
 			cno = (Integer) obj;
+		//주문 목록
 		List<HashMap> list1 = userService.getOrdersList(cno);
 		m.addAttribute("OrdersList", list1);
+		// 질문응답 목록
 		List<HashMap> list = userService.getQuestionAnswer(cno);
 		m.addAttribute("questionAnswerList", list);
-		/*
-		 * for(HashMap map: list) { System.out.println(map); }
-		 */
 	}
 
-	@RequestMapping("registration_complete.do")
-	public void registration_complete() {
-
-	}
-
-	@RequestMapping("registration_incomplete.do")
-	public void registration_incomplete() {
-
-	}
-
-	@RequestMapping("pay_incomplete.do")
-	public void pay_incomplete() {
-
-	}
-
-	@RequestMapping("pay_complete.do")
-	public void pay_complete() {
-
-	}
-
+	// 결제하기
 	@RequestMapping("pay_mid_complete.do")
 	public String pay_complete(String cno, String addr) {
 		ListOrderVO vo = new ListOrderVO();
 		vo.setCno(Integer.valueOf(cno));
-		// cart
+		// 장바구니
 		List<HashMap> list = userService.getCartList(vo);
-		// for cart items
+		// 장바구니에 있는 제품 목록들을 보고
 		for (HashMap m : list) {
-			// check if the stock is available
+			// 한 제품의 재고가 있는지 확인, 뺄수 있는지 확인
 			int stock = userService.selectStock(Integer.valueOf(String.valueOf(m.get("PNO"))));
 			int checkStock = stock - Integer.valueOf(String.valueOf(m.get("OCNT")));
-			// no stock, add back values that were subtracted from stock
-			if (checkStock < 0) {
-				for (HashMap m3 : list) { // for cart items
+			// 만약 재고가 없거나, 부족하면 재고에서 빠진 제품들의 ocnt 를 다시 더해준다
+			if (checkStock < 0) { // 다른 방법으로는 재고가 있는지 확인을 밖의 for loop 에서 확인하고 빼는 방법도 있을 것이다 
+				for (HashMap m3 : list) { //하지만 단 한번의 for loop를 사용하기 위해 안의 for loop을 돌리고 break 을 쓴다
 					stock = userService.selectStock(Integer.valueOf(String.valueOf(m3.get("PNO"))));
 					checkStock = stock - Integer.valueOf(String.valueOf(m3.get("OCNT")));
+					// 재고가 ocnt 보다 적은 경우 break 해서 더이상 빠진 것들이 없기 때문에 더해주지 않는다
 					if (checkStock < 0)
-						break; // when you reach the part where stock is less than the ordered
-					System.out.println("CHECKING STOCK : " + m3 + checkStock);
+						break; 
+					//이미 빠져버린 값들을 다시 더해준다 (rollback의 개념)
 					HashMap map2 = new HashMap();
 					map2.put("pno", m3.get("PNO"));
 					map2.put("ocnt", m3.get("OCNT"));
@@ -444,23 +384,24 @@ public class UserController {
 				}
 				return "redirect:pay_incomplete.do";
 			} else {
-				// if stock > order, decrease stock
+				// 만약 stock > ocnt, stock 을 줄인다
 				HashMap map2 = new HashMap();
 				map2.put("pno", m.get("PNO"));
 				map2.put("ocnt", m.get("OCNT"));
 				userService.decreaseStock(map2);
 			} // else
 		} // for
-			// making finished_order object
+		
+		// 주문처리를 위해 주문 번호를 미리 만든다
 		int lono = userService.selectLono();
 		HashMap map = new HashMap();
 		map.put("cno", vo.getCno());
 		map.put("addr", addr);
 		map.put("lono", lono);
-		// insert into Finshed_Order
+		// 주문을 때린다
 		int result = userService.insertOrder(map);
 		if (result > 0) {
-			// insert into Orders if order is made
+			// 만약 주문이 만들어 졌으면 장바구니에 있는 리스트를 주문으로 옮긴다
 			list = userService.getCartList(vo);
 			for (HashMap m : list) {
 				HashMap map2 = new HashMap();
@@ -468,18 +409,13 @@ public class UserController {
 				map2.put("pno", m.get("PNO"));
 				map2.put("ocnt", m.get("OCNT"));
 				result = userService.insertOrders(map2);
-				// delete Cart when Orders are Finished
-				userService.deleteCart(vo);
 			} // for
+			// 주문이 끝나면 장바구니를 지운다
+			userService.deleteCart(vo);
 		} // if
 		return "redirect:pay_complete.do";
 	}
-
-	@RequestMapping("registration")
-	public void registration() {
-
-	}
-
+	
 	@RequestMapping(value = "shop.do", method = RequestMethod.GET)
 	public String shop(Model m, CriteriaVO cri) throws Exception {
 
@@ -494,6 +430,47 @@ public class UserController {
 		return "shop";
 	}
 
+	@RequestMapping(value = "shop_capsule.do", method = RequestMethod.GET)
+	public String shop_capsule(Model m, CriteriaVO cri) throws Exception {
+
+		m.addAttribute("productList", userService.getProductList_1(cri));
+
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(userService.listCount());
+
+		m.addAttribute("pageMaker", pageMaker);
+
+		return "shop_capsule";
+	}
+	
+	@RequestMapping(value = "shop_dripbag.do", method = RequestMethod.GET)
+	public void shop_dripbag(Model m, CriteriaVO cri) throws Exception {
+
+		m.addAttribute("productList", userService.getProductList_2(cri));
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(userService.listCount());
+
+		m.addAttribute("pageMaker", pageMaker);
+
+	}
+	
+	@RequestMapping(value = "shop_beans.do", method = RequestMethod.GET)
+	public String shop_beans(Model m, CriteriaVO cri) throws Exception {
+
+		m.addAttribute("productList", userService.getProductList_3(cri));
+
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(userService.listCount());
+
+		m.addAttribute("pageMaker", pageMaker);
+
+		return "shop_beans";
+	}
+	
 	@RequestMapping(value = "shop2.do",  method = RequestMethod.GET)
 	public String shop2(Model m, CriteriaVO cri) throws Exception {
 		System.out.println("shop2.do 요청");
@@ -509,41 +486,90 @@ public class UserController {
 
 		return "shop2";
 	}
+	
+	@RequestMapping(value = "shop2_extraction.do",  method = RequestMethod.GET)
+	public String shop2_extraction(Model m, CriteriaVO cri) throws Exception {
+		List<ProductVO> list = userService.getProductList2_1(cri);
+		m.addAttribute("productList", list);
+		//System.out.println("list.size()" + list.size());
 
-	@RequestMapping("single_product.do")
-	public void single_product() {
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(userService.listCount());
 
+		m.addAttribute("pageMaker", pageMaker);
+
+		return "shop2_extraction";
+	}
+	
+	@RequestMapping(value = "shop2_grinder.do",  method = RequestMethod.GET)
+	public String shop2_grinder(Model m, CriteriaVO cri) throws Exception {
+		List<ProductVO> list = userService.getProductList2_2(cri);
+		m.addAttribute("productList", list);
+		//System.out.println("list.size()" + list.size());
+
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(userService.listCount());
+
+		m.addAttribute("pageMaker", pageMaker);
+
+		return "shop2_grinder";
+	}
+	
+	@RequestMapping(value = "shop2_cup.do",  method = RequestMethod.GET)
+	public String shop2_cup(Model m, CriteriaVO cri) throws Exception {
+		List<ProductVO> list = userService.getProductList2_3(cri);
+		m.addAttribute("productList", list);
+		//System.out.println("list.size()" + list.size());
+
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(userService.listCount());
+
+		m.addAttribute("pageMaker", pageMaker);
+
+		return "shop2_cup";
 	}
 
 	// ----------------------------------user end
-	@ResponseBody 
-	@RequestMapping("sales/{year}") 
-	public List<Map<String,Object>> getSalesByYear(@PathVariable String year){
-		return userService.getSalesListBy(year); 
-	} 
-	@ResponseBody 
-	@RequestMapping("countsales/{year}") 
-	public List<Map<String,Object>> getCountSalesByYear(@PathVariable String year){
-		return userService.getCountSalesListBy(year); 
-	} 
-	
+	// index_m 의 차트를 위해 월별 매출액을 얻어오기
+	@ResponseBody
+	@RequestMapping("sales/{year}")
+	public List<Map<String, Object>> getSalesByYear(@PathVariable String year) {
+		return userService.getSalesListBy(year);
+	}
+
+	// index_m의 차트를 위해 월별 매출 건수 얻어오기
+	@ResponseBody
+	@RequestMapping("countsales/{year}")
+	public List<Map<String, Object>> getCountSalesByYear(@PathVariable String year) {
+		return userService.getCountSalesListBy(year);
+	}
+
+	// 상품검색
 	@RequestMapping("shop_search.do")
-	public void shop_search(String searchKeyword,Model m) {
-		
-		System.out.println("searchKeyword : "+  searchKeyword);
-//		searchKeyword = searchKeyword + "&";
+	public void shop_search(String searchKeyword, Model m) {
+
+		System.out.println("searchKeyword : " + searchKeyword);
 		HashMap map = new HashMap();
 		map.put("searchKeyword", searchKeyword);
-		
-		List<ProductVO>list = userService.shop_search(map);
-		
-		System.out.println(list.size());
-		
-		m.addAttribute("productList",list);
+
+		List<ProductVO> list = userService.shop_search(map);
+
+		m.addAttribute("productList", list);
 	}
-	
-	@RequestMapping("modify.do")
-	public void modify() {
-		
+
+	// request를 받으면 똑같은 이름으로 답하기
+	@RequestMapping("{url}.do")
+	public String userPage(@PathVariable String url) {
+		System.out.println("확인");
+		return url;
+		// [/WEB-INF/views/*]로 받음
 	}
+	// 다른 방법
+	// @RequestMapping("<fileName>")
+	// public void <fileName>() {
+	//
+	// }
 }
