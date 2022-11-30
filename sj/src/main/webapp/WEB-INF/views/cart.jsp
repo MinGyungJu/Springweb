@@ -56,7 +56,7 @@
 						<!-- logo -->
 						<div class="site-logo">
 							<a href="index.do">
-								<img src="<%=pjName%>resources/assets/img/logo.png" alt="">
+								<img src="<%=pjName%>resources/assets/img/logo.png">
 							</a>
 						</div>
 						<!-- logo -->
@@ -161,7 +161,7 @@
 								<tr class="table-body-row">
 	 								<!--when product-quantity is changed, main.js is called with on change func -->
 										<td class="product-remove"><a href="removeCart.do?cno=${sessionScope.loginCno}&pno=${cart.PNO}"><i class="far fa-window-close"></i></a></td>
-										<td class="product-image"><img src="<%=pjName%>resources/assets/img/products/${cart.IMG}" alt=""></td>
+										<td class="product-image"><img src="<%=pjName%>resources/assets/img/products/${cart.IMG}"></td>
 										<td class="product-name">${cart.PNAME}</td>
 										<td class="product-price">${cart.PRICE}</td>
 										<td class="product-quantity" pno="${cart.PNO}"><input type="number" id="ocnt" value="${cart.OCNT}" min="0" ></td>
@@ -222,19 +222,19 @@
 				<div class="col-lg-12">
 					<div class="logo-carousel-inner">
 						<div class="single-logo-item">
-							<img src="<%=pjName%>resources/assets/img/company-logos/1.png" alt="">
+							<img src="<%=pjName%>resources/assets/img/company-logos/1.png">
 						</div>
 						<div class="single-logo-item">
-							<img src="<%=pjName%>resources/assets/img/company-logos/2.png" alt="">
+							<img src="<%=pjName%>resources/assets/img/company-logos/2.png">
 						</div>
 						<div class="single-logo-item">
-							<img src="<%=pjName%>resources/assets/img/company-logos/3.png" alt="">
+							<img src="<%=pjName%>resources/assets/img/company-logos/3.png">
 						</div>
 						<div class="single-logo-item">
-							<img src="<%=pjName%>resources/assets/img/company-logos/4.png" alt="">
+							<img src="<%=pjName%>resources/assets/img/company-logos/4.png">
 						</div>
 						<div class="single-logo-item">
-							<img src="<%=pjName%>resources/assets/img/company-logos/5.png" alt="">
+							<img src="<%=pjName%>resources/assets/img/company-logos/5.png">
 						</div>
 					</div>
 				</div>

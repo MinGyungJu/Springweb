@@ -159,8 +159,9 @@
 						        	<form method="POST" id="login-customer" action="loginCustomer.do">
 						        		<p><input type="text" placeholder="Id" name="id" id="id"></p>
 						        		<p><input type="password" placeholder="Password" name="pw" id="pw"></p><br/>
-										<input type="submit" class="boxed-btn" value="Login"> &nbsp&nbsp&nbsp
+										<input type="submit" class="boxed-btn" value="Login"> &nbsp;&nbsp;&nbsp;
 										<a href="registration.do" class="boxed-btn">Registeration</a>
+										<a href="find_password.do" class="boxed-btn">Find Password</a>
 						        	</form>
 						        </div>
 						      </div>

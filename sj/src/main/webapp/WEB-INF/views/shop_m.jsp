@@ -61,7 +61,7 @@
 						<!-- logo -->
 						<div class="site-logo">
 							<a href="index_m.do">
-								<img src="<%=pjName%>resources/assets/img/logo.png" alt="">
+								<img src="<%=pjName%>resources/assets/img/logo.png">
 							</a>
 						</div>
 						<!-- logo -->
@@ -107,7 +107,7 @@
 					<span class="close-btn"><i class="fas fa-window-close"></i></span>
 					<div class="search-bar">
 						<div class="search-bar-tablecell">
-							<form action="shop_search.do">
+							<form action="shop_search_m.do">
 								<h3>Search For:</h3>
 								<input type="text" placeholder="Keywords" name='searchKeyword'>
 								<button type="submit">Search <i class="fas fa-search"></i></button>
@@ -157,7 +157,7 @@
 					<div class="col-lg-4 col-md-6 text-center capsule dripbag beans">
 						<div class="single-product-item">
 							<div class="product-image clickable-div" onclick="location.href='single_product_addBeans_m.do';">
-								<img src="<%=pjName%>resources/assets/img/products/plus.jpg" alt="">
+								<img src="<%=pjName%>resources/assets/img/products/plus.jpg">
 							</div>
 							<h3>Add Beans</h3>
 							<p class="product-price"><span>Per Kg</span> - </p> 
@@ -166,7 +166,7 @@
 					<div class="col-lg-4 col-md-6 text-center capsule dripbag beans">
 						<div class="single-product-item">
 							<div class="product-image clickable-div" onclick="location.href='single_product_addDripbag_m.do';">
-								<img src="<%=pjName%>resources/assets/img/products/plus.jpg" alt="">
+								<img src="<%=pjName%>resources/assets/img/products/plus.jpg">
 							</div>
 							<h3>Add Dripbag</h3>
 							<p class="product-price"><span>Per Kg</span> - </p> 
@@ -175,7 +175,7 @@
 					<div class="col-lg-4 col-md-6 text-center capsule dripbag beans">
 						<div class="single-product-item">
 							<div class="product-image clickable-div" onclick="location.href='single_product_addCapsule_m.do';">
-								<img src="<%=pjName%>resources/assets/img/products/plus.jpg" alt="">
+								<img src="<%=pjName%>resources/assets/img/products/plus.jpg">
 							</div>
 							<h3>Add Capsule</h3>
 							<p class="product-price"><span>Per Kg</span> - </p> 
@@ -186,10 +186,10 @@
 							<div class="single-product-item">
 								<div class="product-image clickable-div" onclick="location.href='single_product_modify_m.do?pno=${product.PNO}&img=${product.IMG}&pname=${product.PNAME}&price=${product.PRICE}&description=${product.DESCRIPTION}&stock=${product.STOCK}';">
 								<c:if test="${product.IMG == null}">
-                             		<img src="<%=pjName%>resources/assets/img/products/noImage.jpg" alt="">
+                             		<img src="<%=pjName%>resources/assets/img/products/noImage.jpg">
                            		</c:if>
 		                        <c:if test="${product.IMG != null}">
-		                            <img src="<%=pjName%>resources/assets/img/products/${product.IMG}" alt="">
+		                            <img src="<%=pjName%>resources/assets/img/products/${product.IMG}">
 		                        </c:if>
 								</div>
 								<h3>${product.PNAME}</h3>
@@ -222,14 +222,14 @@
 	<div class="footer-area">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-3 col-md-6">
+				<div class="col-lg-4 col-md-6">
 					<div class="footer-box about-widget">
 						<h2 class="widget-title">About us</h2>
 						<p>We are proudly serving coffee beans and coffee related products to our customer. 
 							Our duty is to please the customer with the best tasting bean and perfectly match the preferences of coffee.</p>
 					</div>
 				</div>
-				<div class="col-lg-3 col-md-6">
+				<div class="col-lg-5 col-md-6">
 					<div class="footer-box get-in-touch">
 						<h2 class="widget-title">Get in Touch</h2>
 						<ul>

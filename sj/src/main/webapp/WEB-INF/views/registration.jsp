@@ -56,7 +56,7 @@
                   <!-- logo -->
                   <div class="site-logo">
                      <a href="index.do">
-                        <img src="<%=pjName%>resources/assets/img/logo.png" alt="">
+                        <img src="<%=pjName%>resources/assets/img/logo.png">
                      </a>
                   </div>
                   <!-- logo -->

@@ -4,10 +4,17 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
+import java.util.Random;
 
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -313,11 +320,27 @@ public class UserController {
 		return "redirect:mypage.do";
 		
 	}
+	// 회원 정보 삭제 (모든 정보를 삭제함)
 	@RequestMapping("deleteMember.do")
-	public String deleteMember(CustomerVO cvo, QuestionVO qvo, ListOrderVO lvo, AnswerVO avo) {
-	
-		return "redirect:index.do";
-	}
+	public String deleteMember(int cno, AnswerVO avo, CustomerVO cvo, QuestionVO qvo, ListOrderVO lvo, HttpServletRequest request) {
+		// 모든 답변 삭제
+		userService.deleteAllAnswer(avo);
+		// 장바구니 삭제
+		userService.deleteCart(lvo);
+		// 질문 삭제
+		userService.deleteAllQuestion(qvo);
+		// 주문 목록을 뽑아와서 주문 내역 삭제
+		List<HashMap> list1 = userService.getOrdersList(cvo.getCno());
+		for(HashMap map : list1) {
+			int lono = Integer.valueOf(String.valueOf(map.get("LONO")));
+			userService.deleteAllOrders(lono);
+			userService.deleteAllOrder(lono);
+		}
+		// 회원 삭제
+		userService.deleteCustomer(cvo);
+		logout(request);
+		return "redirect:delete_member_complete.do";
+		}
 	// ---user login end
 
 	// 장바구니 리스트
@@ -559,7 +582,21 @@ public class UserController {
 
 		m.addAttribute("productList", list);
 	}
+	
+	// 상품검색
+	@RequestMapping("shop_search_m.do")
+	public void shop_search_m(String searchKeyword, Model m) {
 
+		System.out.println("searchKeyword : " + searchKeyword);
+		HashMap map = new HashMap();
+		map.put("searchKeyword", searchKeyword);
+
+		List<ProductVO> list = userService.shop_search(map);
+
+		m.addAttribute("productList", list);
+	}
+
+	
 	// request를 받으면 똑같은 이름으로 답하기
 	@RequestMapping("{url}.do")
 	public String userPage(@PathVariable String url) {
@@ -572,4 +609,97 @@ public class UserController {
 	// public void <fileName>() {
 	//
 	// }
+	
+	@RequestMapping(value = "find_password.do")
+	public void find_password() {
+		
+	}
+	
+	@RequestMapping(value = "mail.do")
+	public String mail(String email, String id) {
+		System.out.println("MAIL : : : : : : : : : : : : : : : : : : : :");
+		HashMap map = new HashMap();
+		map.put("email",email);
+		map.put("id", id);
+		
+		List<CustomerVO> existingCustomer = userService.getCustomer(map);
+		System.out.println("The customer with id and email exists: " + existingCustomer);
+		
+		String temporaryPassword = "";
+		if(existingCustomer.size() == 0 || existingCustomer == null) {
+			System.out.println(existingCustomer);
+			return "redirect:sendmail_incomplete.do";
+			
+		}else {
+			//이메일 보내기
+		    String username = "icecream1213@naver.com";
+		    String password = "bellaC480@1212";
+		    String recipient = email;
+
+		    Properties props = new Properties();
+
+		    props.put("mail.smtp.host", "smtp.naver.com");
+		    props.put("mail.smtp.ssl.protocols", "TLSv1.2");
+		    props.put("mail.smtp.ssl.trust", "smtp.naver.com");
+		    props.put("mail.from", "icecream1213@naver.com");
+		    props.put("mail.smtp.starttls.enable", "true");
+		    props.put("mail.smtp.port", "587");
+		    props.setProperty("mail.debug", "true");
+
+		    Session session = Session.getInstance(props, null);
+		    MimeMessage msg = new MimeMessage(session);
+		    
+		    //임시 비밀번호 만들기
+		    try {
+		    msg.setFrom();
+		    msg.setRecipients(Message.RecipientType.TO, recipient);
+		    msg.setSubject("Reply for your request for <password change>");
+		    msg.setSentDate(new Date());
+		    
+		    //임시 비밀번호 만들기
+		    int leftLimit = 97; // letter 'a'
+		    int rightLimit = 122; // letter 'z'
+		    int targetStringLength = 6;
+		    Random random = new Random();
+		    StringBuilder buffer = new StringBuilder(targetStringLength);
+		    for (int i = 0; i < targetStringLength; i++) {
+		        int randomLimitedInt = leftLimit + (int) 
+		          (random.nextFloat() * (rightLimit - leftLimit + 1));
+		        buffer.append((char) randomLimitedInt);
+		    }
+		    temporaryPassword = buffer.toString();
+
+		    msg.setText("The temporary password is : \n" + temporaryPassword);
+
+		    Transport transport = session.getTransport("smtp");
+
+		    transport.connect(username, password);
+		    transport.sendMessage(msg, msg.getAllRecipients());
+		    transport.close();
+		    
+		    }catch(Exception e) {
+		    	System.out.println(e);
+		    }//catch
+		    
+		    System.out.println(temporaryPassword);
+		    
+		    //이메일을 보낸 후 로그인 할때 임시 비밀번호도 적용이 되게하기
+		    List<CustomerVO> list = userService.getCustomerInfo(map);
+		    	
+		    //CustomerVO 객체를 하나 더 만들어 temporary pw 를 저장한다
+		    CustomerVO vo = new CustomerVO();
+		    vo.setCno(list.get(0).getCno());
+		    vo.setAddr(list.get(0).getAddr());
+		    vo.setEmail(list.get(0).getEmail());
+		    vo.setGender(list.get(0).getGender());
+		    vo.setId(list.get(0).getId());
+		    vo.setName(list.get(0).getName());
+		    vo.setPw(temporaryPassword);
+		    vo.setTel(list.get(0).getTel());
+		    userService.insertCustomer(vo);		    
+		    
+		}//else
+		
+		return "redirect:sendmail_complete.do";
+    }//mail
 }

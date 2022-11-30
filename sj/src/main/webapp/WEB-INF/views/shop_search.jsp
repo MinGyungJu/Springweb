@@ -62,7 +62,7 @@
 						<!-- logo -->
 						<div class="site-logo">
 							<a href="index.do">
-								<img src="<%=pjName%>resources/assets/img/logo.png" alt="">
+								<img src="<%=pjName%>resources/assets/img/logo.png">
 							</a>
 						</div>
 						<!-- logo -->
@@ -147,28 +147,16 @@
 	<!-- products -->
 	<div class="product-section mt-150 mb-150">
 		<div class="container">
-			<div class="row">
-                <div class="col-md-12">
-                    <div class="product-filters">
-                        <ul>
-                            <li class="active" data-filter="*">All</li>
-                            <li data-filter=".capsule">Capsule</li>
-                            <li data-filter=".dripbag">Dripbag</li>
-                            <li data-filter=".beans">Beans</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
 			<div class="row product-lists">
 				<c:forEach items="${productList}" var="product"> 
 					<div class="col-lg-4 col-md-6 text-center ${product.type}">
 						<form action="single_product.do" >
 							<div class="single-product-item"> 
 								<c:if test="${product.img != null}">
-									<div class="product-image"><img src="<%=pjName%>resources/assets/img/products/${product.img}" alt=""></div>
+									<div class="product-image"><img src="<%=pjName%>resources/assets/img/products/${product.img}"></div>
 								</c:if>
 								<c:if test="${product.img == null}">
-									<div class="product-image"><img src="<%=pjName%>resources/assets/img/products/noImage.jpg" alt=""></div>
+									<div class="product-image"><img src="<%=pjName%>resources/assets/img/products/noImage.jpg"></div>
 								</c:if> 
 								<h3>${product.pname}</h3>
 								<p class="product-price"><span>Per Kg</span> ${product.price}$ </p> 
@@ -189,19 +177,6 @@
 					</div>
 				</c:forEach>
 			</div>
-			<div class="row">
-				<div class="col-lg-12 text-center">
-					<div class="pagination-wrap">
-						<ul>
-							<li><a href="#">Prev</a></li>
-							<li><a href="#">1</a></li>
-							<li><a class="active" href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">Next</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
 	<!-- end products -->
@@ -213,19 +188,19 @@
 				<div class="col-lg-12">
 					<div class="logo-carousel-inner">
 						<div class="single-logo-item">
-							<img src="<%=pjName%>resources/assets/img/company-logos/1.png" alt="">
+							<img src="<%=pjName%>resources/assets/img/company-logos/1.png">
 						</div>
 						<div class="single-logo-item">
-							<img src="<%=pjName%>resources/assets/img/company-logos/2.png" alt="">
+							<img src="<%=pjName%>resources/assets/img/company-logos/2.png">
 						</div>
 						<div class="single-logo-item">
-							<img src="<%=pjName%>resources/assets/img/company-logos/3.png" alt="">
+							<img src="<%=pjName%>resources/assets/img/company-logos/3.png">
 						</div>
 						<div class="single-logo-item">
-							<img src="<%=pjName%>resources/assets/img/company-logos/4.png" alt="">
+							<img src="<%=pjName%>resources/assets/img/company-logos/4.png">
 						</div>
 						<div class="single-logo-item">
-							<img src="<%=pjName%>resources/assets/img/company-logos/5.png" alt="">
+							<img src="<%=pjName%>resources/assets/img/company-logos/5.png">
 						</div>
 					</div>
 				</div>

@@ -62,7 +62,7 @@
 						<!-- logo -->
 						<div class="site-logo">
 							<a href="index_m.do">
-								<img src="<%=pjName%>resources/assets/img/logo.png" alt="">
+								<img src="<%=pjName%>resources/assets/img/logo.png">
 							</a>
 						</div>
 						<!-- logo -->
@@ -108,7 +108,7 @@
 					<span class="close-btn"><i class="fas fa-window-close"></i></span>
 					<div class="search-bar">
 						<div class="search-bar-tablecell">
-							<form action="shop_search.do">
+							<form action="shop_search_m.do">
 								<h3>Search For:</h3>
 								<input type="text" placeholder="Keywords" name='searchKeyword'>
 								<button type="submit">Search <i class="fas fa-search"></i></button>
@@ -144,7 +144,7 @@
 					<div class="col-md-5">
 						<div class="single-product-img">
                   			<label for="file-input">
-                     			<img src="<%=pjName%>resources/assets/img/products/plus.jpg" alt="" onclick="src='<%=pjName%>resources/assets/img/products/minus.jpg'" >
+                     			<img src="<%=pjName%>resources/assets/img/products/plus.jpg" onclick="src='<%=pjName%>resources/assets/img/products/minus.jpg'" >
                   			</label>
                      		<input id="file-input" type="file" style="display: none;" id="img" name="file"/>
                   		</div>
@@ -177,19 +177,19 @@
 				<div class="col-lg-12">
 					<div class="logo-carousel-inner">
 						<div class="single-logo-item">
-							<img src="<%=pjName%>resources/assets/img/company-logos/1.png" alt="">
+							<img src="<%=pjName%>resources/assets/img/company-logos/1.png">
 						</div>
 						<div class="single-logo-item">
-							<img src="<%=pjName%>resources/assets/img/company-logos/2.png" alt="">
+							<img src="<%=pjName%>resources/assets/img/company-logos/2.png">
 						</div>
 						<div class="single-logo-item">
-							<img src="<%=pjName%>resources/assets/img/company-logos/3.png" alt="">
+							<img src="<%=pjName%>resources/assets/img/company-logos/3.png">
 						</div>
 						<div class="single-logo-item">
-							<img src="<%=pjName%>resources/assets/img/company-logos/4.png" alt="">
+							<img src="<%=pjName%>resources/assets/img/company-logos/4.png">
 						</div>
 						<div class="single-logo-item">
-							<img src="<%=pjName%>resources/assets/img/company-logos/5.png" alt="">
+							<img src="<%=pjName%>resources/assets/img/company-logos/5.png">
 						</div>
 					</div>
 				</div>

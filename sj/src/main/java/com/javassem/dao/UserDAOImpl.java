@@ -79,36 +79,51 @@ public class UserDAOImpl implements UserDAO {
 	// ---manager login end
 
 	// 상품 목록 조회
-	public List<ProductVO> getProductList(CriteriaVO cri) throws Exception{
-	return mybatis.selectList("UserDAO.getProductList", cri);
-	}
-	
-	public List<ProductVO> getProductList_1(CriteriaVO cri) throws Exception{
-	return mybatis.selectList("UserDAO.getProductList_1", cri);
-	}
-	
-	public List<ProductVO> getProductList_2(CriteriaVO cri) throws Exception{
-	return mybatis.selectList("UserDAO.getProductList_2", cri);
-	}
-	
-	public List<ProductVO> getProductList_3(CriteriaVO cri) throws Exception{
-	return mybatis.selectList("UserDAO.getProductList_3", cri);
+	public List<ProductVO> getProductList(CriteriaVO cri) throws Exception {
+		return mybatis.selectList("UserDAO.getProductList", cri);
 	}
 
-	public List<ProductVO> getProductList2(CriteriaVO cri) throws Exception{
+	public List<ProductVO> getProductList_1(CriteriaVO cri) throws Exception {
+		return mybatis.selectList("UserDAO.getProductList_1", cri);
+	}
+
+	public List<ProductVO> getProductList_2(CriteriaVO cri) throws Exception {
+		return mybatis.selectList("UserDAO.getProductList_2", cri);
+	}
+
+	public List<ProductVO> getProductList_3(CriteriaVO cri) throws Exception {
+		return mybatis.selectList("UserDAO.getProductList_3", cri);
+	}
+
+	public List<ProductVO> getProductList2(CriteriaVO cri) throws Exception {
 		return mybatis.selectList("UserDAO.getProductList2", cri);
 	}
-	
-	public List<ProductVO> getProductList2_1(CriteriaVO cri) throws Exception{
+
+	public List<ProductVO> getProductList2_1(CriteriaVO cri) throws Exception {
 		return mybatis.selectList("UserDAO.getProductList2_1", cri);
 	}
-	
-	public List<ProductVO> getProductList2_2(CriteriaVO cri) throws Exception{
+
+	public List<ProductVO> getProductList2_2(CriteriaVO cri) throws Exception {
 		return mybatis.selectList("UserDAO.getProductList2_2", cri);
 	}
-	
-	public List<ProductVO> getProductList2_3(CriteriaVO cri) throws Exception{
+
+	public List<ProductVO> getProductList2_3(CriteriaVO cri) throws Exception {
 		return mybatis.selectList("UserDAO.getProductList2_3", cri);
+	}
+
+	@Override
+	public List<ProductVO> getAllProductList() {
+		return mybatis.selectList("UserDAO.getAllProductList");
+	}
+
+	@Override
+	public List<ProductVO> getAllProductList2() {
+		return mybatis.selectList("UserDAO.getAllProductList2");
+	}
+
+	public List<ProductVO> shop_search(HashMap map) {
+		System.out.println("===> UserDAO.shop_search 호출");
+		return mybatis.selectList("UserDAO.shop_search", map);
 	}
 
 	// 상품 총 갯수
@@ -185,6 +200,12 @@ public class UserDAOImpl implements UserDAO {
 	public int deleteAnswer(AnswerVO vo) {
 		return mybatis.delete("UserDAO.deleteAnswer", vo);
 	}
+
+	@Override
+	public int modifyCustomer(CustomerVO vo) {
+		System.out.println("===> UserDAO.modifyCustomer 호출");
+		return mybatis.update("UserDAO.modifyCustomer", vo);
+	}
 	// ---user contact end
 
 	// ---user login
@@ -227,26 +248,43 @@ public class UserDAOImpl implements UserDAO {
 	public List<Map<String, Object>> getCountSalesListBy(String year) {
 		return mybatis.selectList("UserDAO.getCountSalesListBy", year);
 	}
-
-	public List<ProductVO> shop_search(HashMap map) {
-		System.out.println("===> UserDAO.shop_search 호출");
-		return mybatis.selectList("UserDAO.shop_search", map);
+	
+	@Override
+	public int deleteAllOrders(int lono) {
+		return mybatis.delete("UserDAO.deleteAllOrders",lono);
 	}
 
 	@Override
-	public int modifyCustomer(CustomerVO vo) {
-		System.out.println("===> UserDAO.modifyCustomer 호출");
-		return mybatis.update("UserDAO.modifyCustomer",vo);
+	public int deleteAllOrder(int lono) {
+		return mybatis.delete("UserDAO.deleteAllOrder",lono);
 	}
 
 	@Override
-	public List<ProductVO> getAllProductList() {
-		return mybatis.selectList("UserDAO.getAllProductList");
+	public int deleteCustomer(CustomerVO cvo) {
+		return mybatis.delete("UserDAO.deleteCustomer",cvo);
+	}
+
+	public int deleteAllAnswer(AnswerVO avo) {
+		return mybatis.delete("UserDAO.deleteAllAnswer",avo);
+	}
+	public int deleteAllQuestion(QuestionVO qvo) {
+		return mybatis.delete("UserDAO.deleteAllQuestion",qvo);
+	}
+	
+	@Override
+	public List<CustomerVO> getCustomer(HashMap map) {
+		return mybatis.selectList("UserDAO.getCustomer", map);
 	}
 
 	@Override
-	public List<ProductVO> getAllProductList2() {
-		return mybatis.selectList("UserDAO.getAllProductList2");
+	public List<CustomerVO> getCustomerInfo(HashMap map) {
+		return mybatis.selectList("UserDAO.getCustomerInfo",map);
 	}
+
+	@Override
+	public List<CustomerVO> duplicateCustomer(CustomerVO vo) {
+		return mybatis.selectList("UserDAO.duplicateCustomer", vo);
+	}
+
 
 }

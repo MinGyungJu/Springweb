@@ -56,7 +56,7 @@
 						<!-- logo -->
 						<div class="site-logo">
 							<a href="index.do">
-								<img src="<%=pjName%>resources/assets/img/logo.png" alt="">
+								<img src="<%=pjName%>resources/assets/img/logo.png">
 							</a>
 						</div>
 						<!-- logo -->
@@ -129,7 +129,7 @@
 			<div class="row">
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="breadcrumb-text">
-						<p>Fresh and Organic</p>
+						<p>Welcome to</p>
 						<h1>MyPage</h1>
 					</div>
 				</div>
@@ -184,7 +184,7 @@
 													<tbody>
 														<c:if test="${ordersList.LONO eq ordersList2.LONO}">
 															<tr class="table-body-row">
-																<td class="product-image"><img src="<%=pjName%>resources/assets/img/products/${ordersList2.IMG}" alt=""></td>
+																<td class="product-image"><img src="<%=pjName%>resources/assets/img/products/${ordersList2.IMG}"></td>
 																<td class="product-name">${ordersList2.PNAME}</td>
 																<td class="product-price">${ordersList2.PRICE}</td>
 																<td class="product-quantity">${ordersList2.OCNT}</td>
@@ -224,10 +224,8 @@ Question Title: ${qa.QNAME}
 Question Message: ${qa.QMESSAGE}
 
 Answer: ${qa.AMESSAGE}
-								<%-- <c:forEach var="i" begin="0" end="188"><c:out value="-" /></c:forEach> --%>
 												</textarea>
 												<a href ="questionDelete.do?cno=${sessionScope.loginCno}&qno=${qa.QNO }" class ="boxed-btn">delete</a>
-<%-- 												<input type="button" class="boxed-btn" value="delete" onclick="location.href='questionDelete.do?cno=${sessionScope.loginCno}&qno=${qa.QNO }'"> --%>
 											</div>
 										</div>
 									</div>
@@ -247,19 +245,19 @@ Answer: ${qa.AMESSAGE}
 				<div class="col-lg-12">
 					<div class="logo-carousel-inner">
 						<div class="single-logo-item">
-							<img src="<%=pjName%>resources/assets/img/company-logos/1.png" alt="">
+							<img src="<%=pjName%>resources/assets/img/company-logos/1.png">
 						</div>
 						<div class="single-logo-item">
-							<img src="<%=pjName%>resources/assets/img/company-logos/2.png" alt="">
+							<img src="<%=pjName%>resources/assets/img/company-logos/2.png">
 						</div>
 						<div class="single-logo-item">
-							<img src="<%=pjName%>resources/assets/img/company-logos/3.png" alt="">
+							<img src="<%=pjName%>resources/assets/img/company-logos/3.png">
 						</div>
 						<div class="single-logo-item">
-							<img src="<%=pjName%>resources/assets/img/company-logos/4.png" alt="">
+							<img src="<%=pjName%>resources/assets/img/company-logos/4.png">
 						</div>
 						<div class="single-logo-item">
-							<img src="<%=pjName%>resources/assets/img/company-logos/5.png" alt="">
+							<img src="<%=pjName%>resources/assets/img/company-logos/5.png">
 						</div>
 					</div>
 				</div>

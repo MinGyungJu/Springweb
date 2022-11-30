@@ -62,7 +62,7 @@
                   <!-- logo -->
                   <div class="site-logo">
                      <a href="index.do">
-                        <img src="<%=pjName%>resources/assets/img/logo.png" alt="">
+                        <img src="<%=pjName%>resources/assets/img/logo.png">
                      </a>
                   </div>
                   <!-- logo -->
@@ -165,10 +165,10 @@
                	  <form action="single_product.do">
 	                  <div class="single-product-item">
 	                     <c:if test="${product.img != null}">
-	                        <div class="product-image"><img src="<%=pjName%>resources/assets/img/products/${product.img}" alt="" onclick ="location.href='single_product.do';" ></div>
+	                        <div class="product-image"><img src="<%=pjName%>resources/assets/img/products/${product.img}" onclick ="location.href='single_product.do';" ></div>
 	                     </c:if>
 	                     <c:if test="${product.img == null}">
-	                        <div class="product-image"><img src="<%=pjName%>resources/assets/img/products/noImage.jpg" alt=""></div>
+	                        <div class="product-image"><img src="<%=pjName%>resources/assets/img/products/noImage.jpg"></div>
 	                     </c:if>
 	                     <h3>${product.pname}</h3>
 	                     <p class="product-price"><span>Per Kg</span> ${product.price}$ </p> 
@@ -227,19 +227,19 @@
             <div class="col-lg-12">
                <div class="logo-carousel-inner">
                   <div class="single-logo-item">
-                     <img src="<%=pjName%>resources/assets/img/company-logos/1.png" alt="">
+                     <img src="<%=pjName%>resources/assets/img/company-logos/1.png">
                   </div>
                   <div class="single-logo-item">
-                     <img src="<%=pjName%>resources/assets/img/company-logos/2.png" alt="">
+                     <img src="<%=pjName%>resources/assets/img/company-logos/2.png">
                   </div>
                   <div class="single-logo-item">
-                     <img src="<%=pjName%>resources/assets/img/company-logos/3.png" alt="">
+                     <img src="<%=pjName%>resources/assets/img/company-logos/3.png">
                   </div>
                   <div class="single-logo-item">
-                     <img src="<%=pjName%>resources/assets/img/company-logos/4.png" alt="">
+                     <img src="<%=pjName%>resources/assets/img/company-logos/4.png">
                   </div>
                   <div class="single-logo-item">
-                     <img src="<%=pjName%>resources/assets/img/company-logos/5.png" alt="">
+                     <img src="<%=pjName%>resources/assets/img/company-logos/5.png">
                   </div>
                </div>
             </div>
@@ -252,14 +252,14 @@
    <div class="footer-area">
       <div class="container">
          <div class="row">
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-4 col-md-6">
                <div class="footer-box about-widget">
                   <h2 class="widget-title">About us</h2>
                   <p>We are proudly serving coffee beans and coffee related products to our customer. 
                      Our duty is to please the customer with the best tasting bean and perfectly match the preferences of coffee.</p>
                </div>
             </div>
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-5 col-md-6">
                <div class="footer-box get-in-touch">
                   <h2 class="widget-title">Get in Touch</h2>
                   <ul>

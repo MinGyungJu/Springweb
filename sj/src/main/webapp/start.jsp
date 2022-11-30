@@ -10,8 +10,6 @@
 
 <a href='index.do'>방문자용 메인화면</a> <br/>
 <a href='index_m.do'>관리자 모드</a><br/>
-<!-- 추후에 index_m.do 를 index.do에 숨깁니다 -->
-
 
 
 </body>

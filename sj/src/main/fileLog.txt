@@ -1,1 +1,3 @@
 Customer 0 logged in at 2022-11-24T17:42:56.769467800
+Customer 64 logged in at 2022-11-30T18:21:55.600452800
+Customer 64 logged out at 2022-11-30T18:22:12.332775600

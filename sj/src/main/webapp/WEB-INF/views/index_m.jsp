@@ -54,7 +54,7 @@
 						<!-- logo -->
 						<div class="site-logo">
 							<a href="index_m.do">
-								<img src="<%=pjName%>resources/assets/img/logo.png" alt="">
+								<img src="<%=pjName%>resources/assets/img/logo.png">
 							</a>
 						</div>
 						<!-- logo -->
@@ -102,7 +102,7 @@
 					<span class="close-btn"><i class="fas fa-window-close"></i></span>
 					<div class="search-bar">
 						<div class="search-bar-tablecell">
-							<form action="shop_search.do">
+							<form action="shop_search_m.do">
 								<h3>Search For:</h3>
 								<input type="text" placeholder="Keywords" name='searchKeyword'>
 								<button type="submit">Search <i class="fas fa-search"></i></button>
@@ -233,7 +233,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6 col-md-12">
-					<p>Copyrights &copy; 2019 - gitae joe,  All Rights Reserved.</p>
+					<p>Copyrights &copy; 2019 - <a href="index.do">gitae joe</a>,  All Rights Reserved.</p>
 				</div>
 				<div class="col-lg-6 text-right col-md-12">
 					<div class="social-icons">

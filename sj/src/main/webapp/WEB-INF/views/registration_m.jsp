@@ -52,7 +52,7 @@
                   <!-- logo -->
                   <div class="site-logo">
                      <a href="index_m.do">
-                        <img src="<%=pjName%>resources/assets/img/logo.png" alt="">
+                        <img src="<%=pjName%>resources/assets/img/logo.png">
                      </a>
                   </div>
                   <!-- logo -->
@@ -98,7 +98,7 @@
                <span class="close-btn"><i class="fas fa-window-close"></i></span>
                <div class="search-bar">
                   <div class="search-bar-tablecell">
-                     <form action="shop_search.do">
+                     <form action="shop_search_m.do">
 						<h3>Search For:</h3>
 						<input type="text" placeholder="Keywords" name='searchKeyword'>
 						<button type="submit">Search <i class="fas fa-search"></i></button>

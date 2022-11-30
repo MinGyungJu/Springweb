@@ -56,7 +56,7 @@
 						<!-- logo -->
 						<div class="site-logo">
 							<a href="index.do">
-								<img src="<%=pjName%>resources/assets/img/logo.png" alt="">
+								<img src="<%=pjName%>resources/assets/img/logo.png">
 							</a>
 						</div>
 						<!-- logo -->
@@ -144,7 +144,7 @@
 			<div class="row">
 				<div class="col-md-5">
 					<div class="single-product-img">
-						<img src="<%=pjName%>resources/assets/img/products/${param.img}" alt="">
+						<img src="<%=pjName%>resources/assets/img/products/${param.img}">
 					</div>
 				</div>
 				<div class="col-md-7">
@@ -153,7 +153,7 @@
 						<h3>${param.pname}</h3>
 						<p class="single-product-pricing"><span>Per Kg</span> $${param.price}</p>
 						<p>${param.description}</p>
-						<input type="number" placeholder="0" id="ocnt" name="ocnt" value="1">	<br/>			
+						<input type="number" placeholder="0" id="ocnt" name="ocnt" value="1"><br/>			
 						<input type="hidden" name="pno" value="${param.pno}">
 						<input type="hidden" name="cno" value="${sessionScope.loginCno}">
 						<input type="submit" class="cart-btn" value="Add to Cart">
@@ -179,19 +179,19 @@
 				<div class="col-lg-12">
 					<div class="logo-carousel-inner">
 						<div class="single-logo-item">
-							<img src="<%=pjName%>resources/assets/img/company-logos/1.png" alt="">
+							<img src="<%=pjName%>resources/assets/img/company-logos/1.png">
 						</div>
 						<div class="single-logo-item">
-							<img src="<%=pjName%>resources/assets/img/company-logos/2.png" alt="">
+							<img src="<%=pjName%>resources/assets/img/company-logos/2.png">
 						</div>
 						<div class="single-logo-item">
-							<img src="<%=pjName%>resources/assets/img/company-logos/3.png" alt="">
+							<img src="<%=pjName%>resources/assets/img/company-logos/3.png">
 						</div>
 						<div class="single-logo-item">
-							<img src="<%=pjName%>resources/assets/img/company-logos/4.png" alt="">
+							<img src="<%=pjName%>resources/assets/img/company-logos/4.png">
 						</div>
 						<div class="single-logo-item">
-							<img src="<%=pjName%>resources/assets/img/company-logos/5.png" alt="">
+							<img src="<%=pjName%>resources/assets/img/company-logos/5.png">
 						</div>
 					</div>
 				</div>

@@ -242,6 +242,28 @@
 		FROM product
 		WHERE pno =#{pno}
 	</select>
+	
+	
+	
+	
+	<select id="getCustomer" resultType="CustomerVO" parameterType="hashmap">
+		SELECT *
+		FROM CUSTOMER 
+		WHERE email = #{email} AND id=#{id}
+		order by cno desc
+	</select>
+	<select id="getCustomerInfo" resultType="CustomerVO" parameterType="hashmap">
+		SELECT *
+		FROM CUSTOMER
+		WHERE email = #{email} AND id=#{id}
+	</select>
+	<select id="duplicateCustomer" resultType="CustomerVO" parameterType="CustomerVO">
+		SELECT *
+		FROM CUSTOMER
+		WHERE id = #{id}
+		
+	</select>
+	
 	<!-- 제품 수정 -->
 	<update id="modifyProduct" parameterType="ProductVO">
 		UPDATE PRODUCT 
@@ -324,7 +346,8 @@
 		WHERE cno = #{cno}
 	</delete>
 	<delete id="deleteAllQuestion" parameterType="QuestionVO">
-	
+		DELETE FROM QUESTION
+		WHERE cno = #{cno}
 	</delete>
 	<!-- 질문 하기 -->
 	<insert id="insertAnswer" parameterType="AnswerVO">

@@ -70,42 +70,56 @@ public class UserServiceImpl implements UserService {
 	// ---manager login end
 
 	// 상품 목록 조회
-		public List<ProductVO> getProductList(CriteriaVO cri) throws Exception {
+	public List<ProductVO> getProductList(CriteriaVO cri) throws Exception {
 		return userDAO.getProductList(cri);
-		}
+	}
 		
-		public List<ProductVO> getProductList_1(CriteriaVO cri) throws Exception {
-			return userDAO.getProductList_1(cri); 
-		}
+	public List<ProductVO> getProductList_1(CriteriaVO cri) throws Exception {
+		return userDAO.getProductList_1(cri); 
+	}
 		
-		public List<ProductVO> getProductList_2(CriteriaVO cri) throws Exception {
-			return userDAO.getProductList_2(cri);
-		}
+	public List<ProductVO> getProductList_2(CriteriaVO cri) throws Exception {
+		return userDAO.getProductList_2(cri);
+	}
 		
-		public List<ProductVO> getProductList_3(CriteriaVO cri) throws Exception {
-			return userDAO.getProductList_3(cri);
-		}
+	public List<ProductVO> getProductList_3(CriteriaVO cri) throws Exception {
+		return userDAO.getProductList_3(cri);
+	}
 
-		public List<ProductVO> getProductList2(CriteriaVO cri) throws Exception {
-			return userDAO.getProductList2(cri);
-		}
+	public List<ProductVO> getProductList2(CriteriaVO cri) throws Exception {
+		return userDAO.getProductList2(cri);
+	}
 		
-		public List<ProductVO> getProductList2_1(CriteriaVO cri) throws Exception {
-			return userDAO.getProductList2_1(cri);
-		}
+	public List<ProductVO> getProductList2_1(CriteriaVO cri) throws Exception {
+		return userDAO.getProductList2_1(cri);
+	}
 		
-		public List<ProductVO> getProductList2_2(CriteriaVO cri) throws Exception {
-			return userDAO.getProductList2_2(cri);
-		}
+	public List<ProductVO> getProductList2_2(CriteriaVO cri) throws Exception {
+		return userDAO.getProductList2_2(cri);
+	}
 		
-		public List<ProductVO> getProductList2_3(CriteriaVO cri) throws Exception {
-			return userDAO.getProductList2_3(cri);
-		}
+	public List<ProductVO> getProductList2_3(CriteriaVO cri) throws Exception {
+		return userDAO.getProductList2_3(cri);
+	}
 
-		// 상품 총 갯수
-		public int listCount() throws Exception {
-			return userDAO.listCount();
-		}
+	public List<ProductVO> shop_search(HashMap map) {
+		return userDAO.shop_search(map);
+	}
+
+	@Override
+	public List<ProductVO> getAllProductList() {
+		return userDAO.getAllProductList();
+	}
+
+	@Override
+	public List<ProductVO> getAllProductList2() {
+		return userDAO.getAllProductList2();
+	}
+
+	// 상품 총 갯수
+	public int listCount() throws Exception {
+		return userDAO.listCount();
+	}
 	
 	public List<HashMap> getCustomersOrders(){
 		return userDAO.getCustomersOrders();
@@ -168,6 +182,11 @@ public class UserServiceImpl implements UserService {
 	public int deleteAnswer(AnswerVO vo) {
 		return userDAO.deleteAnswer(vo);
 	}
+
+	@Override
+	public int modifyCustomer(CustomerVO vo) {
+		return userDAO.modifyCustomer(vo);
+	}
 	// ---user contact end
 
 	// ---user login
@@ -201,7 +220,6 @@ public class UserServiceImpl implements UserService {
 
 	// ----------------------------------user end
 
-
 	public List<Map<String,Object>> getSalesListBy(String year){
 		return userDAO.getSalesListBy(year);
 	}
@@ -209,23 +227,44 @@ public class UserServiceImpl implements UserService {
 		return userDAO.getCountSalesListBy(year);
 	}
 	
-	public List<ProductVO> shop_search(HashMap map) {
-		return userDAO.shop_search(map);
+	@Override
+	public int deleteAllOrders(int lono) {
+		return userDAO.deleteAllOrders(lono);
 	}
 
 	@Override
-	public int modifyCustomer(CustomerVO vo) {
-		return userDAO.modifyCustomer(vo);
+	public int deleteAllOrder(int lono) {
+		return userDAO.deleteAllOrder(lono);
+		
 	}
 
 	@Override
-	public List<ProductVO> getAllProductList() {
-		return userDAO.getAllProductList();
+	public int deleteCustomer(CustomerVO cvo) {
+		return userDAO.deleteCustomer(cvo);
+	}
+
+	public int deleteAllAnswer(AnswerVO avo) {
+		return userDAO.deleteAllAnswer(avo);
+	}
+	public int deleteAllQuestion(QuestionVO qvo) {
+		return userDAO.deleteAllQuestion(qvo);
+	}
+	
+	@Override
+	public List<CustomerVO> getCustomer(HashMap map) { 
+		return userDAO.getCustomer(map);
 	}
 
 	@Override
-	public List<ProductVO> getAllProductList2() {
-		return userDAO.getAllProductList2();
+	public List<CustomerVO> getCustomerInfo(HashMap map) {
+		return userDAO.getCustomerInfo(map);
 	}
+
+	@Override
+	public List<CustomerVO> duplicateCustomer(CustomerVO vo) {
+		return userDAO.duplicateCustomer(vo);
+	}
+
+	
 
 }

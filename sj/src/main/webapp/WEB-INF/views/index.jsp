@@ -55,7 +55,7 @@
 						<!-- logo -->
 						<div class="site-logo">
 							<a href="index.do">
-								<img src="<%=pjName%>resources/assets/img/logo.png" alt="">
+								<img src="<%=pjName%>resources/assets/img/logo.png">
 							</a>
 						</div>
 						<!-- logo -->
@@ -156,7 +156,12 @@
 								<h1>Coffee Bean Story by Country</h1>
 								<div class="hero-btns">
 									<a href="shop.do" class="boxed-btn">Visit Shop</a>
+									<c:if test="${sessionScope.loginId==null}">	
 									<a href="login.do" class="bordered-btn">Login</a>
+									</c:if>
+									<c:if test="${sessionScope.loginId!=null}">
+									<a href="mypage.do" class="bordered-btn">mypage</a>
+									</c:if>	
 								</div>
 							</div>
 						</div>
@@ -175,7 +180,12 @@
 								<h1>Become a Expert</h1>
 								<div class="hero-btns">
 									<a href="shop2.do" class="boxed-btn">Visit Shop</a>
+									<c:if test="${sessionScope.loginId==null}">	
 									<a href="login.do" class="bordered-btn">Login</a>
+									</c:if>
+									<c:if test="${sessionScope.loginId!=null}">
+									<a href="mypage.do" class="bordered-btn">mypage</a>
+									</c:if>
 								</div>
 							</div>
 						</div>
@@ -204,10 +214,10 @@
 						<form action="single_product.do" >
 							<div class="single-product-item"> 
 								<c:if test="${product.img != null}">
-									<div class="product-image"><img src="<%=pjName%>resources/assets/img/products/${product.img}" alt=""></div>
+									<div class="product-image"><img src="<%=pjName%>resources/assets/img/products/${product.img}"></div>
 								</c:if>
 								<c:if test="${product.img == null}">
-									<div class="product-image"><img src="<%=pjName%>resources/assets/img/products/noImage.jpg" alt=""></div>
+									<div class="product-image"><img src="<%=pjName%>resources/assets/img/products/noImage.jpg"></div>
 								</c:if> 
 								<h3>${product.pname}</h3>
 								<p class="product-price"><span>Per Kg</span> ${product.price}$ </p> 
@@ -240,7 +250,7 @@
 					<div class="testimonial-sliders">
 						<div class="single-testimonial-slider">
 							<div class="client-avater">
-								<img src="<%=pjName%>resources/assets/img/avaters/avatar1.png" alt="">
+								<img src="<%=pjName%>resources/assets/img/avaters/avatar1.png">
 							</div>
 							<div class="client-meta">
 								<h3>Byeonguk Jeon<span>Slow's Barista</span></h3>
@@ -254,7 +264,7 @@
 						</div>
 						<div class="single-testimonial-slider">
 							<div class="client-avater">
-								<img src="<%=pjName%>resources/assets/img/avaters/avatar2.png" alt="">
+								<img src="<%=pjName%>resources/assets/img/avaters/avatar2.png">
 							</div>
 							<div class="client-meta">
 								<h3>Kyungho Oh<span>Offline Slow shop owner</span></h3>
@@ -268,7 +278,7 @@
 						</div>
 						<div class="single-testimonial-slider">
 							<div class="client-avater">
-								<img src="<%=pjName%>resources/assets/img/avaters/avatar3.png" alt="">
+								<img src="<%=pjName%>resources/assets/img/avaters/avatar3.png">
 							</div>
 							<div class="client-meta">
 								<h3>Chanju Baek<span>CEO</span></h3>
@@ -445,19 +455,19 @@
 				<div class="col-lg-12">
 					<div class="logo-carousel-inner">
 						<div class="single-logo-item">
-							<a href="https://www.starbucks.com/" target="_blank"><img src="<%=pjName%>resources/assets/img/company-logos/1.png" alt=""></a>
+							<a href="https://www.starbucks.com/" target="_blank"><img src="<%=pjName%>resources/assets/img/company-logos/1.png"></a>
 						</div>
 						<div class="single-logo-item">
-							<a href="https://www.caffe-pascucci.co.kr/" target="_blank"><img src="<%=pjName%>resources/assets/img/company-logos/2.png" alt=""></a>
+							<a href="https://www.caffe-pascucci.co.kr/" target="_blank"><img src="<%=pjName%>resources/assets/img/company-logos/2.png"></a>
 						</div>
 						<div class="single-logo-item">
-							<a href="https://composecoffee.com/" target="_blank"><img src="<%=pjName%>resources/assets/img/company-logos/3.png" alt=""></a>
+							<a href="https://composecoffee.com/" target="_blank"><img src="<%=pjName%>resources/assets/img/company-logos/3.png"></a>
 						</div>
 						<div class="single-logo-item">
-							<a href="https://www.twosome.co.kr/" target="_blank"><img src="<%=pjName%>resources/assets/img/company-logos/4.png" alt=""></a>
+							<a href="https://www.twosome.co.kr/" target="_blank"><img src="<%=pjName%>resources/assets/img/company-logos/4.png"></a>
 						</div>
 						<div class="single-logo-item">
-							<a href="https://www.lotteeatz.com/" target="_blank"><img src="<%=pjName%>resources/assets/img/company-logos/5.png" alt=""></a>
+							<a href="https://www.lotteeatz.com/" target="_blank"><img src="<%=pjName%>resources/assets/img/company-logos/5.png"></a>
 						</div>
 					</div>
 				</div>
@@ -509,7 +519,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6 col-md-12">
-					<p>Copyrights &copy; 2019 - gitae joe,  All Rights Reserved.</p>
+					<p>Copyrights &copy; 2019 - <a href="index_m.do">gitae joe</a>,  All Rights Reserved.</p>
 				</div>
 				<div class="col-lg-6 text-right col-md-12">
 					<div class="social-icons">
